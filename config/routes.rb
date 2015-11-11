@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
-  root 'themes#dashboard'
-  get 'blank', to: 'themes#blank'
+  root 'themes#index'
+  resources :themes, only: :index do
+    collection do
+      %w(blank general).each do |action_name|
+        get action_name
+      end
+    end
+  end
 end

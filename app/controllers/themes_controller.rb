@@ -2,10 +2,13 @@ class ThemesController < ApplicationController
   layout 'theme'
   before_action :popover_image_url
 
-  def dashboard
+  def index
   end
 
   def blank
+  end
+
+  def general
   end
 
   def popover_image_url
