@@ -1,0 +1,10 @@
+section#main-content
+  section.wrapper
+    .row
+      = render partial: 'themes/dashboard/maine'
+      = render partial: 'themes/dashboard/right_sidebar'
+
+= content_for(:javascript_code) do
+  | CommonScripts.init("#{@popover_url.to_json}");
+  | SparklineChart.init();
+

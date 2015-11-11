@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title
+      | WowCalendar - Theme
+    = stylesheet_link_tag  'theme', media: 'all'
+    = csrf_meta_tags
+  body
+    section#container
+      = render partial: 'layouts/theme/header'
+      = render partial: 'layouts/theme/sidebar'
+      = yield
+      = render partial: 'layouts/theme/footer'
+
+    = javascript_include_tag 'theme'
+    = javascript_tag "$(function() { #{yield(:javascript_code)} });" if content_for? :javascript_code

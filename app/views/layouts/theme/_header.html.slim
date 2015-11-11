@@ -1,0 +1,133 @@
+header.header.black-bg
+  .sidebar-toggle-box
+    .fa.fa-bars.tooltips[data-toggle="tooltip" data-placement="right" title="Toggle Navigation"]
+  a.logo[href="index.html"]
+    b
+      | DASHGUM FREE
+  #top_menu.nav.notify-row
+    ul.nav.top-menu
+      li.dropdown
+        a.dropdown-toggle[data-toggle="dropdown" href="index.html#"]
+          i.fa.fa-tasks
+          span.badge.bg-theme
+            | 4
+        ul.dropdown-menu.extended.tasks-bar
+          li
+            p.green
+              | You have 4 pending tasks
+          li
+            a[href="index.html#"]
+
+              .task-info
+                .desc
+                  | DashGum Admin Panel
+                .percent
+                  | 40%
+              .progress.progress-striped
+                .progress-bar.progress-bar-success[role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"]
+                  span.sr-only
+                    | 40% Complete (success)
+          li
+            a[href="index.html#"]
+
+              .task-info
+                .desc
+                  | Database Update
+                .percent
+                  | 60%
+              .progress.progress-striped
+                .progress-bar.progress-bar-warning[role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"]
+                  span.sr-only
+                    | 60% Complete (warning)
+          li
+            a[href="index.html#"]
+
+              .task-info
+                .desc
+                  | Product Development
+                .percent
+                  | 80%
+              .progress.progress-striped
+                .progress-bar.progress-bar-info[role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"]
+                  span.sr-only
+                    | 80% Complete
+          li
+            a[href="index.html#"]
+
+              .task-info
+                .desc
+                  | Payments Sent
+                .percent
+                  | 70%
+              .progress.progress-striped
+                .progress-bar.progress-bar-danger[role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"]
+                  span.sr-only
+                    | 70% Complete (Important)
+          li.external
+            a[href="#"]
+              | See All Tasks
+          .notify-arrow.notify-arrow-green
+
+      li#header_inbox_bar.dropdown
+        a.dropdown-toggle[data-toggle="dropdown" href="index.html#"]
+          i.fa.fa-envelope-o
+          span.badge.bg-theme
+            | 5
+        ul.dropdown-menu.extended.inbox
+          li
+            p.green
+              | You have 5 new messages
+          li
+            a[href="index.html#"]
+              span.photo
+                = image_tag 'theme/ui-zac.jpg'
+              span.subject
+                span.from
+                  | Zac Snider
+                span.time
+                  | Just now
+              span.message
+                |  Hi mate, how is everything?
+          li
+            a[href="index.html#"]
+              span.photo
+                = image_tag 'theme/ui-divya.jpg'
+              span.subject
+                span.from
+                  | Divya Manian
+                span.time
+                  | 40 mins.
+              span.message
+                |  Hi, I need your help with this.
+          li
+            a[href="index.html#"]
+              span.photo
+                = image_tag 'theme/ui-danro.jpg'
+              span.subject
+                span.from
+                  | Dan Rogers
+                span.time
+                  | 2 hrs.
+              span.message
+                |  Love your new Dashboard.
+          li
+            a[href="index.html#"]
+              span.photo
+                = image_tag 'theme/ui-sherman.jpg'
+              span.subject
+                span.from
+                  | Dj Sherman
+                span.time
+                  | 4 hrs.
+              span.message
+                |  Please, answer asap.
+          li
+            a[href="index.html#"]
+              | See all messages
+          .notify-arrow.notify-arrow-green
+
+  .top-menu
+    ul.nav.pull-right.top-menu
+      li
+        a.logout[href="login.html"]
+          | Logout

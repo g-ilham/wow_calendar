@@ -1,0 +1,47 @@
+.row.mt
+  .col-md-4.col-sm-4.mb
+    .white-panel.pn.donut-chart
+      .white-header
+        h5
+          | SERVER LOAD
+      .row
+        .col-sm-6.col-xs-6.goleft
+          p
+            i.fa.fa-database
+            |  70%
+      canvas#serverstatus01[height="120" width="120"]
+
+  .col-md-4.col-sm-4.mb
+    .white-panel.pn
+      .white-header
+        h5
+          | TOP PRODUCT
+      .row
+        .col-sm-6.col-xs-6.goleft
+          p
+            i.fa.fa-heart
+            |  122
+        .col-sm-6.col-xs-6
+      .centered
+        = image_tag 'theme/product.png', width: '120'
+  .col-md-4.mb
+    .white-panel.pn
+      .white-header
+        h5
+          | TOP USER
+      p
+        = image_tag 'theme/ui-zac.jpg', class: 'img-circle', width: '80s'
+      p
+        b
+          | Zac Snider
+      .row
+        .col-md-6
+          p.small.mt
+            | MEMBER SINCE
+          p
+            | 2012
+        .col-md-6
+          p.small.mt
+            | TOTAL SPEND
+          p
+            | $ 47,60

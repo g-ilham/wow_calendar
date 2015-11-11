@@ -1,0 +1,70 @@
+#sidebar.nav-collapse
+  /! sidebar menu start
+  ul#nav-accordion.sidebar-menu
+    p.centered
+      a href="#{root_path}"
+        = image_tag 'theme/ui-sam.jpg', class: 'img-circle', width: '60'
+    h5.centered Marcel Newman
+    li.mt
+      a href="#{root_path}"
+        i.fa.fa-dashboard
+        span Dashboard
+    li.sub-menu
+      a href="#{root_path}"
+        i.fa.fa-desktop
+        span UI Elements
+      ul.sub
+        li
+          a href="#{root_path}"  General
+        li
+          a href="#{root_path}"  Buttons
+        li
+          a href="#{root_path}"  Panels
+    li.sub-menu
+      a href="javascript:;"
+        i.fa.fa-cogs
+        span Components
+      ul.sub
+        li
+          a href="#{root_path}"  Calendar
+        li
+          a href="#{root_path}"  Gallery
+        li
+          a href="#{root_path}"  Todo List
+    li.sub-menu
+      a href="javascript:;"
+        i.fa.fa-book
+        span Extra Pages
+      ul.sub
+        li
+          a href="#{root_path}"  Blank Page
+        li
+          a href="#{root_path}"  Login
+        li
+          a href="#{root_path}"  Lock Screen
+    li.sub-menu
+      a href="javascript:;"
+        i.fa.fa-tasks
+        span Forms
+      ul.sub
+        li
+          a href="#{root_path}"  Form Components
+    li.sub-menu
+      a href="javascript:;"
+        i.fa.fa-th
+        span Data Tables
+      ul.sub
+        li
+          a href="#{root_path}"  Basic Table
+        li
+          a href="#{root_path}"  Responsive Table
+    li.sub-menu
+      a href="javascript:;"
+        i.fa.fa-bar-chart-o
+        span Charts
+      ul.sub
+        li
+          a href="#{root_path}"  Morris
+        li
+          a href="#{root_path}"  Chartjs
+  /! sidebar menu end

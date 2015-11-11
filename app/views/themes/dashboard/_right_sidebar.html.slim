@@ -1,0 +1,128 @@
+.col-lg-3.ds
+  h3
+    | NOTIFICATIONS
+  .desc
+    .thumb
+      span.badge.bg-theme
+        i.fa.fa-clock-o
+    .details
+      p
+        muted
+          | 2 Minutes Ago
+        br
+        a[href="#{root_path}"]
+          | James Brown
+        |  subscribed to your newsletter.
+        br
+  .desc
+    .thumb
+      span.badge.bg-theme
+        i.fa.fa-clock-o
+    .details
+      p
+        muted
+          | 3 Hours Ago
+        br
+        a[href="#{root_path}"]
+          | Diana Kennedy
+        |  purchased a year subscription.
+        br
+  .desc
+    .thumb
+      span.badge.bg-theme
+        i.fa.fa-clock-o
+    .details
+      p
+        muted
+          | 7 Hours Ago
+        br
+        a[href="#{root_path}"]
+          | Brandon Page
+        |  purchased a year subscription.
+        br
+  .desc
+    .thumb
+      span.badge.bg-theme
+        i.fa.fa-clock-o
+    .details
+      p
+        muted
+          | 11 Hours Ago
+        br
+        a[href="#{root_path}"]
+          | Mark Twain
+        |  commented your post.
+        br
+  .desc
+    .thumb
+      span.badge.bg-theme
+        i.fa.fa-clock-o
+    .details
+      p
+        muted
+          | 18 Hours Ago
+        br
+        a[href="#{root_path}"]
+          | Daniel Pratt
+        |  purchased a wallet in your store.
+        br
+  h3
+    | TEAM MEMBERS
+  .desc
+    .thumb
+      = image_tag 'theme/ui-divya.jpg', class: 'img-circle', width: '35', height: '35'
+    .details
+      p
+        a[href="#{root_path}"]
+          | DIVYA MANIAN
+        br
+        muted
+          | Available
+  .desc
+    .thumb
+      = image_tag 'theme/ui-sherman.jpg', class: 'img-circle', width: '35', height: '35'
+    .details
+      p
+        a[href="#{root_path}"]
+          | DJ SHERMAN
+        br
+        muted
+          | I am Busy
+  .desc
+    .thumb
+      = image_tag 'theme/ui-danro.jpg', class: 'img-circle', width: '35', height: '35'
+    .details
+      p
+        a[href="#{root_path}"]
+          | DAN ROGERS
+        br
+        muted
+          | Available
+  .desc
+    .thumb
+      = image_tag 'theme/ui-zac.jpg', class: 'img-circle', width: '35', height: '35'
+    .details
+      p
+        a[href="#{root_path}"]
+          | Zac Sniders
+        br
+        muted
+          | Available
+  .desc
+    .thumb
+      = image_tag 'theme/ui-sam.jpg', class: 'img-circle', width: '35', height: '35'
+    .details
+      p
+        a[href="#{root_path}"]
+          | Marcel Newman
+        br
+        muted
+          | Available
+  #calendar.mb
+    .panel.green-panel.no-margin
+      .panel-body
+        #date-popover.popover.top style=("cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;")
+          .arrow
+          h3.popover-title style=("disadding: none;")
+          #date-popover-content.popover-content
+        #my-calendar
