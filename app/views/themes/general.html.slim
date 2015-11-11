@@ -1,0 +1,6 @@
+section#main-content
+  section.wrapper#general_page
+    = render partial: 'themes/general/content'
+
+= content_for(:javascript_code) do
+  | CommonScripts.init();

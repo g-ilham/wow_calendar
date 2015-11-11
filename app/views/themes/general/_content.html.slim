@@ -1,0 +1,171 @@
+.row.mt
+  .col-lg-6.col-md-6.col-sm-12
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Basic Progress Bars
+      .progress
+        .progress-bar.progress-bar-success aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" style=("width: 40%")
+          span.sr-only
+            | 40% Complete (success)
+      .progress
+        .progress-bar.progress-bar-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" style=("width: 20%")
+          span.sr-only
+            | 20% Complete
+      .progress
+        .progress-bar.progress-bar-warning aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%")
+          span.sr-only
+            | 60% Complete (warning)
+      .progress
+        .progress-bar.progress-bar-danger aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" style=("width: 80%")
+          span.sr-only
+            | 80% Complete
+    /! /showback
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Stripped Progress Bars
+      .progress.progress-striped
+        .progress-bar.progress-bar-success aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" style=("width: 40%")
+          span.sr-only
+            | 40% Complete (success)
+      .progress.progress-striped
+        .progress-bar.progress-bar-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" style=("width: 20%")
+          span.sr-only
+            | 20% Complete
+      .progress.progress-striped
+        .progress-bar.progress-bar-warning aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style=("width: 60%")
+          span.sr-only
+            | 60% Complete (warning)
+      .progress.progress-striped
+        .progress-bar.progress-bar-danger aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" style=("width: 80%")
+          span.sr-only
+            | 80% Complete (danger)
+    /! /showback
+    /! ANIMATED PROGRESS BARS
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Animated Progress Bars
+      .progress.progress-striped.active
+        .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" role="progressbar" style=("width: 45%")
+          span.sr-only
+            | 45% Complete
+    /! /showback
+    /! MODALS
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Modal Example
+      /! Button trigger modal
+      button.btn.btn-success.btn-lg data-target="#myModal" data-toggle="modal"
+        | Launch Modal
+      /! Modal
+      #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+              h4#myModalLabel.modal-title Modal title
+            .modal-body
+              | Hi there, I am a Modal Example for Dashgum Admin Panel.
+            .modal-footer
+              button.btn.btn-default data-dismiss="modal" type="button"  Close
+              button.btn.btn-primary type="button"  Save changes
+    /! /showback
+    /! GRITTER NOTICES
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Gritter Examples
+      p Click on below buttons to check it out.
+      a#add-regular.btn.btn-default.btn-sm.margin_right_5 href="javascript:;"  Regular
+      a#add-sticky.btn.btn-success.btn-sm.margin_right_5 href="javascript:;"  Sticky
+      a#add-without-image.btn.btn-info.btn-sm.margin_right_5 href="javascript:;"  Imageless
+      a#add-gritter-light.btn.btn-warning.btn-sm.margin_right_5 href="javascript:;"  Light
+      a#remove-all.btn.btn-danger.btn-sm.margin_right_5 href="general.html#"  Remove all
+    /! /showback
+  /! /col-lg-6
+  .col-lg-6.col-md-6.col-sm-12
+    /! ALERTS EXAMPLES
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Alerts Examples
+      .alert.alert-success
+        b Well done!
+        '
+        | You successfully read this important alert message.
+      .alert.alert-info
+        b Heads up!
+        '
+        | This alert needs your attention, but it's not super important.
+      .alert.alert-warning
+        b Warning!
+        '
+        | Better check yourself, you're not looking too good.
+      .alert.alert-danger
+        b Oh snap!
+        '
+        | Change a few things up and try submitting again.
+    /! /showback
+    /! DISMISSABLE ALERT
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Dismissable Alert
+      .alert.alert-warning.alert-dismissable
+        button.close aria-hidden="true" data-dismiss="alert" type="button"  &times;
+        strong Warning!
+        '
+        | Better check yourself, you're not looking too good.
+    /! /showback
+    /! BADGES
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Badges
+      span.badge.margin_right_5
+        | 5
+      span.badge.bg-primary.margin_right_5
+        | 10
+      span.badge.bg-success.margin_right_5
+        | 15
+      span.badge.bg-info.margin_right_5
+        | 20
+      span.badge.bg-inverse.margin_right_5
+        | 25
+      span.badge.bg-warning.margin_right_5
+        | 30
+      span.badge.bg-important.margin_right_5
+        | 35
+    /! /showback
+    /! LABELS
+    .showback
+      h4
+        i.fa.fa-angle-right
+        '
+        | Labels
+      span.label.label-default.margin_right_5
+        | label
+      span.label.label-primary.margin_right_5
+        | Primary
+      span.label.label-success.margin_right_5
+        | Success
+      span.label.label-info.margin_right_5
+        | Info
+      span.label.label-warning.margin_right_5
+        | Warning
+      span.label.label-danger.margin_right_5
+        | Danger
+    /! /showback
+  /! /col-lg-6
+/! / row
