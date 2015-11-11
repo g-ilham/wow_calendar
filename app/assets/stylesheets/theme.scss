@@ -5,5 +5,7 @@
  *= require ./theme/style
  *= require ./theme/style-responsive
  *= require_tree ./theme
+ *= require_tree ./general
+ *= require_tree ./custom
 */
 
