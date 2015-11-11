@@ -1,0 +1,7 @@
+section#main-content
+  section.wrapper#buttons_page
+    = render partial: 'themes/buttons/content'
+
+= content_for(:javascript_code) do
+  | CommonScripts.init();
+
