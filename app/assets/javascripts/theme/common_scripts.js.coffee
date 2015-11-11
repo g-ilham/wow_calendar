@@ -27,9 +27,10 @@ window.CommonScripts =
   sidebartoogle: ->
     #sidebar toggle
     CommonScripts.responsiveView()
-    $(window).on 'resize', CommonScripts.responsiveView()
+    $(window).resize ->
+      CommonScripts.responsiveView()
 
-    $(document).on 'click', '.fa-bars', () ->
+    $(document).on 'click', '.fa-bars', ->
       if $('#sidebar > ul').is(':visible') == true
         $('#main-content').css 'margin-left': '0px'
         $('#sidebar').css 'margin-left': '-210px'
@@ -55,7 +56,7 @@ window.CommonScripts =
 
   sidebarScrollMask: ->
     #    sidebar dropdown menu auto scrolling
-    $('#sidebar .sub-menu > a').click ->
+    $(document).on 'click', '#sidebar .sub-menu > a', ->
       o = $(this).offset()
       diff = 250 - (o.top)
       if diff > 0
@@ -87,7 +88,7 @@ window.CommonScripts =
 
   widgetTools: ->
     # widget tools
-    $('.panel .tools .fa-chevron-down').click ->
+    $(document).on 'click', '.panel .tools .fa-chevron-down', ->
       el = $(@).parents('.panel').children('.panel-body')
       if $(@).hasClass('fa-chevron-down')
         $(@).removeClass('fa-chevron-down').addClass 'fa-chevron-up'
@@ -159,7 +160,7 @@ window.CommonScripts =
       trigger: 'manual'
 
     $('#date-popover').hide()
-    $('#date-popover').click (e) ->
+    $(document).on 'click', '#date-popover', ->
       $(this).hide()
       return
 
