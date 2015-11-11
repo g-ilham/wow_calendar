@@ -3,5 +3,5 @@ section#main-content
     = render partial: 'themes/blank/content'
 
 = content_for(:javascript_code) do
-  | CommonScripts.init();
+  | CommonScripts.init("#{@gritter_url.to_json}");
 

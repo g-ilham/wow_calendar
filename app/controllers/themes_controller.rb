@@ -1,6 +1,6 @@
 class ThemesController < ApplicationController
   layout 'theme'
-  before_action :popover_image_url
+  before_action :gritter_image_url
 
   def index
   end
@@ -11,7 +11,7 @@ class ThemesController < ApplicationController
   def general
   end
 
-  def popover_image_url
-    @popover_url = ActionController::Base.helpers.image_path('theme/ui-sam.jpg')
+  def gritter_image_url
+    @gritter_url = ActionController::Base.helpers.image_path('theme/ui-sam.jpg')
   end
 end
