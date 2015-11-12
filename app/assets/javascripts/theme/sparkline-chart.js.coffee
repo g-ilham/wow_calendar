@@ -6,6 +6,13 @@ window.SparklineChart =
       $(this).sparkline $data.data or 'html', $data, tooltipFormat: '<span style="display:block; padding:0px 10px 12px 0px;">' + '<span style="color: {{color}}">&#9679;</span> {{offset:names}} ({{percent.1}}%)</span>'
       return
     #sparkline chart
+    SparklineChart.sparkline_charts()
+    #work progress bar
+    SparklineChart.work_progress_bars()
+
+    $(window).resize ->
+      SparklineChart.init()
+  sparkline_charts: ->
     $('#barchart').sparkline [
       5
       3
@@ -36,6 +43,7 @@ window.SparklineChart =
       barWidth: 8
       barSpacing: 5
       barColor: '#fff'
+
     $('#linechart').sparkline [
       1
       5
@@ -80,7 +88,8 @@ window.SparklineChart =
         '#F8D347'
         '#EF6F66'
       ]
-    #work progress bar
+
+  work_progress_bars: ->
     $('#work-progress1').sparkline [
       5
       6
