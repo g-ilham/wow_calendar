@@ -1,0 +1,44 @@
+form.form-login action="index.html"
+  h2.form-login-heading sign in now
+  .login-wrap
+    input.form-control autofocus="" placeholder=("User ID") type="text" /
+    br/
+    input.form-control placeholder="Password" type="password" /
+    label.checkbox
+      span.pull-right
+        a data-toggle="modal" href="#"  Forgot Password?
+    button.btn.btn-theme.btn-block href="index.html" type="submit"
+      i.fa.fa-lock
+      '
+      | SIGN IN
+    hr/
+    .login-social-link.centered
+      p or you can sign in via your social network
+      button.btn.btn-facebook type="submit"
+        i.fa.fa-facebook
+        '
+        | Facebook
+      '
+      button.btn.btn-twitter type="submit"
+        i.fa.fa-twitter
+        '
+        | Twitter
+    .registration
+      | Don't have an account yet?
+      br/
+      a href="#"
+        | Create an account
+  /! Modal
+  #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+          h4.modal-title Forgot Password ?
+        .modal-body
+          p Enter your e-mail address below to reset your password.
+          input.form-control.placeholder-no-fix autocomplete="off" name="email" placeholder="Email" type="text" /
+        .modal-footer
+          button.btn.btn-default data-dismiss="modal" type="button"  Cancel
+          button.btn.btn-theme type="button"  Submit
+  /! modal

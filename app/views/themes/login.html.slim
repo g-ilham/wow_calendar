@@ -1,0 +1,7 @@
+#login_page
+  = render partial: 'themes/login/content'
+
+= content_for(:javascript_code) do
+  | LoginInitial.init("#{@login_image_url.to_json}");
+
+

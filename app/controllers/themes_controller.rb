@@ -1,7 +1,8 @@
 class ThemesController < ApplicationController
-  layout 'theme'
+  layout :resolve_layout
   before_action :gritter_image_url
   before_action :gallery_image_urls, only: [ :gallery ]
+  before_action :login_image_url, only: [ :login ]
 
   def index
   end
@@ -27,8 +28,19 @@ class ThemesController < ApplicationController
   def todos
   end
 
+  def login
+  end
+
   def gritter_image_url
-    @gritter_url = ActionController::Base.helpers.image_path('theme/ui-sam.jpg')
+    @gritter_image_url = get_image_url('theme/ui-sam.jpg')
+  end
+
+  def login_image_url
+    @login_image_url = get_image_url('theme/login-bg.jpg')
+  end
+
+  def get_image_url(url)
+    ActionController::Base.helpers.image_path(url)
   end
 
   def gallery_image_urls
@@ -37,12 +49,23 @@ class ThemesController < ApplicationController
       @all_files = clean_image_url
 
       @all_images_urls = @all_files.map do |filename|
-        ActionController::Base.helpers.image_path(filename)
+        get_image_url(filename)
       end
     end
   end
 
   def clean_image_url
     @all_files.map { |url| url.gsub('app/assets/images/', '') }
+  end
+
+  private
+
+  def resolve_layout
+    case action_name
+    when 'login'
+      'login'
+    else
+      'theme'
+    end
   end
 end
