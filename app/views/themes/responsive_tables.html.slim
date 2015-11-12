@@ -1,0 +1,7 @@
+section#main-content
+  section.wrapper.site-min-height#responsive_tables_page
+    = render partial: 'themes/responsive_tables/content'
+
+= content_for(:javascript_code) do
+  | CommonScripts.init();
+

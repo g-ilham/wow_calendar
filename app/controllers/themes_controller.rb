@@ -34,6 +34,9 @@ class ThemesController < ApplicationController
   def basic_tables
   end
 
+  def responsive_tables
+  end
+
   def gritter_image_url
     @gritter_image_url = get_image_url('theme/ui-sam.jpg')
   end
