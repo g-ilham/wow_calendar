@@ -227,7 +227,6 @@ window.CommonScripts =
       for index in [0...doughnutData.length] by pairsLen
         pairs = doughnutData[index...index + pairsLen]
         data = CommonScripts.clean_pairs(pairs)
-        console.log data
         new Chart(window.doughnut_el.getContext('2d')).Doughnut(data)
 
     window.doughnut_el = undefined
