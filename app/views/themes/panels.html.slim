@@ -1,0 +1,9 @@
+section#main-content
+  section.wrapper.site-min-height#panels_page
+    = render partial: 'themes/panels/content_2'
+
+= content_for(:javascript_code) do
+  | CommonScripts.animate_doughnuts(CommonScripts.doughnut_data_panels());
+  | SparklineChart.init();
+  | CommonScripts.init();
+

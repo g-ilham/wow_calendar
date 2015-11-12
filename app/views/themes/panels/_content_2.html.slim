@@ -1,0 +1,288 @@
+h3
+  i.fa.fa-angle-right
+  | Discover Our Panels
+.row.mt
+  .col-lg-12
+    /! 1st ROW OF PANELS
+    .row
+      /! TWITTER PANEL
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .twitter-panel.pn
+          i.fa.fa-twitter.fa-4x
+          '
+          p Dashgum is here! Take a look and enjoy this new Bootstrap Dashboard theme.
+          p.user @Alvrz_is
+      /! /col-md-4
+      .col-lg-4.col-md-4.col-sm-4.mb
+        /! WHITE PANEL - TOP USER
+        .white-panel.pn
+          .white-header
+            h5 TOP USER
+          p
+            = image_tag 'theme/ui-zac.jpg', class: 'img-circle', width: '50'
+          p
+            b Zac Snider
+          .row
+            .col-md-6
+              p.small.mt MEMBER SINCE
+              p 2012
+            .col-md-6
+              p.small.mt TOTAL SPEND
+              p $ 47,60
+      /! /col-md-4
+      .col-lg-4.col-md-4.col-sm-4.mb
+        /! INSTAGRAM PANEL
+        .instagram-panel.pn
+          i.fa.fa-instagram.fa-4x
+          '
+          p
+            | @THISISYOU
+            br/
+            | 5 min. ago
+          p
+            i.fa.fa-comment
+            '
+            | 18
+            '
+            | |
+            '
+            i.fa.fa-heart
+            '
+            | 49
+      /! /col-md-4
+    /! /END 1ST ROW OF PANELS
+    /! 2ND ROW OF PANELS
+    .row
+      /! TODO PANEL
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .steps.pn
+          input#op1 checked="" name="op1" type="checkbox" /
+          label for="op1"  Update Profile
+          input#op2 name="op2" type="checkbox" /
+          label for="op2"  Contact Paul
+          input#op3 name="op3" type="checkbox" /
+          label for="op3"  Enjoy Life
+          input#submit type="submit" value=("All Done!") /
+      /! /col-md-4
+      /! PROFILE 01 PANEL
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .content-panel.pn
+          #profile-01
+            h3 Sharon Holmes
+            h6 WEB DESIGNER
+          .profile-01.centered
+            p ADD TO CONTACT LIST
+          .centered
+            h6
+              i.fa.fa-envelope
+              br
+              '
+              | SHARON@DASHGUMTHEME.COM
+        /! /content-panel
+      /! /col-md-4
+      /! PROFILE 02 PANEL
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .content-panel.pn
+          #profile-02
+            .user
+              = image_tag 'theme/friends/fr-06.jpg', class: 'img-circle', width: '80'
+              h4 DJ SHERMAN
+          .pr2-social.centered
+            '
+            a href="#"
+              i.fa.fa-twitter
+            '
+            a href="#"
+              i.fa.fa-facebook
+            '
+            a href="#"
+              i.fa.fa-dribbble
+        /! /panel
+      /! / col-md-4
+    /! /END 2ND ROW OF PANELS
+    /! 3RD ROW OF PANELS
+    /! Product Panel
+    .row
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .product-panel-2.pn
+          .badge.badge-hot HOT
+          = image_tag 'theme/product.jpg', width: '200'
+          h5.mt Flat Pack Heritage
+          h6 TOTAL SALES: 1388
+          button.btn.btn-small.btn-theme04 FULL REPORT
+      /! /col-md-4
+      /! Spotify Panel
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .content-panel.pn
+          #spotify
+            .col-xs-4.col-xs-offset-8
+              button.btn.btn-sm.btn-clear-g FOLLOW
+            .sp-title
+              h3 LORDE
+            .play
+              i.fa.fa-play-circle
+          p.followers
+            i.fa.fa-user
+            '
+            | 576,000 FOLLOWERS
+      /! /col-md-4
+      /! Blog Panel
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .content-panel.pn
+          #blog-bg
+            .badge.badge-popular POPULAR
+            .blog-title Incredible Title
+          .blog-text
+            p
+              | Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              a href="#"  Read More
+      /! /col-md-4
+    /! END 3RD ROW OF PANELS
+    /! CHART PANELS
+    .row
+      .col-md-4.col-sm-4.mb
+        .grey-panel.pn.donut-chart
+          .grey-header
+            h5 SERVER LOAD
+          canvas#serverstatus01 height="120" width="120"
+          .row
+            .col-sm-6.col-xs-6.goleft
+              p
+                | Usage
+                br>/
+                | Increase:
+            .col-sm-6.col-xs-6
+              h2 21%
+        /! /grey-panel
+      /! /col-md-4
+      .col-md-4.col-sm-4.mb
+        .darkblue-panel.pn
+          .darkblue-header
+            h5 DROPBOX STATICS
+          canvas#serverstatus02 height="120" width="120"
+          p April 17, 2014
+          footer
+            .pull-left
+              h5
+                i.fa.fa-hdd-o
+                '
+                | 17 GB
+            .pull-right
+              h5 60% Used
+        /! /darkblue panel
+      /! /col-md-4
+      .col-md-4.col-sm-4.mb
+        .green-panel.pn
+          .green-header
+            h5 DISK SPACE
+          canvas#serverstatus03 height="120" width="120"
+          h3 60% USED
+      /! /col-md-4
+    /! /END CHART - 4TH ROW OF PANELS
+    /! 5TH ROW OF PANELS
+    .row
+      .col-md-4.col-sm-4.mb
+        /! REVENUE PANEL
+        .green-panel.pn
+          .green-header
+            h5 REVENUE
+          .chart.mt
+            .sparkline data-data="[200,135,667,333,526,996,564,123,890,464,655]" data-fill-color="" data-height="75" data-highlight-line-color="#fff" data-line-color="#fff" data-line-width="1" data-resize="true" data-spot-color="#fff" data-spot-radius="4" data-type="line" data-width="90%"
+          p.mt
+            b $ 17,980
+            br
+            ' Month
+            | Income
+      /! /col-md-4
+      .col-md-4.col-sm-4.mb
+        .stock.card
+          .stock-chart
+            #chart
+          .stock.current-price
+            .row
+              .info.col-sm-6.col-xs-6
+                abbr AAPL
+                time Yesterday
+              .changes.col-sm-6.col-xs-6
+                .value.up
+                  i.fa.fa-caret-up.hidden-sm.hidden-xs
+                  '
+                  | 694.00
+                .change.hidden-sm.hidden-xs +4.95 (3.49%)
+          .summary
+            strong 18.3 M
+            '
+            span SHARES TRADED
+      /! /col-md-4
+      .col-md-4.col-sm-4.mb
+        .darkblue-panel.pn
+          .darkblue-header
+            h5 SITE STATICS
+          h1.mt
+            i.fa.fa-user.fa-3x
+            '
+          p + 1,789 NEW VISITS
+          footer
+            .centered
+              h5
+                i.fa.fa-trophy
+                '
+                | 17,988
+        /! /darkblue panel
+      /! /col-md-4
+    /! /END 5TH ROW OF PANELS
+    /! 6TH ROW OF PANELS
+    .row
+      /! WEATHER PANEL
+      .col-md-4.col-sm-4.mb
+        .weather.pn
+          i.fa.fa-cloud.fa-4x
+          '
+          h2 11º C
+          h4 BUDAPEST
+      /! /col-md-4
+      /! WEATHER-2 PANEL
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .weather-2.pn
+          .weather-2-header
+            .row
+              .col-sm-6.col-xs-6
+                p NEW YORK
+              .col-sm-6.col-xs-6.goright
+                p.small Thu Apr 14, 2014
+          /! /weather-2 header
+          .row.centered
+            = image_tag 'theme/ny.jpg', class: 'img-circle', width: '120'
+          .row.data
+            .col-sm-6.col-xs-6.goleft
+              h4
+                b 16 ºC
+              h6 21º max
+              h6 8º min
+            .col-sm-6.col-xs-6.goright
+              h5
+                i.fa.fa-sun-o.fa-2x
+              h6
+                b Sunny
+              h5 7:15 am
+      /! /col-md-4
+      /! WEATHER-3 PANEL
+      .col-lg-4.col-md-4.col-sm-4.mb
+        .weather-3.pn.centered
+          i.fa.fa-sun-o
+          h1 30º C
+          .info
+            .row
+              h3.centered MADRID
+              .col-sm-6.col-xs-6.pull-left
+                p.goleft
+                  i.fa.fa-tint
+                  '
+                  | 13%
+              .col-sm-6.col-xs-6.pull-right
+                p.goright
+                  i.fa.fa-flag
+                  '
+                  | 15 MPH
+      /! /col-md-4
+    /! /END 6TH ROW OF PANELS
