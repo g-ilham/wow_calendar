@@ -1,0 +1,15 @@
+.fc-header td {
+  word-wrap: break-word;
+  white-space: unset;
+}
+.fc-header {
+  margin-bottom: 0;
+}
+.fc-button {
+  top: 0;
+}
+.fc-state-active, .fc-state-active, .fc-state-hover {
+  .fc-button-inner {
+    background-color: #F2F2F2;
+  }
+}
