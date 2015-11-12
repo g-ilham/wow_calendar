@@ -5,5 +5,9 @@ window.Tasks =
         $(this).parents('li').addClass 'task-done'
       else
         $(this).parents('li').removeClass 'task-done'
-      return
-    return
+
+    Tasks.sortable_init()
+
+  sortable_init: ->
+    $('#sortable').sortable()
+    $('#sortable').disableSelection()

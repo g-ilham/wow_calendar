@@ -24,6 +24,9 @@ class ThemesController < ApplicationController
   def gallery
   end
 
+  def todos
+  end
+
   def gritter_image_url
     @gritter_url = ActionController::Base.helpers.image_path('theme/ui-sam.jpg')
   end

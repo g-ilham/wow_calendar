@@ -1,0 +1,8 @@
+section#main-content
+  section.wrapper.site-min-height#todos_page
+    = render partial: 'themes/todos/content'
+
+= content_for(:javascript_code) do
+  | CommonScripts.init();
+  | Tasks.init();
+

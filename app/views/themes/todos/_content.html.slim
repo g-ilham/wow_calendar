@@ -1,0 +1,224 @@
+h3
+  i.fa.fa-angle-right
+  '
+  | To-Do Lists
+/! SIMPLE TO DO LIST
+.row.mt
+  .col-md-12
+    .white-panel.pn
+      .panel-heading
+        .pull-left
+          h5
+            i.fa.fa-tasks
+            '
+            | Todo List - Basic Style
+        br/
+      .custom-check.goleft.mt
+        table#todo.table.table-hover.custom-check
+          tbody
+            tr
+              td
+                span.check
+                  input.checked type="checkbox" /
+                a href="index.html#"  Send invoice
+                button.close aria-hidden="true" data-dismiss="alert" type="button"  ×
+            tr
+              td
+                span.check
+                  input.checked type="checkbox" /
+                a href="index.html#"  Check messages
+                button.close aria-hidden="true" data-dismiss="alert" type="button"  ×
+            tr
+              td
+                span.check
+                  input.checked type="checkbox" /
+                a href="index.html#"  Pay bills
+                button.close aria-hidden="true" data-dismiss="alert" type="button"  ×
+            tr
+              td
+                span.check
+                  input.checked type="checkbox" /
+                a href="index.html#"  Schedule site
+                button.close aria-hidden="true" data-dismiss="alert" type="button"  ×
+      /! /table-responsive
+    /! / White-panel
+  /! /col-md-12
+/! row
+/! COMPLEX TO DO LIST
+.row.mt
+  .col-md-12
+    section.task-panel.tasks-widget
+      .panel-heading
+        .pull-left
+          h5
+            i.fa.fa-tasks
+            '
+            | Todo List - Complex Style
+        br/
+      .panel-body
+        .task-content
+          ul.task-list
+            li
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Dashgum - Admin Panel Theme
+                span.badge.bg-theme Done
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs
+                    i.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs
+                    i.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs
+                    i.fa.fa-trash-o
+            li
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Extensive collection of plugins
+                span.badge.bg-warning Cool
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs
+                    i.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs
+                    i.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs
+                    i.fa.fa-trash-o
+            li
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Free updates always, no extra fees.
+                span.badge.bg-success 2 Days
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs
+                    i.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs
+                    i.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs
+                    i.fa.fa-trash-o
+            li
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp More features coming soon
+                span.badge.bg-info Tomorrow
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs
+                    i.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs
+                    i.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs
+                    i.fa.fa-trash-o
+            li
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Hey, seriously, you should buy this Dashboard
+                span.badge.bg-important Now
+                .pull-right
+                  button.btn.btn-success.btn-xs
+                    i.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs
+                    i.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs
+                    i.fa.fa-trash-o
+        .add-task-row
+          a.btn.btn-success.btn-sm.pull-left href="todo_list.html#"  Add New Tasks
+          a.btn.btn-default.btn-sm.pull-right href="todo_list.html#"  See All Tasks
+  /! /col-md-12
+/! /row
+/! SORTABLE TO DO LIST
+.row.mt.mb
+  .col-md-12
+    section.task-panel.tasks-widget
+      .panel-heading
+        .pull-left
+          h5
+            i.fa.fa-tasks
+            '
+            | Todo List - Sortable Style
+        br/
+      .panel-body
+        .task-content
+          ul#sortable.task-list
+            li.list-primary
+              i.fa.fa-ellipsis-v
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Dashgum - Admin Panel Theme
+                span.badge.bg-theme Done
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs.fa.fa-trash-o
+            li.list-danger
+              i.fa.fa-ellipsis-v
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Extensive collection of plugins
+                span.badge.bg-warning Cool
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs.fa.fa-trash-o
+            li.list-success
+              i.fa.fa-ellipsis-v
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Free updates always, no extra fees.
+                span.badge.bg-success 2 Days
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs.fa.fa-trash-o
+            li.list-warning
+              i.fa.fa-ellipsis-v
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp More features coming soon
+                span.badge.bg-info Tomorrow
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs.fa.fa-trash-o
+            li.list-info
+              i.fa.fa-ellipsis-v
+              .task-checkbox
+                input.list-child type="checkbox" value="" /
+              .task-title
+                span.task-title-sp Hey, seriously, you should buy this Dashboard
+                span.badge.bg-important Now
+                .pull-right.hidden-phone
+                  button.btn.btn-success.btn-xs.fa.fa-check
+                  '
+                  button.btn.btn-primary.btn-xs.fa.fa-pencil
+                  '
+                  button.btn.btn-danger.btn-xs.fa.fa-trash-o
+        .add-task-row
+          a.btn.btn-success.btn-sm.pull-left href="todo_list.html#"  Add New Tasks
+          a.btn.btn-default.btn-sm.pull-right href="todo_list.html#"  See All Tasks
+  /! /col-md-12
+/! /row
