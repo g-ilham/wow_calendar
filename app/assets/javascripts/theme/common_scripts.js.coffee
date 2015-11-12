@@ -1,7 +1,6 @@
 window.CommonScripts =
   init: (gritter_image_url)->
     self = CommonScripts
-    self.charts_animate()
     self.gritter_image_url = JsonParser.run(gritter_image_url)
     self.accordion()
     self.sidebartoogle()
@@ -164,34 +163,78 @@ window.CommonScripts =
       $(this).hide()
       return
 
-  charts_animate: ->
-    element = document.getElementById('serverstatus01')
-    if element
-      doughnutData = [
-        {
-          value: 70
-          color: '#68dff0'
-        }
-        {
-          value: 30
-          color: '#fdfdfd'
-        }
-      ]
-      myDoughnut = new Chart(element.getContext('2d')).Doughnut(doughnutData)
+  doughnut_data_dashboard: ->
+    [
+      {
+        element: document.getElementById('serverstatus01'),
+        value: 70
+        color: '#68dff0'
+      },
+      {
+        element: document.getElementById('serverstatus01'),
+        value: 30
+        color: '#fdfdfd'
+      },
+      {
+        element: document.getElementById('serverstatus02'),
+        value: 60
+        color: '#68dff0'
+      },
+      {
+        element: document.getElementById('serverstatus02'),
+        value: 40
+        color: '#444c57'
+      }
+    ]
 
-    element = document.getElementById('serverstatus02')
+  doughnut_data_panels: ->
+    [
+      {
+        element: document.getElementById("serverstatus01"),
+        value: 70,
+        color:"#FF6B6B"
+      },
+      {
+        element: document.getElementById("serverstatus01"),
+        value : 30,
+        color : "#fdfdfd"
+      },
+      {
+        element: document.getElementById("serverstatus02"),
+        value: 60,
+        color:"#1c9ca7"
+      },
+      {
+        element: document.getElementById("serverstatus02"),
+        value : 40,
+        color : "#f68275"
+      },
+      {
+        element: document.getElementById("serverstatus03"),
+        value: 60,
+        color:"#2b2b2b"
+      },
+      {
+        element: document.getElementById("serverstatus03"),
+        value : 40,
+        color : "#fffffd"
+      }
+    ]
 
-    if element
-      doughnutData = [
-        {
-          value: 60
-          color: '#68dff0'
-        }
-        {
-          value: 40
-          color: '#444c57'
-        }
-      ]
-      myDoughnut = new Chart(element.getContext('2d')).Doughnut(doughnutData)
+  animate_doughnuts: (doughnutData)->
+    if doughnutData
+      pairsLen = 2
+      for index in [0...doughnutData.length] by pairsLen
+        pairs = doughnutData[index...index + pairsLen]
+        data = CommonScripts.clean_pairs(pairs)
+        console.log data
+        new Chart(window.doughnut_el.getContext('2d')).Doughnut(data)
 
+    window.doughnut_el = undefined
 
+  clean_pairs: (pairs)->
+    $.map(pairs, (element, index) ->
+      window.doughnut_el = element['element']
+      delete element['element']
+      element
+    )

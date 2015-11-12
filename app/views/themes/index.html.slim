@@ -5,6 +5,7 @@ section#main-content
       = render partial: 'themes/dashboard/right_sidebar'
 
 = content_for(:javascript_code) do
+  | CommonScripts.animate_doughnuts(CommonScripts.doughnut_data_dashboard());
   | CommonScripts.init("#{@gritter_url.to_json}");
   | SparklineChart.init();
 
