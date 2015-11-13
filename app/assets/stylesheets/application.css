@@ -1,8 +1,6 @@
 /*
- *= require_tree .
- *= require_self
+ *= require ./theme/bootstrap
  *= require jquery-ui
- *= require bootstrap
- *= require_tree ./theme
+ *= require_self
  */
 

@@ -3,6 +3,7 @@ class ThemesController < ApplicationController
   before_action :gritter_image_url
   before_action :gallery_image_urls, only: [ :gallery ]
   before_action :login_image_url, only: [ :login ]
+  before_action :authenticate_user!
 
   def index
   end
