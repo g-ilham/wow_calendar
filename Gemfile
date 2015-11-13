@@ -15,6 +15,14 @@ gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-ui-rails'
+# Main stuff
+gem 'devise'
+gem 'simple_form'
+
+# Social
+gem 'omniauth'
+gem 'omniauth-vkontakte'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'pry-rails'
