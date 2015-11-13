@@ -1,0 +1,162 @@
+h3
+  i.fa.fa-angle-right
+  '
+  | Form Components
+/! BASIC FORM ELELEMNTS
+.row.mt
+  .col-lg-12
+    .form-panel
+      h4.mb
+        i.fa.fa-angle-right
+        '
+        | Form Elements
+      form.form-horizontal.style-form method="get"
+        .form-group
+          label.col-sm-2.col-sm-2.control-label Default
+          .col-sm-10
+            input.form-control type="text" /
+        .form-group
+          label.col-sm-2.col-sm-2.control-label Help text
+          .col-sm-10
+            input.form-control type="text" /
+            span.help-block A block of help text that breaks onto a new line and may extend beyond one line.
+        .form-group
+          label.col-sm-2.col-sm-2.control-label Rounder
+          .col-sm-10
+            input.form-control.round-form type="text" /
+        .form-group
+          label.col-sm-2.col-sm-2.control-label Input focus
+          .col-sm-10
+            input#focusedInput.form-control type="text" value=("This is focused...") /
+        .form-group
+          label.col-sm-2.col-sm-2.control-label Disabled
+          .col-sm-10
+            input#disabledInput.form-control disabled="" placeholder=("Disabled input here...") type="text" /
+        .form-group
+          label.col-sm-2.col-sm-2.control-label Placeholder
+          .col-sm-10
+            input.form-control placeholder="placeholder" type="text" /
+        .form-group
+          label.col-sm-2.col-sm-2.control-label Password
+          .col-sm-10
+            input.form-control placeholder="" type="password" /
+        .form-group
+          label.col-lg-2.col-sm-2.control-label Static control
+          .col-lg-10
+            p.form-control-static email@example.com
+  /! col-lg-12
+/! /row
+/! INLINE FORM ELELEMNTS
+.row.mt
+  .col-lg-12
+    .form-panel
+      h4.mb
+        i.fa.fa-angle-right
+        '
+        | Inline Form
+      form.form-inline role="form"
+        .form-group
+          label.sr-only for="exampleInputEmail2"  Email address
+          input#exampleInputEmail2.form-control placeholder=("Enter email") type="email" /
+        .form-group
+          label.sr-only for="exampleInputPassword2"  Password
+          input#exampleInputPassword2.form-control placeholder="Password" type="password" /
+        button.btn.btn-theme type="submit"  Sign in
+    /! /form-panel
+  /! /col-lg-12
+/! /row
+/! INPUT MESSAGES
+.row.mt
+  .col-lg-12
+    .form-panel
+      h4.mb
+        i.fa.fa-angle-right
+        '
+        | Input Messages
+      form.form-horizontal.tasi-form method="get"
+        .form-group.has-success
+          label.col-sm-2.control-label.col-lg-2 for="inputSuccess"  Input with success
+          .col-lg-10
+            input#inputSuccess.form-control type="text" /
+        .form-group.has-warning
+          label.col-sm-2.control-label.col-lg-2 for="inputWarning"  Input with warning
+          .col-lg-10
+            input#inputWarning.form-control type="text" /
+        .form-group.has-error
+          label.col-sm-2.control-label.col-lg-2 for="inputError"  Input with error
+          .col-lg-10
+            input#inputError.form-control type="text" /
+    /! /form-panel
+  /! /col-lg-12
+/! /row
+/! INPUT MESSAGES
+.row.mt
+  .col-lg-12
+    .form-panel
+      h4.mb
+        i.fa.fa-angle-right
+        '
+        | Checkboxes, Radios & Selects
+      .checkbox
+        label
+          input type="checkbox" value="" /
+          | Option one is this and that&mdash;be sure to include why it's great
+      .radio
+        label
+          input#optionsRadios1 checked="" name="optionsRadios" type="radio" value="option1" /
+          | Option one is this and that&mdash;be sure to include why it's great
+      .radio
+        label
+          input#optionsRadios2 name="optionsRadios" type="radio" value="option2" /
+          | Option two can be something else and selecting it will deselect option one
+      hr/
+      label.checkbox-inline
+        input#inlineCheckbox1 type="checkbox" value="option1" /
+        | 1
+      label.checkbox-inline
+        input#inlineCheckbox2 type="checkbox" value="option2" /
+        | 2
+      label.checkbox-inline
+        input#inlineCheckbox3 type="checkbox" value="option3" /
+        | 3
+      hr/
+      select.form-control
+        option 1
+        option 2
+        option 3
+        option 4
+        option 5
+      br/
+      select.form-control multiple=""
+        option 1
+        option 2
+        option 3
+        option 4
+        option 5
+    /! /form-panel
+  /! /col-lg-12
+  /! CUSTOM TOGGLES
+  .col-lg-12
+    .form-panel
+      h4.mb
+        i.fa.fa-angle-right
+        '
+        | Custom Toggles
+      .row.mt
+        .col-sm-6.text-center
+          input checked="" data-toggle="switch" type="checkbox" /
+        .col-sm-6.text-center
+          input data-toggle="switch" type="checkbox" /
+      .row.mt
+        .col-sm-6.text-center
+          .switch.switch-square data-off-label=("<i class='fa fa-times'></i>") data-on-label=("<i class=' fa fa-check'></i>")
+            input type="checkbox" /
+        .col-sm-6.text-center
+          .switch.switch-square data-off-label=("<i class='fa fa-times'></i>") data-on-label=("<i class=' fa fa-check'></i>")
+            input checked="" type="checkbox" /
+      .row.mt
+        .col-sm-6.text-center
+          input data-toggle="switch" disabled="" type="checkbox" /
+        .col-sm-6.text-center
+          input checked="" data-toggle="switch" disabled="" type="checkbox" /
+/! /row
