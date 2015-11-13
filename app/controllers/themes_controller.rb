@@ -3,7 +3,6 @@ class ThemesController < ApplicationController
   before_action :gritter_image_url
   before_action :gallery_image_urls, only: [ :gallery ]
   before_action :login_image_url, only: [ :login ]
-  before_action :authenticate_user!
 
   def index
   end
@@ -54,18 +53,8 @@ class ThemesController < ApplicationController
   end
 
   def gallery_image_urls
-    @all_files = Dir.glob('app/assets/images/theme/portfolio/*.jpg')
-    if @all_files
-      @all_files = clean_image_url
-
-      @all_images_urls = @all_files.map do |filename|
-        get_image_url(filename)
-      end
-    end
-  end
-
-  def clean_image_url
-    @all_files.map { |url| url.gsub('app/assets/images/', '') }
+    @asset_matcher = 'app/assets/images/'
+    get_asset_files_urls('app/assets/images/theme/portfolio/*.jpg', 'images')
   end
 
   private
@@ -73,7 +62,7 @@ class ThemesController < ApplicationController
   def resolve_layout
     case action_name
     when 'login'
-      'login'
+      'theme_login'
     else
       'theme'
     end

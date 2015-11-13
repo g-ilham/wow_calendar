@@ -14,4 +14,4 @@ html
       = yield
 
     = javascript_include_tag 'application'
-    = javascript_tag "$(function() { #{yield(:javascript_code)} });" if content_for? :javascript_code
+    = javascript_tag "$(function() { EmptyClick.init(); #{yield(:javascript_code)} });" if content_for? :javascript_code

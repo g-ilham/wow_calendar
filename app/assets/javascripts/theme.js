@@ -4,4 +4,5 @@
 //= require jquery-ui
 //= require_tree ./plugins
 //= require_tree ./theme
-//= require_tree .
+//= require_tree ./general
+//= require_tree ./custom
