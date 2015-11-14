@@ -24,6 +24,9 @@ gem 'omniauth'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
 
+# Exposing
+gem 'decent_exposure'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'quiet_assets'
