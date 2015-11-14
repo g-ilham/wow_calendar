@@ -1,7 +1,9 @@
 //= require jquery
 //= require jquery_ujs
-//= require ./plugins/bootstrap.min
+//= require bootstrap-sprockets
 //= require jquery-ui
+//= require fancybox
+//= require handlebars.runtime
 //= require_tree ./plugins
 //= require_tree ./theme
 //= require_tree ./general

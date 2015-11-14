@@ -791,7 +791,7 @@
 		-o-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: #48cfad;
+		background-color: #3cadd4;
 		border-radius: 30px;
 		border: 0;
 		color: #ffffff !important;
@@ -804,25 +804,22 @@
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
-		border-color: #37bc9b;
 	}
 
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
-			background-color: #37bc9b;
+			background-color: #51b6d9;
 			text-decoration: none;
-			border-color: #37bc9b;
 		}
 
 		input[type="submit"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
 		.button:active {
-			background-color: #37bc9b;
+			background-color: #2da2ca;
 			text-decoration: none;
-			border-color: #37bc9b;
 		}
 
 		input[type="submit"].icon,
@@ -942,7 +939,7 @@
 		}
 
 	#header {
-		background-color: #424a5d;
+		background-color: #383b43;
 		color: #ffffff;
 		cursor: default;
 		font-size: 1.1em;
@@ -1033,7 +1030,7 @@
 /* Banner */
 
 	#banner {
-		background-image: asset-url('transit_theme/dark_tint.png'), asset-url('transit_theme/bokeh_car_lights_bg.jpg');
+		background-image: asset-url('transit_theme/dark_tint.png'), asset-url('transit_theme/bokeh_car_lights_bg.jpg');		background-position: center center;
 		background-position: center center;
 		background-size: cover;
 		color: #ffffff;
@@ -1117,7 +1114,7 @@
 			}
 
 		.wrapper.style3 {
-			background-color: #48cfad;
+			background-color: #3cadd4;
 			color: #ffffff;
 		}
 
@@ -1137,7 +1134,7 @@
 /* Footer */
 
 	#footer {
-		background: #424a5d;
+		background: #383b43;
 		padding: 6em 0em 4em;
 	}
 

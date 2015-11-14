@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require bootstrap/modal
+//= require handlebars.runtime
 //= require ./transit_theme/skel.min
 //= require ./transit_theme/skel-layers.min
 //= require ./transit_theme/init

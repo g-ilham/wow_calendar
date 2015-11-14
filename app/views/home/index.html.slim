@@ -7,7 +7,8 @@ section#banner
   - if current_user.blank? || !user_signed_in?
     ul.actions
       li
-        = link_to "Sign In", new_user_session_path, class: 'js-sign-in-link button big'
+        a.button.big data-toggle="modal" data-target="#myModal" href="#" Sign In
+        / = link_to "Sign In", new_user_session_path, class: 'js-sign-in-link button big'
 /! One
 section#one.wrapper.style1.special
   .container
@@ -80,6 +81,19 @@ section#three.wrapper.style3.special
               input.js-empty-click.special.big type="submit" value=("Send Message") /
 
 = render partial: 'layouts/transit_theme/footer'
+
+#myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4.modal-title Forgot Password ?
+      .modal-body
+        p Enter your e-mail address below to reset your password.
+        input.form-control.placeholder-no-fix autocomplete="off" name="email" placeholder="Email" type="text" /
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Cancel
+        button.btn.btn-theme type="button"  Submit
 
 = content_for(:javascript_code) do
   | SkelInit.init("#{skel_css_files}");
