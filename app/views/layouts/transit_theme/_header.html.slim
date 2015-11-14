@@ -1,13 +1,18 @@
+/! Header
 header#header
   h1
-    a.js-empty-click href="#"  Transit
+    a href="#{root_path}"  WowCalendar
   nav#nav
     ul
       li
-        a.js-empty-click href="#"  Home
+        a href="#{root_path}"  Home
       li
         a.js-empty-click href="#"  Generic
       li
         a.js-empty-click href="#"  Elements
-      li
-        a.button.special href="#"  Sign Up
+
+      - if current_user.blank? || !user_signed_in?
+        li
+          = link_to "Sign Up", new_user_registration_path, class: 'js-sign-up-link button special'
+      - else
+        = link_to 'Exit', destroy_user_session_path, method: :delete
