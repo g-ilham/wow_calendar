@@ -1,6 +1,11 @@
 /*
  *= require ./theme/bootstrap
  *= require jquery-ui
- *= require_self
+ *= require font-awesome
+ *= require ./theme/style
+ *= require ./theme/style-responsive
+ *= require_tree ./theme
+ *= require_tree ./general
+ *= require_tree ./custom
  */
 
