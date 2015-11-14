@@ -1,8 +1,19 @@
 class ThemesController < ApplicationController
   layout :resolve_layout
-  before_action :gritter_image_url
-  before_action :gallery_image_urls, only: [ :gallery ]
-  before_action :login_image_url, only: [ :login ]
+
+  expose(:gritter_image_url) do
+    GetAssetFilesUrls.get_image_url('theme/ui-sam.jpg')
+  end
+
+  expose(:login_image_url) do
+    GetAssetFilesUrls.get_image_url('theme/login-bg.jpg')
+  end
+
+  expose(:gallery_images_urls) do
+    path = 'app/assets/images/theme/portfolio/*.jpg'
+    asset_matcher = 'app/assets/images/'
+    GetAssetFilesUrls.new(asset_matcher, path, 'images').paths
+  end
 
   def index
   end
@@ -40,21 +51,8 @@ class ThemesController < ApplicationController
   def form_components
   end
 
-  def gritter_image_url
-    @gritter_image_url = get_image_url('theme/ui-sam.jpg')
-  end
-
-  def login_image_url
-    @login_image_url = get_image_url('theme/login-bg.jpg')
-  end
-
   def get_image_url(url)
     ActionController::Base.helpers.image_path(url)
-  end
-
-  def gallery_image_urls
-    @asset_matcher = 'app/assets/images/'
-    get_asset_files_urls('app/assets/images/theme/portfolio/*.jpg', 'images')
   end
 
   private

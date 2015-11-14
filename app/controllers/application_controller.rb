@@ -2,29 +2,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  private
+  protected
 
-  def get_asset_files_urls(path, type='assets')
-    @all_files = Dir.glob(path)
-
-    if @all_files
-      @all_files = clean_assets_urls
-      @all_files = @all_files.map do |filename|
-        get_asset_url(filename, type)
-      end
-    end
-  end
-
-  def clean_assets_urls
-    @all_files.map { |url| url.gsub(@asset_matcher, '') }
-  end
-
-  def get_asset_url(url, type)
-    if type == 'images'
-      ActionController::Base.helpers.image_path(url)
-    else
-      ActionController::Base.helpers.asset_path(url)
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:email, :password, :password_confirmation, :first_name, :last_name)
     end
   end
 end

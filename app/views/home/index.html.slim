@@ -1,24 +1,29 @@
 /! Header
 header#header
   h1
-    a href="index.html"  Transit
+    a.js-empty-click href="#"  WowCalendar
   nav#nav
     ul
       li
-        a href="index.html"  Home
+        a.js-empty-click href="#"  Home
       li
-        a href="generic.html"  Generic
+        a.js-empty-click href="#"  Generic
       li
-        a href="elements.html"  Elements
-      li
-        a.button.js-empty-click.special href="#"  Sign Up
+        a.js-empty-click href="#"  Elements
+
+      - if current_user.blank? || !user_signed_in?
+        li
+          = link_to "Sign Up", new_user_registration_path, class: 'js-sign-up-link button special'
+      - else
+        = link_to 'Exit', destroy_user_session_path, method: :delete
 /! Banner
 section#banner
-  h2 Hi. This is Transit.
+  h2 Hi. This is WowCalendar.
   p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-  ul.actions
-    li
-      a.button.js-empty-click.big href="#"  Lorem ipsum dolor
+  - if current_user.blank? || !user_signed_in?
+    ul.actions
+      li
+        = link_to "Sign In", new_user_session_path, class: 'js-sign-in-link button big'
 /! One
 section#one.wrapper.style1.special
   .container
@@ -172,4 +177,4 @@ footer#footer
               span.label LinkedIn
 
 = content_for(:javascript_code) do
-  | SkelInit.init("#{@all_files}");
+  | SkelInit.init("#{skel_css_files}");

@@ -1,10 +1,20 @@
-h2
-  | Resend confirmation instructions
-= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = f.error_notification
-  = f.full_error :confirmation_token
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-  .form-actions
-    = f.button :submit, "Resend confirmation instructions"
-= render "devise/shared/links"
+= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, novalidate: true }) do |f|
+
+  .row.uniform class="50%"
+    h2 Resend confirmation instructions
+    .12u
+      = f.error_notification
+      = f.full_error :confirmation_token
+    .12u
+      = f.input_field :email, required: false, autofocus: true, label: false, placeholder: 'Email', maxLength: 100
+
+    .12u
+      ul.actions
+        li
+          = f.button :submit, "Resend confirmation instructions"
+
+    .links
+      = render "devise/shared/links"
+
+= content_for(:javascript_code) do
+  | SkelInit.init("#{skel_css_files}");

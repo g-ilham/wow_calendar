@@ -1,10 +1,33 @@
-h2
-  | Log in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Log in"
-= render "devise/shared/links"
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { novalidate: true}) do |f|
+  .row.uniform class="50%"
+    h2 Sign in now
+    .12u
+      = f.input_field :email, required: false, autofocus: true, label: false, placeholder: 'Email', maxLength: 100
+
+    .6u
+      = f.input_field :first_name, required: false, label: false, placeholder: 'First Name', maxLength: 100
+
+    .6u
+      = f.input_field :last_name, required: false, label: false, placeholder: 'Last Name', maxLength: 100
+
+    .12u
+      = f.input_field :password, required: false, label: false, placeholder: 'Password', maxLength: 200
+
+    - if devise_mapping.rememberable?
+      .12u
+        = f.input_field :remember_me, boolean_style: :inline, label:false,
+          as: :boolean
+        label for="user_remember_me"
+          | Remember me
+
+
+    div class="12u$"
+      ul.actions
+        li
+          = f.button :submit, "Войти"
+
+    .links
+      = render "devise/shared/links"
+
+= content_for(:javascript_code) do
+  | SkelInit.init("#{skel_css_files}");
