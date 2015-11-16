@@ -1,4 +1,7 @@
 .transit_theme {
+  .modal-backdrop {
+    z-index: 10004;
+  }
   #sign_in_or_sign_up_modal, #sign_in_or_sign_up_wrapper {
     z-index: 10005;
     .modal-header {
