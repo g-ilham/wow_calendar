@@ -22,6 +22,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'handlebars_assets'
+gem "recaptcha", require: "recaptcha/rails"
 
 # Social
 gem 'omniauth'
