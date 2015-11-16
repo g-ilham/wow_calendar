@@ -25,7 +25,7 @@
   input[type="button"],
   .button {
     background-color: #48cfad;
-    border-color: none;
+    border-color: #48cfad;
   }
 
   input[type="submit"]:hover,
@@ -34,7 +34,7 @@
   .button:hover {
     background-color: #37bc9b;
     text-decoration: none;
-    border-color: none;
+    border-color: #37bc9b;
   }
 
   input[type="submit"]:active,
@@ -44,5 +44,11 @@
     background-color: #37bc9b;
     text-decoration: none;
     border-color: none;
+  }
+
+  input[type="checkbox"]:checked + label:before,
+  input[type="radio"]:checked + label:before {
+    background: #48cfad;
+    border-color: #48cfad;
   }
 }

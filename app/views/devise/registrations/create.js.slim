@@ -1,0 +1,9 @@
+| $('.js-sign-up-link').addClass('disabled');
+
+- if @captcha_good
+  | alert('good')
+- else
+
+  | $('.modal-content').html("#{ j(render partial: 'devise/registrations/remote_form') }");
+
+| $('.js-sign-up-link').removeClass('disabled');

@@ -1,0 +1,4 @@
+ru:
+  recaptcha:
+    errors:
+      incorrect-captcha-sol: 'Ошибка'

@@ -3,5 +3,6 @@
  *= require jquery-ui
  *= require font-awesome
  *= require ./transit_theme/skel
- *= require ./custom/overrides_transit_theme
+ *= require_tree ./general
+ *= require_tree ./custom
 */

@@ -198,5 +198,12 @@ MESSAGE
     params.fetch(resource_name, {})
   end
 
+  def html?
+    if request.format.html?
+      redirect_to root_path
+      return
+    end
+  end
+
   ActiveSupport.run_load_hooks(:devise_controller, self)
 end
