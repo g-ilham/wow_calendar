@@ -1,0 +1,12 @@
+| $('#sign_in_or_sign_up_modal .with_error').removeClass('with_error');
+| $('#sign_in_or_sign_up_modal input').prop('disabled', true);
+
+- if login.errors.present?
+  - login.errors.each do |key, value|
+    | $("#user_" + "#{key}").parent().addClass("with_error");
+    | $('#user_' + "#{key}").parent().find('.form-error-message').text("#{value}");
+
+  | $('#sign_in_or_sign_up_modal a').removeClass('disabled');
+  | $('#sign_in_or_sign_up_modal input').prop('disabled', false);
+- else
+  | window.location = "#{session.delete(:return_to)}";

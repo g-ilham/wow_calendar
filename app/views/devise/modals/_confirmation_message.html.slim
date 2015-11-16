@@ -1,0 +1,10 @@
+#confirm_message_modal.modal.fade aria-hidden="true" aria-labelledby="confirm_message_modal_label" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4.modal-title Инструкция по подтверждению email адреса
+      .modal-body
+        = I18n.t(:devise)[:confirmations][:send_instructions]
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Закрыть

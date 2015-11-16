@@ -15,4 +15,5 @@ header#header
         li
           = link_to "Войти", new_user_session_path, class: 'js-sign-in-link button special', remote: true
       - else
-        = link_to 'Exit', destroy_user_session_path, method: :delete
+        li
+          = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'button special'

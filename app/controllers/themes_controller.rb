@@ -1,18 +1,19 @@
 class ThemesController < ApplicationController
   layout :resolve_layout
+  before_action :authenticate_user!
 
   expose(:gritter_image_url) do
-    GetAssetFilesUrls.get_image_url('theme/ui-sam.jpg')
+    System::GetAssetFilesUrls.get_image_url('theme/ui-sam.jpg')
   end
 
   expose(:login_image_url) do
-    GetAssetFilesUrls.get_image_url('theme/login-bg.jpg')
+    System::GetAssetFilesUrls.get_image_url('theme/login-bg.jpg')
   end
 
   expose(:gallery_images_urls) do
     path = 'app/assets/images/theme/portfolio/*.jpg'
     asset_matcher = 'app/assets/images/'
-    GetAssetFilesUrls.new(asset_matcher, path, 'images').paths
+    System::GetAssetFilesUrls.new(asset_matcher, path, 'images').paths
   end
 
   def index

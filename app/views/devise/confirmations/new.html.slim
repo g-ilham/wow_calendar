@@ -1,17 +1,15 @@
 = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, novalidate: true }) do |f|
 
   .row.uniform class="50%"
-    h2 Resend confirmation instructions
-    .12u
-      = f.error_notification
-      = f.full_error :confirmation_token
-    .12u
-      = f.input_field :email, required: false, autofocus: true, label: false, placeholder: 'Email', maxLength: 16
+    h2 Запрос инструкции подтверждения
+    = render 'devise/shared/error_messages', resource: resource
 
+    .12u
+      = f.input_field :email, required: false, autofocus: true, label: false, placeholder: 'Почтовый адрес', maxLength: 200
     .12u
       ul.actions
         li
-          = f.button :submit, "Resend confirmation instructions", class: 'button'
+          = f.button :submit, "Отправить заново", class: 'button'
 
     .devise_links
       = render "devise/shared/links"

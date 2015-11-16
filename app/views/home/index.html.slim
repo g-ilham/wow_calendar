@@ -81,10 +81,5 @@ section#three.wrapper.style3.special
 
 = render partial: 'layouts/transit_theme/footer'
 
-#sign_in_or_sign_up_modal.modal.fade aria-hidden="true" aria-labelledby="sign_in_or_sign_up_modal_label" role="dialog" tabindex="-1"
-  .modal-dialog
-    .modal-content
-
-
 = content_for(:javascript_code) do
   | SkelInit.init("#{skel_css_files}");

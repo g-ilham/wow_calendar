@@ -1,12 +1,22 @@
-h2
-  | Change your password
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
   = f.input :reset_password_token, as: :hidden
-  = f.full_error :reset_password_token
-  .form-inputs
-    = f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, label: "Confirm your new password", required: true
-  .form-actions
-    = f.button :submit, "Change my password", class: 'button'
-= render "devise/shared/links"
+  .row.uniform class="50%"
+    h2 Измените свой пароль
+    = render 'devise/shared/error_messages', resource: resource
+
+    .12u
+      = f.input_field :password, label: false, required: true, placeholder: 'Пароль', hint: ("#{@minimum_password_length} минимально символов" if @minimum_password_length), maxLength: 200
+
+    .12u
+      = f.input_field :password_confirmation, required: false, label: false, placeholder: 'Подтверждение пароля', maxLength: 200, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+
+    .12u
+      ul.actions
+        li
+          = f.button :submit, "Сбросить пароль", class: 'button'
+
+    .devise_links
+      = render "devise/shared/links"
+
+= content_for(:javascript_code) do
+  | SkelInit.init("#{skel_css_files}");

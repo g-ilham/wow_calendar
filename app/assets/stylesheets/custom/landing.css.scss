@@ -2,39 +2,8 @@
   .modal-backdrop {
     z-index: 10004;
   }
-  #sign_in_or_sign_up_modal, #sign_in_or_sign_up_wrapper {
+  .modal {
     z-index: 10005;
-    .modal-header {
-      background-color: #48cfad;
-      h4 {
-        color: #fff;
-      }
-    }
-    form {
-      margin: 0;
-      .modal-footer {
-        margin-top: 1em;
-        .devise_links {
-          margin-top: 1em;
-        }
-        .js-signt-in-link {
-          margin-top: 4%;
-        }
-        .g-recaptcha {
-          float: left;
-        }
-        ul.actions {
-          margin: 0;
-        }
-      }
-
-    }
-    ul.actions > li {
-      width: 100%;
-    }
-    .js-sign-up-link {
-      margin-top: 1.3em;
-    }
   }
 }
 

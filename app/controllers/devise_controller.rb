@@ -2,7 +2,7 @@
 class DeviseController < Devise.parent_controller.constantize
   include Devise::Controllers::ScopedViews
   expose(:skel_css_files) do
-    SkelCssFilesUrls.new().paths
+    System::SkelCssFilesUrls.new().paths
   end
 
   helper DeviseHelper

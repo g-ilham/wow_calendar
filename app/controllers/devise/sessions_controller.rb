@@ -6,6 +6,11 @@ class Devise::SessionsController < DeviseController
   prepend_before_filter :verify_signed_out_user, only: :destroy
   prepend_before_filter only: [:create, :destroy] { request.env["devise.skip_timeout"] = true }
 
+
+  expose(:login) do
+    Users::UserLogin.new(params[:user])
+  end
+
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -15,11 +20,15 @@ class Devise::SessionsController < DeviseController
 
   # POST /resource/sign_in
   def create
-    self.resource = warden.authenticate!(auth_options)
-    set_flash_message(:notice, :signed_in) if is_flashing_format?
-    sign_in(resource_name, resource)
-    yield resource if block_given?
-    respond_with resource, location: after_sign_in_path_for(resource)
+    if login.errors.present?
+      @user = User.new if login.user.blank?
+
+    else
+      self.resource = warden.authenticate!(auth_options)
+      set_flash_message(:notice, :signed_in) if is_flashing_format?
+      sign_in(resource_name, resource)
+      yield resource if block_given?
+    end
   end
 
   # DELETE /resource/sign_out

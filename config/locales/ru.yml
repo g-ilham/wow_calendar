@@ -1,4 +1,14 @@
 ru:
   recaptcha:
     errors:
-      incorrect-captcha-sol: 'Ошибка'
+      recaptcha_unreachable: 'Время сеанса истекло. Откройте и закройте окошко.'
+  activerecord:
+    models:
+      user: 'Пользователь'
+    attributes:
+      user:
+        email: 'Почтовый адрес'
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'

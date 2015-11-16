@@ -15,6 +15,8 @@ html
     section#main.wrapper
       .container
         = yield
+    = render partial: 'devise/modals/sign_in_or_sign_up'
+    = render partial: 'devise/modals/confirmation_message'
 
     = javascript_include_tag 'transit_theme'
     = javascript_tag "$(function() { EmptyClick.init(); #{yield(:javascript_code)} });" if content_for? :javascript_code

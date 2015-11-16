@@ -1,9 +1,18 @@
-| $('.js-sign-up-link').addClass('disabled');
+| $('#sign_in_or_sign_up_modal .with_error').removeClass('with_error');
+| $('#sign_in_or_sign_up_modal input').prop('disabled', true);
 
-- if @captcha_good
-  | alert('good')
+- if resource.errors.present? || !valid_captcha
+  - if resource.errors.messages.present?
+    - resource.errors.each do |key, value|
+      | $("#user_" + "#{key}").parent().addClass("with_error");
+      | $('#user_' + "#{key}").parent().find('.form-error-message').text("#{value}");
+
+  - if !valid_captcha
+    | $('.g-recaptcha').addClass('with_error');
+
+  | $('#sign_in_or_sign_up_modal a').removeClass('disabled');
+  | $('#sign_in_or_sign_up_modal input').prop('disabled', false);
 - else
+  | $('#sign_in_or_sign_up_modal').modal('hide');
+  | setTimeout("$('#confirm_message_modal').modal('show')", 600);
 
-  | $('.modal-content').html("#{ j(render partial: 'devise/registrations/remote_form') }");
-
-| $('.js-sign-up-link').removeClass('disabled');

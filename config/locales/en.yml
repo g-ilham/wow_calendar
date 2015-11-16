@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  recaptcha:
+    errors:
+      recaptcha_unreachable: 'Время сеанса истекло. Откройте и закройте окошко.'

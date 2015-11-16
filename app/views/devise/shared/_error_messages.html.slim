@@ -1,0 +1,7 @@
+- if resource.errors.present?
+  .12u
+    ul.alert.alert-danger
+      button.close aria-label="Close" data-dismiss="alert" type="button"
+        span aria-hidden="true"  &times;
+      - resource.errors.full_messages.each do |msg|
+        = content_tag :li, msg, class: "error-message"
