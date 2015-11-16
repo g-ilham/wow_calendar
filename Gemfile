@@ -23,6 +23,7 @@ gem 'simple_form'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'handlebars_assets'
 gem "recaptcha", require: "recaptcha/rails"
+gem "russian"
 
 # Social
 gem 'omniauth'
@@ -36,4 +37,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'better_errors'
+  gem 'letter_opener'
 end
