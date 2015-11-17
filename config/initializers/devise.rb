@@ -21,7 +21,8 @@ Devise.setup do |config|
     info_fields: 'email, first_name, last_name, name, link',
     display: 'popup',
     locale: 'ru',
-    image_size: 'large'
+    image_size: 'large',
+    secure_image_url: true
   }
   config.http_authenticatable_on_xhr = true
   # ==> Mailer Configuration

@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
         user.update(attrs)
       else
         user = User.new(attrs)
+        user.email = nil
         user.password = Devise.friendly_token[0,20]
 
         user.skip_confirmation!
