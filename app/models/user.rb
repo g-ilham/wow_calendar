@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
       format: { with: /[а-яА-Яa-zA-Z]+/ },
       allow_nil: true,
       allow_blank: true
+    validates :email, presence: true
   end
 
   def email_required?
@@ -24,7 +25,8 @@ class User < ActiveRecord::Base
         vkontakte_uid: social_params.uid,
         vkontakte_nickname: social_params.info.nickname,
         first_name: social_params.info.first_name,
-        last_name:  social_params.info.last_name
+        last_name:  social_params.info.last_name,
+        provider: social_params.provider
       }
     end
 
@@ -34,7 +36,8 @@ class User < ActiveRecord::Base
         facebook_username: social_params.info.name,
         facebook_uid: social_params.uid,
         first_name: social_params.info.first_name,
-        last_name:  social_params.info.last_name
+        last_name:  social_params.info.last_name,
+        provider: social_params.provider
       }
     end
 
@@ -49,13 +52,22 @@ class User < ActiveRecord::Base
     end
 
     def create_or_update_social_account!(user, provider, social_params)
+      {
+        user: save_user!(user, get_attrs(provider, social_params)),
+        email: social_params.info.email.to_s
+      }
+    end
+
+    def get_attrs(provider, social_params)
       attrs = if provider == "vk"
         vk_attrs(social_params)
       else
         facebook_attrs(social_params)
       end
       attrs = extend_photo(attrs, social_params)
+    end
 
+    def save_user!(user, attrs)
       if user.present?
         user.update(attrs)
       else
@@ -64,10 +76,8 @@ class User < ActiveRecord::Base
         user.password = Devise.friendly_token[0,20]
 
         user.skip_confirmation!
-
-        user.save!
+        user.save!(validate: false)
       end
-
       user
     end
 

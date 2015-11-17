@@ -1,0 +1,16 @@
+= simple_form_for(current_user, as: :user, url: add_email_for_social_path, html: { method: :put, novalidate: true, id: 'complete-registration-form' }, remote: true) do |f|
+
+  .row.uniform class="50%"
+    h2 Необходимо добавить свой почтовый адрес
+    = render 'devise/shared/error_messages', resource: current_user
+
+    .12u
+      p.form-error-message Не коректный email
+      = f.input_field :email, required: false, autofocus: true, label: false, placeholder: 'Почтовый адрес', maxLength: 200
+    .12u
+      ul.actions
+        li
+          = f.button :submit, "Зарегистрироваться", class: 'button'
+
+= content_for(:javascript_code) do
+  | SkelInit.init("#{skel_css_files}");

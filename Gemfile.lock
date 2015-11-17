@@ -67,6 +67,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    email_validator (1.6.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.6.0)
     fancybox2-rails (0.2.8)
@@ -230,6 +232,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   decent_exposure
   devise
+  email_validator
   fancybox2-rails (~> 0.2.8)
   font-awesome-rails
   handlebars_assets

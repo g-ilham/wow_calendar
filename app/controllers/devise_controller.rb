@@ -12,6 +12,7 @@ class DeviseController < Devise.parent_controller.constantize
   helper_method(*helpers)
 
   prepend_before_filter :assert_is_devise_resource!
+  skip_before_filter :complete_registration!
   respond_to :html if mimes_for_respond_to.empty?
 
   # Override prefixes to consider the scoped view.

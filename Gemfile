@@ -24,6 +24,7 @@ gem 'fancybox2-rails', '~> 0.2.8'
 gem 'handlebars_assets'
 gem "recaptcha", require: "recaptcha/rails"
 gem "russian"
+gem 'email_validator'
 
 # Social
 gem 'omniauth'

@@ -29,11 +29,12 @@ class Devise::OmniauthCallbacksController < DeviseController
 
   protected
 
-  def authorization_handler user
-    if user.persisted?
-      sign_in_and_redirect user, event: :authentication
+  def authorization_handler params
+    if params[:user].email.nil?
+      sign_in(:user, params[:user])
+      redirect_to complete_social_registration_form_path(user: { email: params[:email] })
     else
-      redirect_to root_path
+      sign_in_and_redirect params[:user], event: :authentication
     end
   end
 

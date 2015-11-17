@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'complete_social_registration_form', to: 'home#complete_social_registration_form'
+  put 'add_email_for_social', to: 'home#add_email_for_social'
 
   devise_for :users
-  root 'home#index'
+  root to: 'home#index'
+
   ##########################
   #         Themes         #
   ##########################

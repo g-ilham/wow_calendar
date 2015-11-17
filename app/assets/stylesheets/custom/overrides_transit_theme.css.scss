@@ -46,7 +46,10 @@
     border-color: none;
   }
 
-  #sign_in_or_sign_up_modal, #sign_in_or_sign_up_wrapper, #confirm_message_modal {
+  #sign_in_or_sign_up_modal,
+  #sign_in_or_sign_up_wrapper,
+  #confirm_message_modal,
+  #complete-registration-form {
     .modal-header {
       background-color: #48cfad;
       h4 {
