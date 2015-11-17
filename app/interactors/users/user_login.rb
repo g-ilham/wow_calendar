@@ -42,7 +42,7 @@ module Users
 
     def user_is_found?
       if user.blank?
-        @errors[:email] = "пользователь не найден"
+        @errors[:email] = "почтовый адрес неверен"
         @errors[:password] = "пароль неверен"
       end
     end
@@ -52,7 +52,7 @@ module Users
     end
 
     def is_confirmed?
-      @errors[:email] = "Почтовый адрес не подтвержден" unless user.confirmed?
+      @errors[:email] = "почтовый адрес не подтвержден" unless user.confirmed?
     end
 
     def set_user

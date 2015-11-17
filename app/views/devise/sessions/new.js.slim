@@ -1,4 +1,4 @@
 | $('.js-sign-in-link').addClass('disabled');
-| $('.modal-content').html("#{ j(render partial: 'devise/sessions/remote_form') }");
+| $('#sign_in_or_sign_up_modal .modal-content').html("#{ j(render partial: 'devise/sessions/remote_form') }");
 | $('#sign_in_or_sign_up_modal').modal('show');
 | $('.js-sign-in-link').removeClass('disabled');
