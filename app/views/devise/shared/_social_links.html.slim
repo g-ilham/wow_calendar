@@ -1,0 +1,10 @@
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    - if provider == :facebook
+      = link_to omniauth_authorize_path(resource_name, provider), class: 'button pull-right alt icon fa-facebook margin_right_5' do
+        | Facebook
+
+    - elsif provider == :vkontakte
+      = link_to omniauth_authorize_path(resource_name, provider), class: 'button pull-right alt icon fa-vk' do
+          | ВКонтакте
+

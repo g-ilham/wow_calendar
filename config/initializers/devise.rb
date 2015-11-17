@@ -7,7 +7,23 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'deb89051a95de275c7eec598ecd2416f2fbe359a9e9aba5eb89f45975205299ddf4a4755cc7721c201d9777f7b9b8505452274443089a1dec29174d2e94ff3bd'
+  config.secret_key = ENV["SECRET_KEY_BASE"]
+  config.omniauth :vkontakte, ENV["WOWCALENDAR_VK_APP_ID"], ENV["WOWCALENDAR_VK_APP_KEY"],
+  {
+    scope: 'photos, email',
+    display: 'popup',
+    lang: 'ru',
+    image_size: 'original'
+  }
 
+  config.omniauth :facebook, ENV["WOWCALENDAR_FACEBOOK_APP_ID"], ENV["WOWCALENDAR_FACEBOOK_APP_SECRET"],
+  {
+    info_fields: 'email, first_name, last_name, name, link',
+    display: 'popup',
+    locale: 'ru',
+    image_size: 'large'
+  }
+  config.http_authenticatable_on_xhr = true
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class

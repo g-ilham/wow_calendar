@@ -22,12 +22,9 @@
     .modal-footer
       ul.actions
         li
-          = f.button :submit, "Войти", class: 'button js-sign-in-link'
+          = f.button :submit, "Войти", class: 'button js-sign-in-link pull-left'
 
-          - if devise_mapping.omniauthable?
-            - resource_class.omniauth_providers.each do |provider|
-              = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: 'dark_link button'
-              br
+          = render "devise/shared/social_links"
 
       .devise_links
         = render "devise/shared/links"
