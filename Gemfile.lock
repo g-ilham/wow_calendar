@@ -46,6 +46,11 @@ GEM
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -104,6 +109,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.6.2)
+    mini_magick (4.3.6)
     mini_portile (0.6.2)
     minitest (5.8.2)
     multi_json (1.11.2)
@@ -220,6 +226,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   bootstrap-sass (~> 3.2.0)
+  carrierwave
   coffee-rails (~> 4.1.0)
   decent_exposure
   devise
@@ -231,6 +238,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   letter_opener
+  mini_magick
   omniauth
   omniauth-facebook
   omniauth-vkontakte

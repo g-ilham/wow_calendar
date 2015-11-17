@@ -30,6 +30,10 @@ gem 'omniauth'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
 
+#Uploads
+gem 'carrierwave'
+gem "mini_magick"
+
 # Exposing
 gem 'decent_exposure'
 
