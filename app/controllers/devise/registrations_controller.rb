@@ -1,9 +1,9 @@
 class Devise::RegistrationsController < DeviseController
   respond_to :html, :json
-  before_action :build_user, only: [ :new ]
   before_action :html?, only: [ :new, :create ]
 
   expose(:valid_captcha) { false }
+  expose(:user) { User.new }
 
   def new
   end
@@ -48,10 +48,6 @@ class Devise::RegistrationsController < DeviseController
   end
 
   protected
-
-  def build_user
-    @user = User.new
-  end
 
   def update_needs_confirmation?(resource, previous)
     resource.respond_to?(:pending_reconfirmation?) &&

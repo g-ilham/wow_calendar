@@ -1,6 +1,6 @@
 section#main-content
   section.wrapper.site-min-height#calendar_page
-    = render partial: 'themes/calendar/content'
+    = render 'themes/calendar/content'
 
 = content_for(:javascript_code) do
   | CommonScripts.init();

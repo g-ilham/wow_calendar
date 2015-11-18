@@ -1,0 +1,13 @@
+| $('#edit_user_settings .with_error').removeClass('with_error');
+| $('#edit_user_settings input').prop('disabled', true);
+
+- if current_user.errors.present?
+  - current_user.errors.each do |key, value|
+    | $("#edit_user_settings #user_" + "#{key}").parent().addClass("with_error");
+    | $("#edit_user_settings #user_" + "#{key}").parent().find('.form-error-message').text("#{value}");
+
+  | $('#edit_user_settings a').removeClass('disabled');
+  | $('#edit_user_settings input').prop('disabled', false);
+- else
+  | $('#edit_user_settings .account_updated_message').removeClass('hidden');
+  | setTimeout("$('#edit_user_settings').modal('hide')", 1500);

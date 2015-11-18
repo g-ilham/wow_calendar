@@ -1,8 +1,8 @@
 section#main-content
   section.wrapper.site-min-height#dashboard_page
     .row
-      = render partial: 'themes/dashboard/maine'
-      = render partial: 'themes/dashboard/right_sidebar'
+      = render 'themes/dashboard/maine'
+      = render 'themes/dashboard/right_sidebar'
 
 = content_for(:javascript_code) do
   | CommonScripts.animate_doughnuts(CommonScripts.doughnut_data_dashboard());

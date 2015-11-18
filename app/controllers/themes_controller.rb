@@ -1,6 +1,5 @@
 class ThemesController < ApplicationController
   layout :resolve_layout
-  before_action :authenticate_user!
 
   expose(:gritter_image_url) do
     System::GetAssetFilesUrls.get_image_url('theme/ui-sam.jpg')

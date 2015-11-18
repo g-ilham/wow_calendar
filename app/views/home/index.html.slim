@@ -1,85 +1,15 @@
 /! Header
-= render partial: 'layouts/transit_theme/header'
+= render 'layouts/transit_theme/header', hide_settings: 'false'
 /! Banner
-section#banner
-  h2 Hi. This is WowCalendar.
-  p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-  - if current_user.blank? || !user_signed_in?
-    ul.actions
-      li
-        = link_to "Зарегистрироваться", new_user_registration_path, class: 'js-sign-up-link button big', remote: true
+= render 'home/banner'
 /! One
-section#one.wrapper.style1.special
-  .container
-    header.major
-      h2 Consectetur adipisicing elit
-      p Lorem ipsum dolor sit amet, delectus consequatur, similique quia!
-    .row class="150%"
-      .4u class="12u$(medium)"
-        section.box
-          i.icon.big.rounded.color1.fa-cloud
-          h3 Lorem ipsum dolor
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quam consectetur quibusdam magni minus aut modi aliquid.
-      .4u class="12u$(medium)"
-        section.box
-          i.icon.big.rounded.color9.fa-desktop
-          h3 Consectetur adipisicing
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime.
-      div class=("4u$ 12u$(medium)")
-        section.box
-          i.icon.big.rounded.color6.fa-rocket
-          h3 Adipisicing elit totam
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.
+= render 'home/section_one'
 /! Two
-section#two.wrapper.style2.special
-  .container
-    header.major
-      h2 Lorem ipsum dolor sit
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.
-    section.profiles
-      .row
-        section.3u.profile class=("6u(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Lorem ipsum
-          p Lorem ipsum dolor
-        section.3u.profile class=("6u$(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Voluptatem dolores
-          p Ullam nihil repudi
-        section.3u.profile class=("6u(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Doloremque quo
-          p Harum corrupti quia
-        section.profile class=("3u$ 6u$(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Voluptatem dicta
-          p Et natus sapiente
-    footer
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolore illum, temporibus veritatis eligendi, aliquam, dolor enim itaque veniam aut eaque sequi qui quia vitae pariatur repudiandae ab dignissimos ex!
-      ul.actions
-        li
-          a.button.js-empty-click.big href="#"  Lorem ipsum dolor sit
+= render 'home/section_two'
 /! Three
-section#three.wrapper.style3.special
-  .container
-    header.major
-      h2 Consectetur adipisicing elit
-      p Lorem ipsum dolor sit amet. Delectus consequatur, similique quia!
-  .container class="50%"
-    form action="#" method="post"
-      .row.uniform
-        .6u class="12u$(small)"
-          input#name name="name" placeholder="Name" type="text" value="" /
-        div class=("6u$ 12u$(small)")
-          input#email name="email" placeholder="Email" type="email" value="" /
-        div class="12u$"
-          textarea#message name="message" placeholder="Message" rows="6"
-        div class="12u$"
-          ul.actions
-            li
-              input.js-empty-click.special.big type="submit" value=("Send Message") /
+= render 'home/section_three'
 
-= render partial: 'layouts/transit_theme/footer'
+= render 'layouts/transit_theme/footer'
 
 = content_for(:javascript_code) do
   | SkelInit.init("#{skel_css_files}");

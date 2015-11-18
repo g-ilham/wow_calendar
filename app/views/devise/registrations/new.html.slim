@@ -1,5 +1,5 @@
 #sign_in_or_sign_up_wrapper
-  = simple_form_for(@user, as: resource_name, url: registration_path(@user)) do |f|
+  = simple_form_for(user, as: resource_name, url: registration_path(user)) do |f|
 
     .row.uniform class="50%"
       h2 Sign up

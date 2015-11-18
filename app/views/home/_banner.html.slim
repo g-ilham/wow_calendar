@@ -1,0 +1,7 @@
+section#banner
+  h2 Hi. This is WowCalendar.
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  - if current_user.blank? || !user_signed_in?
+    ul.actions
+      li
+        = link_to "Зарегистрироваться", new_user_registration_path, class: 'js-sign-up-link button big', remote: true

@@ -12,10 +12,10 @@ html
 
   body
     section#container
-      = render partial: 'layouts/theme/header'
-      = render partial: 'layouts/theme/sidebar'
+      = render 'layouts/theme/header'
+      = render 'layouts/theme/sidebar'
       = yield
-      = render partial: 'layouts/theme/footer'
+      = render 'layouts/theme/footer'
 
     = javascript_include_tag 'theme'
     = javascript_tag "$(function() { EmptyClick.init(); #{yield(:javascript_code)} });" if content_for? :javascript_code

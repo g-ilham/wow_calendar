@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   layout :resolve_layout
   skip_before_filter :complete_registration!
+  skip_before_filter :authenticate_user!, only: [ :index ]
   before_action :set_email, only: [ :complete_social_registration_form, :add_email_for_social ]
 
   expose(:skel_css_files) do
@@ -26,7 +27,7 @@ class HomeController < ApplicationController
   def add_email_for_social
     if current_user.valid?
       current_user.update_column(:email,  email_params)
-      current_user.confirm; current_user.save!
+      current_user.skip_confirmation!; current_user.save!
    end
   end
 

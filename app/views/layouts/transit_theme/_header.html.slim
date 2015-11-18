@@ -8,8 +8,10 @@ header#header
         a href="#{root_path}"  Home
       li
         a.js-empty-click href="#"  Generic
-      li
-        a.js-empty-click href="#"  Elements
+
+      - if user_signed_in? && hide_settings != 'true'
+        li
+          = link_to 'Настройки', edit_users_setting_path(current_user), remote: true, class: 'js-new-settings'
 
       - if current_user.blank? || !user_signed_in?
         li

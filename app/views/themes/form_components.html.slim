@@ -1,6 +1,6 @@
 section#main-content
   section.wrapper.site-min-height#form_components_page
-    = render partial: 'themes/form_components/content'
+    = render 'themes/form_components/content'
 
 = content_for(:javascript_code) do
   | CommonScripts.init();
