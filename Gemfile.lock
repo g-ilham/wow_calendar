@@ -177,6 +177,7 @@ GEM
     rake (10.4.2)
     recaptcha (0.4.0)
     ref (2.0.0)
+    remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     russian (0.6.0)
@@ -250,6 +251,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.5.rc2)
   recaptcha
+  remotipart
   russian
   sass-rails (>= 3.2)
   simple_form

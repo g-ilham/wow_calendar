@@ -13,6 +13,9 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-ui-rails'
 
+# Rails4 rc2 file_fieId Can't verify CSRF token authenticity
+# https://github.com/rails/jquery-ujs/issues/331
+gem 'remotipart'
 
 # Main stuff
 gem 'slim-rails'
