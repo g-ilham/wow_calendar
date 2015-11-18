@@ -2,10 +2,9 @@
 | $('#complete-registration-form input').prop('disabled', true);
 
 - if current_user.errors.present?
-  - if current_user.errors.messages.present?
-    - current_user.errors.each do |key, value|
-      | $("#user_" + "#{key}").parent().addClass("with_error");
-      | $('#user_' + "#{key}").parent().find('.form-error-message').text("#{value}");
+  - current_user.errors.each do |key, value|
+    | $("#user_" + "#{key}").parent().addClass("with_error");
+    | $("#user_" + "#{key}").parent().find('.form-error-message').text("#{value}");
 
   | $('#complete-registration-form a').removeClass('disabled');
   | $('#complete-registration-form input').prop('disabled', false);

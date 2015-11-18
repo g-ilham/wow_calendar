@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def complete_registration!
-    if current_user && current_user.provider.present? && current_user.unconfirmed_email.blank?
+    if current_user && current_user.email.blank?
       redirect_to complete_social_registration_form_path
     end
   end

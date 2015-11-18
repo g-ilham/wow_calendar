@@ -7,8 +7,14 @@ class HomeController < ApplicationController
     System::SkelCssFilesUrls.new().paths
   end
 
+  expose(:email_params) do
+    if params['user'] && params['user']['email']
+      params['user']['email']
+    end
+  end
+
   expose(:set_email) do
-    current_user.email = params['user']['email'] if  params['user']['email']
+    current_user.email = email_params if email_params
   end
 
   def index
@@ -18,12 +24,10 @@ class HomeController < ApplicationController
   end
 
   def add_email_for_social
-    puts "user email #{current_user.email}"
-    puts "user valid #{current_user.valid?}"
     if current_user.valid?
-      current_user.skip_confirmation!
-      current_user.save!
-    end
+      current_user.update_column(:email,  email_params)
+      current_user.confirm; current_user.save!
+   end
   end
 
   private
