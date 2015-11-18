@@ -10,10 +10,17 @@ class User < ActiveRecord::Base
       allow_nil: true,
       allow_blank: true
     validates :email, presence: true
+    validate :image_size_validation
   end
 
   def email_required?
     super && vkontakte_uid.blank? && facebook_uid.blank?
+  end
+
+  def image_size_validation
+    if photo.size.to_f > 1.megabytes
+      errors.add(:photo, "должен быть не более 10мб")
+    end
   end
 
   class << self
