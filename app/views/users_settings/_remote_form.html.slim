@@ -18,14 +18,16 @@
       .6u
         p.form-error-message Не корректное имя
         = f.input_field :last_name, required: false, label: false, placeholder: 'Last Name', maxLength: 200
-
       .12u.edit-user-photo-wrapper
-        spanm.image
+        span.image
           = image_tag current_user.photo.url(), class: 'edit-user-photo'
 
+      .12u
         .upload_photo_filed.pull-left
+          label for="user_photo" Аватар
           p.form-error-message Не верные размеры
-          = f.input :photo, as: :file, required: false, lable: false
+          = f.input_field :photo, as: :file, required: false, lable: false
+          p.help-block Пожалуйста, прикрепите фотографию ниже.
 
   .modal-footer
     ul.actions
