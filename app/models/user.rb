@@ -11,16 +11,38 @@ class User < ActiveRecord::Base
       allow_blank: true
     validates :email, presence: true
     validate :image_size_validation
-  end
-
-  def email_required?
-    super && vkontakte_uid.blank? && facebook_uid.blank?
+    validate :image_geometry_validation
+    validate :image_mime_type_validation
   end
 
   def image_size_validation
     if photo.size.to_f > 1.megabytes
-      errors.add(:photo, "должен быть не более 10мб")
+      errors.add(:photo, I18n.t("errors.messages.max_size_error",
+                                  max_size: '10мб'))
     end
+  end
+
+  def image_mime_type_validation
+    type = photo.content_type.to_s
+
+    if !(/(\.|\/)(gif|jpeg|jpg|png)$/i).match(type).present?
+      errors.add(:mime_type, "не верно")
+    end
+  end
+
+  def image_geometry_validation
+    if photo.geometry
+
+      width, height = photo.geometry.map(&:to_f)
+      if width > 200.0 || height > 200.0
+        errors.add(:photo, I18n.t("errors.messages.max_dimentions_error",
+                                    max_dementions: "200x200"))
+      end
+    end
+  end
+
+  def email_required?
+    super && vkontakte_uid.blank? && facebook_uid.blank?
   end
 
   class << self

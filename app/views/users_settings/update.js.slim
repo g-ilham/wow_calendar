@@ -2,9 +2,9 @@
 | $('#edit_user_settings input').prop('disabled', true);
 
 - if current_user.errors.present?
-  - current_user.errors.each do |key, value|
+  - current_user.errors.messages.each do |key, value|
     | $("#edit_user_settings #user_" + "#{key}").parent().addClass("with_error");
-    | $("#edit_user_settings #user_" + "#{key}").parent().find('.form-error-message').text("#{value}");
+    | $("#edit_user_settings #user_" + "#{key}").parent().find('.form-error-message').text("#{value.first}");
 
   | $('#edit_user_settings a').removeClass('disabled');
   | $('#edit_user_settings input').prop('disabled', false);
