@@ -1,21 +1,18 @@
 source 'https://rubygems.org'
 ruby '2.2.3'
 
-gem 'rails', '4.2.5.rc2'
+gem 'rails', '4.2.5'
 gem 'pg', '~> 0.18.3'
 
+# Assets
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '>= 3.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
 gem 'jquery-ui-rails'
-
-# Rails4 rc2 file_fieId Can't verify CSRF token authenticity
-# https://github.com/rails/jquery-ujs/issues/331
-gem 'remotipart'
+gem 'jbuilder', '~> 2.0'
 
 # Main stuff
 gem 'slim-rails'
@@ -27,7 +24,10 @@ gem 'fancybox2-rails', '~> 0.2.8'
 gem 'handlebars_assets'
 gem "recaptcha", require: "recaptcha/rails"
 gem "russian"
-gem 'email_validator'
+
+# Rails4 rc2 file_fieId Can't verify CSRF token authenticity
+# https://github.com/rails/jquery-ujs/issues/331
+gem 'remotipart', '~> 1.2'
 
 # Social
 gem 'omniauth'
