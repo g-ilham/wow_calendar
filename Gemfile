@@ -21,13 +21,17 @@ gem "font-awesome-rails"
 gem 'devise'
 gem 'simple_form'
 gem 'fancybox2-rails', '~> 0.2.8'
-gem 'handlebars_assets'
 gem "recaptcha", require: "recaptcha/rails"
 gem "russian"
+gem 'active_model_serializers'
 
 # Rails4 rc2 file_fieId Can't verify CSRF token authenticity
 # https://github.com/rails/jquery-ujs/issues/331
 gem 'remotipart', '~> 1.2'
+
+#Datetimepicker
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
 # Social
 gem 'omniauth'
@@ -38,8 +42,9 @@ gem 'omniauth-facebook'
 gem 'carrierwave'
 gem "mini_magick"
 
-# Exposing
+# Exposing && Decorator
 gem 'decent_exposure'
+gem 'draper'
 
 group :development, :test do
   gem 'pry-rails'

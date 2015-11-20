@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   mount_uploader :photo, PhotoUploader
 
+  has_many :events, dependent: :destroy
+
   begin :validations
     validates :first_name, :last_name,
       length: { minimum: 2, maximum: 100 },
@@ -46,6 +48,7 @@ class User < ActiveRecord::Base
   end
 
   class << self
+    #TODO need refator
 
     def vk_attrs social_params
       {
@@ -55,7 +58,7 @@ class User < ActiveRecord::Base
         vkontakte_nickname: social_params.info.nickname,
         first_name: social_params.info.first_name,
         last_name:  social_params.info.last_name,
-        provider: social_params.provider
+        provider: 'vk'
       }
     end
 
@@ -66,7 +69,7 @@ class User < ActiveRecord::Base
         facebook_uid: social_params.uid,
         first_name: social_params.info.first_name,
         last_name:  social_params.info.last_name,
-        provider: social_params.provider
+        provider: 'facebook'
       }
     end
 

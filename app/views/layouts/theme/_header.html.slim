@@ -1,9 +1,9 @@
 header.header.black-bg
   .sidebar-toggle-box
     .fa.fa-bars.tooltips[data-toggle="tooltip" data-placement="right" title="Toggle Navigation"]
-  a.logo[href="index.html"]
+  a.logo[href="#{root_path}"]
     b
-      | DASHGUM FREE
+      | WowCalendar
   #top_menu.nav.notify-row
     ul.nav.top-menu
       li.dropdown
@@ -129,5 +129,4 @@ header.header.black-bg
   .top-menu
     ul.nav.pull-right.top-menu
       li
-        a.logout[href="login.html"]
-          | Logout
+        = link_to 'Выйти', destroy_user_session_path, class: 'logout'

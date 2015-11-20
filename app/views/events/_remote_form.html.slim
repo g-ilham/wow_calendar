@@ -1,0 +1,29 @@
+= simple_form_for(Event.new, url: events_path, html: { novalidate: true, method: :post}, remote: true) do |f|
+
+  .modal-header
+    button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+    h4.modal-title Создание события
+  .modal-body
+
+    .form-group
+      label Название
+      = f.input_field :title, as: :string, class: "form-control round-form"
+
+    .form-group
+      label Начало события
+      = f.input_field :starts_at, as: :string, class: "form-control round-form"
+
+    .form-group
+      label Окончание события
+      = f.input_field :ends_at, as: :string, class: "form-control round-form"
+
+    .checkbox
+      label
+        = f.input_field :all_day, boolean_style: :inline, label:false,
+          as: :boolean
+        | Весь день?
+
+  .modal-footer
+    ul.actions
+      li
+        = f.button :submit, "Создать", class: 'button js-create-event-link pull-right'

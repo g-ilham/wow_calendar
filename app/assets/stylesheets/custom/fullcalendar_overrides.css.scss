@@ -1,13 +1,22 @@
-.fc-header td {
-  word-wrap: break-word;
-  white-space: unset;
-}
 .fc-header {
   margin-bottom: 0;
+  td {
+    word-wrap: break-word;
+    white-space: unset;
+  }
+  .fc-header-left,
+  .fc-header-right,
+  .fc-header-center {
+    color: #646464;
+    width: auto;
+    vertical-align: middle;
+  }
 }
+
 .fc-button {
   top: 0;
 }
+
 .fc-state-active, .fc-state-active, .fc-state-hover {
   .fc-button-inner {
     background-color: #F2F2F2;

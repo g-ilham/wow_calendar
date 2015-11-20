@@ -12,3 +12,21 @@
     min-width: 80px;
   }
 }
+
+.with_error {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  select {
+    border: 1px solid #ed5565;
+    box-shadow: none;
+  }
+  .form-error-message {
+    display: block;
+  }
+}
+.form-error-message {
+  margin: 0;
+  color: #ed5565;
+  display: none;
+}

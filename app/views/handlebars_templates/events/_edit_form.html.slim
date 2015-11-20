@@ -1,0 +1,41 @@
+script#edit_event_template type="text/x-handlebars-template"
+  .modal-dialog
+    .modal-content
+      form#new_event.simple_form.new_event accept-charset="UTF-8" action="/events" data-remote="true" method="post" novalidate="novalidate"
+        input name="utf8" type="hidden" value="✓" /
+        .modal-header
+          button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
+          h4.modal-title
+            | Редактирование события
+        .modal-body
+
+          .form-group
+            label Название
+            input#event_title.string.optional.form-control.round-form name="event[title]" type="text" value="{{title}}" /
+
+          .form-group
+            label Начало события
+            p.form-error-message Не верная дата
+            .input-group#starts_at_date_on_edit
+              input#event_starts_at.string.optional.form-control.round-form name="event[starts_at]" type="text" /
+              span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+
+          .form-group
+            label Окончание события
+            p.form-error-message Не верная дата
+            .input-group#ends_at_date_on_edit
+              input#event_ends_at.string.optional.form-control.round-form name="event[ends_at]" type="text" /
+              span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+
+          .form-group.text-center
+            label Весь день?
+            .checkbox
+              .switch
+                input#event_all_day name="event[all_day]" type="checkbox" data-toggle="switch"
+
+        .modal-footer
+          ul.actions
+            li
+              input.btn.btn-round.btn-default.button.js-create-event-link.pull-right name="commit" type="submit" value="Создать" /

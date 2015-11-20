@@ -1,0 +1,15 @@
+section#main-content
+  section.wrapper.site-min-height#calendar_page
+    = render 'themes/calendar/content'
+
+#new_event_form_modal.modal.fade aria-hidden="true" aria-labelledby="new_event_form_modal_label" role="dialog" tabindex="-1"
+
+#edit_event_form_modal.modal.fade aria-hidden="true" aria-labelledby="edit_event_form_modal_label" role="dialog" tabindex="-1"
+
+= render 'handlebars_templates/events/new_form'
+= render 'handlebars_templates/events/edit_form'
+
+= content_for(:javascript_code) do
+  | BaseHandlebars.new_event();
+  | BaseHandlebars.edit_event();
+  | Calendar.init("#{events.to_json}");

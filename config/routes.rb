@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
   resources :users_settings, only: [ :edit, :update ]
+  resources :events, except: [ :new, :edit ]
 
   ##########################
   #         Themes         #
