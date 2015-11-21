@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
       allow_nil: true,
       allow_blank: true
     validates :email, presence: true
-    validate :image_size_validation
-    validate :image_geometry_validation
-    validate :image_mime_type_validation
+    validate :image_size_validation, if: 'self.photo?'
+    validate :image_geometry_validation, if: 'self.photo?'
+    validate :image_mime_type_validation, if: 'self.photo?'
   end
 
   def image_size_validation
