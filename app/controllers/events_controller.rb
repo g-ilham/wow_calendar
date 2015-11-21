@@ -16,11 +16,19 @@ class EventsController < ApplicationController
   end
 
   expose(:event) do
-    current_user.events.find(params[:id])
+    current_user.events.find_by_id(params[:id])
   end
 
   expose(:errors) do
-    event.errors.full_messages
+    if event
+      event.errors.full_messages
+    else
+      [Event.empty_event_message]
+    end
+  end
+
+  expose(:errors_response) do
+    render json: { errors: errors }, status: :unprocessable_entity
   end
 
   def index
@@ -31,19 +39,25 @@ class EventsController < ApplicationController
     if event.save
       render json: { event: event_ser }, status: :ok
     else
-      render json: { errors: errors }, status: :unprocessable_entity
+      errors_response
     end
   end
 
   def update
-    if event.update(event_params)
+    if event && event.update(event_params)
       render json: { event: event_ser }, status: :ok
     else
-      render json: { errors: errors }, status: :unprocessable_entity
+      errors_response
     end
   end
 
   def destroy
+    if event
+      event.destroy
+      render json: nil, status: :ok
+    else
+      errors_response
+    end
   end
 
   def event_params
