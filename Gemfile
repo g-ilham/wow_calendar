@@ -24,6 +24,7 @@ gem 'fancybox2-rails', '~> 0.2.8'
 gem "recaptcha", require: "recaptcha/rails"
 gem "russian"
 gem 'active_model_serializers'
+gem 'validates_timeliness', '~> 3.0'
 
 # Rails4 rc2 file_fieId Can't verify CSRF token authenticity
 # https://github.com/rails/jquery-ujs/issues/331
