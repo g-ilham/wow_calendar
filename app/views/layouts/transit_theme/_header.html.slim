@@ -6,10 +6,11 @@ header#header
     ul
       li
         a href="#{root_path}"  Home
-      li
-        a.js-empty-click href="#"  Generic
 
       - if user_signed_in? && hide_settings != 'true'
+        li
+          a href="#{events_path}"  Мои события
+
         li
           = link_to 'Настройки', edit_users_setting_path(current_user), remote: true, class: 'js-new-settings'
 

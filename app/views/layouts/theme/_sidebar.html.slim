@@ -2,7 +2,7 @@ aside
   #sidebar.nav-collapse
     /! sidebar menu start
     ul#nav-accordion.sidebar-menu
-      - if current_user.photo
+      - if current_user.photo.present?
         p.centered
           a href="#{themes_path}"
             = image_tag current_user.photo.url(:thumb), class: 'img-circle', width: '60'

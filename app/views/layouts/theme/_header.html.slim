@@ -129,4 +129,4 @@ header.header.black-bg
   .top-menu
     ul.nav.pull-right.top-menu
       li
-        = link_to 'Выйти', destroy_user_session_path, class: 'logout'
+        = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'logout'
