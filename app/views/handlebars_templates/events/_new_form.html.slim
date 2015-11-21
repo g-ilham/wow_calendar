@@ -8,11 +8,10 @@ script#new_event_template type="text/x-handlebars-template"
           h4.modal-title
             | Создание события
         .modal-body
-
+          = render 'events/errors'
           .form-group
             label Название
             input#event_title.string.optional.form-control.round-form name="event[title]" type="text" /
-
           .form-group
             label Начало события
 
@@ -20,11 +19,9 @@ script#new_event_template type="text/x-handlebars-template"
               input#event_starts_at.string.optional.form-control.round-form name="event[starts_at]" type="text" /
               span.input-group-addon
                 span.glyphicon.glyphicon-calendar
-            p.form-error-message Не верная дата
 
           .form-group
             label Окончание события
-            p.form-error-message Не верная дата
             .input-group#ends_at_date
               input#event_ends_at.string.optional.form-control.round-form name="event[ends_at]" type="text" /
               span.input-group-addon
@@ -39,4 +36,4 @@ script#new_event_template type="text/x-handlebars-template"
         .modal-footer
           ul.actions
             li
-              input.btn.btn-round.btn-default.button.js-create-event-link.pull-right name="commit" type="submit" value="Создать" /
+              = link_to 'Создать', '#', class: 'btn btn-round btn-default button js-create-event-link pull-right'
