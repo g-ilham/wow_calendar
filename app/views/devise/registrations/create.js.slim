@@ -2,10 +2,9 @@
 | $('#sign_in_or_sign_up_modal input').prop('disabled', true);
 
 - if resource.errors.present? || !valid_captcha
-  - if resource.errors.messages.present?
-    - resource.errors.each do |key, value|
-      | $("#sign_in_or_sign_up_modal #user_" + "#{key}").parent().addClass("with_error");
-      | $("#sign_in_or_sign_up_modal #user_" + "#{key}").parent().find('.form-error-message').text("#{value}");
+  - resource.errors.messages.each do |key, value|
+    | $("#sign_in_or_sign_up_modal #user_" + "#{key}").parent().addClass("with_error");
+    | $("#sign_in_or_sign_up_modal #user_" + "#{key}").parent().find('.form-error-message').text("#{value}");
 
   - if !valid_captcha
     | $('.g-recaptcha').addClass('with_error');
