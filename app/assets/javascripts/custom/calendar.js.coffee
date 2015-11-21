@@ -1,15 +1,11 @@
 window.Calendar =
   init: (events)->
     window.calendar_events = JsonParser.run(events)
-    CommonScripts.accordion()
-    CommonScripts.sidebartoogle()
-    CommonScripts.sidebarScrollMask()
-    CommonScripts.customScrollbar()
-    $('fa.tooltips').tooltip()
+    window.calendar_events = Calendar.prepare_events_array(window.calendar_events)
     Calendar.calendar_init()
 
   calendar_init: ->
-    $('#calendar').fullCalendar
+    window.my_full_calendar = $('#calendar').fullCalendar
       header:
         left: 'prev, next, today',
         center: 'title',
@@ -40,30 +36,73 @@ window.Calendar =
       dayClick: (date, allDay, jsEvent, view)->
         console.log ' '
         console.log 'dayClick'
-        console.log allDay
-        console.log jsEvent
-        console.log view
         window.clicked_day_date = date
-        $('#new_event_form_modal').empty()
-        $('#new_event_form_modal').html(window.new_event_template)
-        $('.switch').bootstrapSwitch(
-          state: false
-        )
-        FormDatetimepickers.new_init()
-        $('#new_event_form_modal').modal('show')
+        window.current_all_day = false
+        Calendar.show_new_or_edit_form('#new_event_form_modal',
+                                        {}
+                                      )
 
       eventClick: (event, jsEvent, view)->
         console.log ' '
         console.log 'eventClick'
-        console.log event
-        console.log jsEvent
-        console.log view
-        window.current_event_start = event.start
-        window.current_event_end = event.end
-        $('#edit_event_form_modal').empty()
-        $('#edit_event_form_modal').html(window.edit_event_template({'title': event.title}))
-        $('.switch').bootstrapSwitch(
-          state: event.allDay
-        )
-        FormDatetimepickers.edit_init()
-        $('#edit_event_form_modal').modal('show')
+        Calendar.set_global_current_event(event)
+        Calendar.show_new_or_edit_form('#edit_event_form_modal',
+                                        { 'title': event.title }
+                                      )
+
+      eventDrop: (event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) ->
+        console.log ' '
+        console.log 'eventDrop'
+        window.current_event_revert = revertFunc
+        Calendar.set_global_current_event(event)
+        CreateAndUpdateEvents.submit('drop_or_resize')
+
+      eventResize: ( event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ) ->
+        console.log ' '
+        console.log 'eventResize'
+        window.current_event_revert = revertFunc
+        Calendar.set_global_current_event(event)
+        CreateAndUpdateEvents.submit('drop_or_resize')
+
+  show_new_or_edit_form: (id, optional_hash)->
+    template = Calendar.modal_template(id, optional_hash)
+    $(id).empty()
+    $(id).html(template)
+    Calendar.activate_switch()
+    FormDatetimepickers.new_init() if id == '#new_event_form_modal'
+    FormDatetimepickers.edit_init() if id == '#edit_event_form_modal'
+    $(id).modal('show')
+
+  activate_switch: ->
+    $('.switch').bootstrapSwitch('destroy')
+    element = if $('.switch').length
+      $('.switch')
+    else
+      $('[data-toggle=\'switch\']').
+                                    wrap('<div class="switch" />').
+                                    parent()
+
+    element.bootstrapSwitch()
+    element.bootstrapSwitch('setState', window.current_all_day)
+
+  modal_template: (id, optional_hash)->
+    if id == '#new_event_form_modal'
+      window.new_event_template()
+    else
+      window.edit_event_template(optional_hash)
+
+  set_global_current_event: (current_event)->
+    window.current_event_start = current_event.start
+    window.current_event_end = current_event.end
+    window.current_event_id = current_event.id
+    window.current_all_day = current_event.allDay
+    window.current_event_title = current_event.title
+
+  prepare_events_array: (events)->
+    if events
+      $.each events, (index, event_in_arr) ->
+        if !event_in_arr['end']
+          delete events[index]['end']
+      events
+    else
+      events

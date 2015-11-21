@@ -10,6 +10,8 @@ section#main-content
 = render 'handlebars_templates/events/edit_form'
 
 = content_for(:javascript_code) do
+  | BaseScripts.init();
   | BaseHandlebars.new_event();
   | BaseHandlebars.edit_event();
   | Calendar.init("#{events.to_json}");
+  | CreateAndUpdateEvents.init("#{events_path}");
