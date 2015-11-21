@@ -12,6 +12,11 @@ ru:
         last_name: 'Фамилия'
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
+      event:
+        title: 'Заголовок'
+        starts_at: 'Начало события'
+        ends_at: 'Окончание события'
+        all_day: 'Весь день'
   errors:
     messages:
       carrierwave_processing_error: Невозможно обработать изображение
@@ -25,3 +30,16 @@ ru:
       min_size_error: "Размер файла должен быть больше, чем %{min_size}"
       max_size_error: "Размер файла должен быть меньше, чем %{max_size}"
       max_dimentions_error: "Высота и ширина файла должны быть не более, чем %{max_dementions} пикселей"
+      invalid_date: "не валидная дата либо вовсе отсутствует"
+      invalid_time: "не валидное время либо вовсе отсутствует"
+      invalid_datetime: "не валидны дата и время"
+      is_at: "должно быть %{restriction}"
+      before: "должно быть %{restriction}"
+      on_or_before: "должно быть не позднее %{restriction}"
+      after: "должен быть после %{restriction}"
+      on_or_after: "должно быть равно %{restriction} или позднее %{restriction}"
+  validates_timeliness:
+    error_value_formats:
+      date: '%Y-%m-%d'
+      time: '%H:%M:%S'
+      datetime: '%Y-%m-%d %H:%M:%S'
