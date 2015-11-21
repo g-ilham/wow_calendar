@@ -1,3 +1,4 @@
+#Example I18n.t(:ru)[:errors][:messages][:empty]
 ru:
   recaptcha:
     errors:
@@ -5,6 +6,7 @@ ru:
   activerecord:
     models:
       user: 'Пользователь'
+      event: 'Событие'
     attributes:
       user:
         email: 'Почтовый адрес'
