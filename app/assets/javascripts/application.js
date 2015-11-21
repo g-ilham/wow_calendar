@@ -3,9 +3,9 @@
 //= require jquery-ui
 //= require jquery.remotipart
 //= require bootstrap-sprockets
+//= require fancybox
 //= require moment
 //= require bootstrap-datetimepicker
-//= require fancybox
 //= require_tree ./plugins
 //= require_tree ./theme
 //= require_tree ./general
