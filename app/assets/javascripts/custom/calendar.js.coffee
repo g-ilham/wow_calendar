@@ -36,57 +36,49 @@ window.Calendar =
       dayClick: (date, allDay, jsEvent, view)->
         console.log ' '
         console.log 'dayClick'
-        window.clicked_day_date = date
-        window.current_all_day = false
-        Calendar.show_new_or_edit_form('#new_event_form_modal',
+        console.log allDay
+        window.current_event_start = date
+        window.current_all_day = allDay
+        Calendar.show_new_or_edit_form('new',
                                         {}
                                       )
 
       eventClick: (event, jsEvent, view)->
         console.log ' '
         console.log 'eventClick'
+        console.log event
+        console.log jsEvent
+        console.log view
         Calendar.set_global_current_event(event)
-        Calendar.show_new_or_edit_form('#edit_event_form_modal',
+        Calendar.show_new_or_edit_form('edit',
                                         { 'title': event.title }
                                       )
 
       eventDrop: (event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) ->
         console.log ' '
         console.log 'eventDrop'
-        window.current_event_revert = revertFunc
-        Calendar.set_global_current_event(event)
-        CreateAndUpdateEvents.submit('drop_or_resize')
+        Calendar.drop_or_resize(event, revertFunc)
 
       eventResize: ( event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ) ->
         console.log ' '
         console.log 'eventResize'
-        window.current_event_revert = revertFunc
-        Calendar.set_global_current_event(event)
-        CreateAndUpdateEvents.submit('drop_or_resize')
+        Calendar.drop_or_resize(event, revertFunc)
 
-  show_new_or_edit_form: (id, optional_hash)->
-    template = Calendar.modal_template(id, optional_hash)
-    $(id).empty()
-    $(id).html(template)
-    Calendar.activate_switch()
-    FormDatetimepickers.new_init() if id == '#new_event_form_modal'
-    FormDatetimepickers.edit_init() if id == '#edit_event_form_modal'
-    $(id).modal('show')
+  drop_or_resize: (event, revertFunc)->
+    window.current_event_revert = revertFunc
+    Calendar.set_global_current_event(event)
+    SubmitEventForm.submit('drop_or_resize')
 
-  activate_switch: ->
-    $('.switch').bootstrapSwitch('destroy')
-    element = if $('.switch').length
-      $('.switch')
-    else
-      $('[data-toggle=\'switch\']').
-                                    wrap('<div class="switch" />').
-                                    parent()
+  show_new_or_edit_form: (form_type, optional_hash)->
+    template = Calendar.modal_template(form_type, optional_hash)
+    $('#event_form_modal').empty()
+    $('#event_form_modal').html(template)
+    BootstrapSwitch.activate_switch()
+    FormDatetimepickers.init(form_type)
+    $('#event_form_modal').modal('show')
 
-    element.bootstrapSwitch()
-    element.bootstrapSwitch('setState', window.current_all_day)
-
-  modal_template: (id, optional_hash)->
-    if id == '#new_event_form_modal'
+  modal_template: (form_type, optional_hash)->
+    if form_type == 'new'
       window.new_event_template()
     else
       window.edit_event_template(optional_hash)
