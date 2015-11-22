@@ -4,7 +4,7 @@ window.FormDatetimepickers =
     self.disable_datetimepickers()
 
     $('#starts_at_date').datetimepicker(
-      $.extend({}, self.base_confs(), defaultDate: window.current_event_start)
+      self.get_starts_at_options(form_type)
     )
 
     $('#ends_at_date').datetimepicker(
@@ -28,8 +28,21 @@ window.FormDatetimepickers =
         $('#ends_at_date').data("DateTimePicker").date(self.increase_date(update_start_date))
       return
 
+  get_starts_at_options: (form_type)->
+    self = FormDatetimepickers
+
+    if form_type == 'new'
+      current_date = moment().toDate()
+      current_event_day = moment(window.current_event_start).date()
+
+      if current_event_day >= moment().date() && window.current_event_start < current_date
+        window.current_event_start = current_date
+
+    $.extend({}, self.base_confs(), defaultDate: window.current_event_start)
+
   get_ends_at_options: (form_type)->
     self = FormDatetimepickers
+
     if form_type == 'new'
       if window.current_all_day
         self.base_confs()
