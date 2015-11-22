@@ -25,9 +25,6 @@ window.FormDatetimepickers =
         undefined
 
       if (!ends_date || update_start_date > ends_date) && !window.current_all_day
-        console.log 'call update ends at'
-        console.log update_start_date
-        console.log ends_date
         $('#ends_at_date').data("DateTimePicker").date(self.increase_date(update_start_date))
       return
 
