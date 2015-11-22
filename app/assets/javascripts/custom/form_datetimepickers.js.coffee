@@ -14,18 +14,21 @@ window.FormDatetimepickers =
     self.update_ends_date_after_change_start_date()
 
   update_ends_date_after_change_start_date: ->
+    self = FormDatetimepickers
     $('#starts_at_date').on 'dp.hide', (e) ->
-      console.log 'starts_at_date updated'
-      update_start_date = e.date._d
+      update_start_date = e.date.toDate()
       ends_date_params = $('#ends_at_date').data("DateTimePicker").date()
 
       ends_date = if ends_date_params
-        ends_date_params._d
+        ends_date_params.toDate()
       else
         undefined
 
-      if (ends_date && update_start_date > ends_date) && !window.current_all_day
-        $('#ends_at_date').data("DateTimePicker").date(update_start_date)
+      if (!ends_date || update_start_date > ends_date) && !window.current_all_day
+        console.log 'call update ends at'
+        console.log update_start_date
+        console.log ends_date
+        $('#ends_at_date').data("DateTimePicker").date(self.increase_date(update_start_date))
       return
 
   get_ends_at_options: (form_type)->
@@ -34,7 +37,7 @@ window.FormDatetimepickers =
       if window.current_all_day
         self.base_confs()
       else
-        $.extend({}, self.base_confs(), defaultDate: window.current_event_start)
+        $.extend({}, self.base_confs(), defaultDate: self.increase_date(window.current_event_start))
     else
       $.extend({}, self.base_confs(), defaultDate: window.current_event_end)
 
@@ -49,3 +52,6 @@ window.FormDatetimepickers =
       useCurrent: false,
       locale: 'ru'
     }
+
+  increase_date: (current_date)->
+    moment(current_date).add(10, 'm').toDate()
