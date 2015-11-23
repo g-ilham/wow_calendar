@@ -26,7 +26,7 @@ gem "russian"
 gem 'active_model_serializers'
 gem 'validates_timeliness', '~> 3.0'
 
-# Rails4 rc2 file_fieId Can't verify CSRF token authenticity
+# Rails4 file_fieId Can't verify CSRF token authenticity
 # https://github.com/rails/jquery-ujs/issues/331
 gem 'remotipart', '~> 1.2'
 
@@ -46,6 +46,10 @@ gem "mini_magick"
 # Exposing && Decorator
 gem 'decent_exposure'
 gem 'draper'
+
+#Background Jobs
+gem 'sidekiq'
+gem 'sinatra', require: false
 
 group :development, :test do
   gem 'pry-rails'
