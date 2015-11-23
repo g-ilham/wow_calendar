@@ -12,7 +12,7 @@ html
       br
       | С
       '
-      = @event.starts_at
+      = Time.zone.parse("#{@event.starts_at}")
       '
       - if @event.ends_at
         | по
