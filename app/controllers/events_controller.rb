@@ -31,24 +31,26 @@ class EventsController < ApplicationController
     render json: { errors: errors }, status: :unprocessable_entity
   end
 
+  expose(:run_notifies) do
+    puts "prev_starts_at #{@prev_starts_at}"
+    puts "current starts_at #{event.starts_at}"
+    puts "event.starts_at != @prev_starts_at #{event.starts_at != @prev_starts_at}"
+    if !@prev_starts_at || event.starts_at != @prev_starts_at
+      Events::EventNotifications.new(current_user, event)
+    end
+  end
+
   def index
   end
 
   def create
     self.event = current_user.events.new(event_params)
-    if event.save
-      render json: { event: event_ser }, status: :ok
-    else
-      errors_response
-    end
+    create_or_update(event.save)
   end
 
   def update
-    if event && event.update(event_params)
-      render json: { event: event_ser }, status: :ok
-    else
-      errors_response
-    end
+    @prev_starts_at = event.starts_at
+    create_or_update(event.update(event_params))
   end
 
   def destroy
@@ -60,10 +62,20 @@ class EventsController < ApplicationController
     end
   end
 
+  private
   def event_params
     params.require(:event).permit(:title,
                                   :starts_at,
                                   :ends_at,
                                   :all_day)
+  end
+
+  def create_or_update(call_method)
+    if event && call_method
+      run_notifies
+      render json: { event: event_ser }, status: :ok
+    else
+      errors_response
+    end
   end
 end
