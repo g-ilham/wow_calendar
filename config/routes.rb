@@ -1,10 +1,13 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
+  mount Sidekiq::Web, at: '/sidekiq'
+  root to: 'home#index'
+
   get 'home/index'
   get 'complete_social_registration_form', to: 'home#complete_social_registration_form'
   put 'add_email_for_social', to: 'home#add_email_for_social'
 
   devise_for :users
-  root to: 'home#index'
   resources :users_settings, only: [ :edit, :update ]
   resources :events, except: [ :new, :edit ]
 
