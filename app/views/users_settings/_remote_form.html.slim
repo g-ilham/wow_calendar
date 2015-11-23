@@ -22,6 +22,11 @@
         p.form-error-message Не корректное имя
         = f.input_field :last_name, required: false, label: false, placeholder: 'Last Name', maxLength: 200
 
+      .12u.event_notifies_setting
+        h5 Настройки напоминаний о событиях
+
+      = render 'users_settings/notify_blocks', f: f
+
       .12u
         .upload_photo_filed.pull-left
           label

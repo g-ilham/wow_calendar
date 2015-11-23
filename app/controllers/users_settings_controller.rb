@@ -14,6 +14,9 @@ class UsersSettingsController < ApplicationController
     params.require(:user).permit(:email,
                                 :first_name,
                                 :last_name,
-                                :photo)
+                                :photo,
+                                :in_fifteen_minutes,
+                                :in_hour,
+                                :in_day)
   end
 end
