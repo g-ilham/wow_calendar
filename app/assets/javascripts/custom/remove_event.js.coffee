@@ -21,7 +21,7 @@ window.RemoveEvent =
           return false
 
         error: (response) ->
-          CreateAndUpdateEvents.errors_handle(response.responseJSON)
+          SubmitEventForm.errors_handle(response)
           BaseScripts.toogle_class_for_elements(btn_classes, 'remove')
           return false
 
