@@ -49,6 +49,7 @@ gem 'draper'
 
 #Background Jobs
 gem 'sidekiq'
+gem 'sidekiq-status'
 gem 'sinatra', require: false
 
 group :development, :test do
