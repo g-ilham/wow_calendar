@@ -6,6 +6,8 @@ header#header
     ul
       li
         = link_to "Главная", root_url
+      li
+        = link_to "Связаться с Нами", "#js-contact-form"
 
       - if user_signed_in? && hide_settings != 'true'
         li
