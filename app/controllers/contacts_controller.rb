@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   expose(:contact_form) do
     ContactForm.new contact_form_params
   end

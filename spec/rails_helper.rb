@@ -7,6 +7,11 @@ require 'database_cleaner'
 require 'shoulda/matchers'
 require "capybara-screenshot/rspec"
 
+if ENV["COVERAGE"]
+  require "simplecov"
+  SimpleCov.start "rails"
+end
+
 Capybara.javascript_driver = :webkit
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -23,7 +28,6 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
-  config.raise_error_for_unimplemented_steps = true
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
@@ -39,6 +43,14 @@ RSpec.configure do |config|
 
   config.after do
     DatabaseCleaner.clean
+  end
+
+  Capybara::Webkit.configure do |config|
+    config.block_unknown_urls
+  end
+
+  config.before(:each) do
+    Sidekiq::Worker.clear_all
   end
 
   config.infer_spec_type_from_file_location!
