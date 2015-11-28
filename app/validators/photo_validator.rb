@@ -2,7 +2,11 @@ class PhotoValidator < ActiveModel::Validator
   FILE_MAX_SIZE = 5.megabytes
   GEOMETRY_MAX_DIMENSION = 1500.0
 
+  attr_accessor :record
+
   def validate(record)
+    self.record = record
+
     validate_size!
     validate_geometry!
   end
