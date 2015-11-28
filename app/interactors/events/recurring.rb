@@ -1,6 +1,6 @@
-class Recurring
-  require 'sidekiq/api'
+require 'sidekiq/api'
 
+class Events::Recurring
   attr_reader :event,
               :current_user,
               :childs,
@@ -25,7 +25,7 @@ class Recurring
     get_childs_and_last_child
     Rails.logger.info"  [ Recurring ] last child #{last_child.inspect}"
 
-    CleanScheduledJobs.new(current_user,
+    Events::CleanScheduledJobs.new(current_user,
                             last_child, 'Sidekiq::Extensions::DelayedClass')
     update_notifications
 
@@ -46,7 +46,7 @@ class Recurring
       Rails.logger.info"  [ Recurring ] call update recurring for #{childs.last.inspect}"
       returned_event = childs.last.delay_creating_clone!
       if returned_event.new_record?
-        EventNotifications.new(current_user, returned_event)
+        Events::Notifications.new(current_user, returned_event)
       end
       returned_event
     end
@@ -60,12 +60,12 @@ class Recurring
   def update_notifications
     Rails.logger.info"\n"
     Rails.logger.info"  [ Recurring | REMOVE NOTIFICATIONS ] for #{event.inspect}"
-    CleanScheduledJobs.new(current_user,
+    Events::CleanScheduledJobs.new(current_user,
                             event, 'Sidekiq::Extensions::DelayedMailer')
 
     if action_name != "destroy"
       Rails.logger.info"  [ Recurring | UPDATE NOTIFICATIONS ] for #{event.inspect}"
-      EventNotifications.new(current_user, event)
+      Events::Notifications.new(current_user, event)
     end
   end
 end

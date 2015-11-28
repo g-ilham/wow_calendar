@@ -1,5 +1,6 @@
-class EventNotifications
-  require 'sidekiq/api'
+require 'sidekiq/api'
+
+class Events::Notifications
   attr_reader :user, :event
 
   OPTIONS = {
@@ -20,11 +21,11 @@ class EventNotifications
     OPTIONS.each do |key, value|
       key = key.to_s
       sending_ops = get_sending_time(key)
-      puts "   [ EventNotifications ] user conf #{key} sending time #{sending_ops}"
+      puts "   [ Events::Notifications ] user conf #{key} sending time #{sending_ops}"
 
       if sending_ops > event.updated_at && user.send(key)
 
-        puts "    [ EventNotifications ] send #{key}"
+        puts "    [ Events::Notifications ] send #{key}"
 
         EventMailer.delay_until(sending_ops).notify(event, value)
       end

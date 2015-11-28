@@ -1,6 +1,6 @@
-class CleanScheduledJobs
-  require 'sidekiq/api'
+require 'sidekiq/api'
 
+class Events::CleanScheduledJobs
   attr_reader :current_user,
               :event,
               :job,
