@@ -53,6 +53,8 @@ window.Calendar =
         Calendar.show_new_or_edit_form('edit',
                                         { 'title': event.title }
                                       )
+        if window.current_event_repeat_type
+          $('#event_repeat').val(window.current_event_repeat_type)
 
       eventDrop: (event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) ->
         console.log ' '
@@ -89,11 +91,12 @@ window.Calendar =
     window.current_event_id = current_event.id
     window.current_all_day = current_event.allDay
     window.current_event_title = current_event.title
+    window.current_event_repeat_type = current_event.repeat_type
 
   prepare_events_array: (events)->
     if events
       $.each events, (index, event_in_arr) ->
-        if !event_in_arr['end']
+        if event_in_arr && !event_in_arr['end']
           delete events[index]['end']
       events
     else

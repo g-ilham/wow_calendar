@@ -17,6 +17,21 @@ window.RemoveEvent =
         data: {}
         success: (response) =>
           window.my_full_calendar.fullCalendar('removeEvents', window.current_event_id)
+          if response && response.repeated_event
+            window.repeated_event = response.repeated_event
+
+            if window.repeated_event[0]
+              events = window.my_full_calendar.fullCalendar( 'clientEvents' )
+              if events
+                accept_to_render = true
+
+                $.each events, (index, event) ->
+                  if event.id == window.repeated_event[0].id
+                    accept_to_render = false
+
+                if accept_to_render
+                  window.my_full_calendar.fullCalendar( 'renderEvent',
+                                                        window.repeated_event[0], true )
           $('#event_form_modal').modal('hide')
           return false
 

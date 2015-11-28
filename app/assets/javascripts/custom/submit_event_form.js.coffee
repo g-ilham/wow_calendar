@@ -22,7 +22,7 @@ window.SubmitEventForm =
 
       error: (response) ->
         if event_type != 'drop_or_resize'
-          self.errors_handle(response.responseJSON)
+          self.errors_handle(response)
           BaseScripts.toogle_class_for_elements(btn_classes, 'remove')
         else
           window.current_event_revert()
@@ -68,34 +68,44 @@ window.SubmitEventForm =
         title: $("#event_title").val(),
         starts_at: $("#event_starts_at").val(),
         ends_at: $("#event_ends_at").val(),
-        all_day: $('.switch').bootstrapSwitch('status')
+        all_day: $('.switch').bootstrapSwitch('status'),
+        repeat_type: $('#event_repeat').val()
       }
     else
       {
         title: window.current_event_title,
         starts_at: window.current_event_start,
         ends_at: window.current_event_end,
-        all_day: window.current_all_day
+        all_day: window.current_all_day,
+        repeat_type: window.current_event_repeat_type
       }
 
   success_handle: (button, response)->
-    window.current_event = Calendar.prepare_events_array(response.event)
+    self = SubmitEventForm
+    if response && response.event
 
-    if !button.hasClass 'js-create-event-link'
-      window.my_full_calendar.fullCalendar( 'removeEvents',
-                                            window.current_event[0].id )
+      window.current_event = Calendar.prepare_events_array(response.event)
+      window.repeated_event = Calendar.prepare_events_array(response.repeated_event)
 
-    window.my_full_calendar.fullCalendar( 'renderEvent',
-                                            window.current_event[0], true )
+      if !button.hasClass 'js-create-event-link'
+        window.my_full_calendar.fullCalendar( 'removeEvents',
+                                              window.current_event[0].id )
 
-    $('#event_form_modal').modal('hide')
+      window.my_full_calendar.fullCalendar( 'renderEvent',
+                                              window.current_event[0], true )
+
+      if window.repeated_event[0] && window.current_event[0].id != window.repeated_event[0].id
+        window.my_full_calendar.fullCalendar( 'renderEvent',
+                                              window.repeated_event[0], true )
+
+      $('#event_form_modal').modal('hide')
 
   errors_handle: (response)->
     errors_block = $('.event_errors')
 
-    if response.errors
+    if response && response.responseJSON.errors
       errors_block.removeClass 'hidden'
-      SubmitEventForm.show_errors(response.errors, errors_block)
+      SubmitEventForm.show_errors(response.responseJSON.errors, errors_block)
     else
       errors_block.addClass 'hidden'
 
