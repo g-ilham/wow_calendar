@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :start, :end, :allDay, :title
+  attributes :id, :start, :end, :allDay, :title, :repeat_type
 
   def start
     object.starts_at
@@ -15,5 +15,9 @@ class EventSerializer < ActiveModel::Serializer
 
   def title
     object.title
+  end
+
+  def repeat_type
+    object.repeat_type
   end
 end

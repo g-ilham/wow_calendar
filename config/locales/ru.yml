@@ -19,6 +19,7 @@ ru:
         starts_at: 'Начало события'
         ends_at: 'Окончание события'
         all_day: 'Весь день'
+        repeat_type: 'Повтор события'
   errors:
     messages:
       carrierwave_processing_error: Невозможно обработать изображение
