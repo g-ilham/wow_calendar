@@ -1,13 +1,3 @@
 == README
 
-Used Themes:
-
-MAINE DASHGUN
-```
-http://www.blacktie.co/demo/dashgum/
-```
-
-ADDITIONAL TRANSIT
-```
-http://templated.co/transit
-```
+[![Build Status](https://api.travis-ci.org/g-ilham/wow_calendar.svg?branch=master)](https://travis-ci.org/g-ilham/wow_calendar)
