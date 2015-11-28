@@ -1,22 +1,25 @@
-/! Header
 header#header
   h1
-    a href="#{root_path}"  WowCalendar
+    = link_to 'WowCalendar', root_url
+
   nav#nav
     ul
       li
-        a href="#{root_path}"  Home
+        = link_to "Главная", root_url
 
       - if user_signed_in? && hide_settings != 'true'
         li
-          a href="#{events_path}"  Мои события
-
+          = link_to "Мои события", events_url
         li
-          = link_to 'Настройки', edit_users_setting_path(current_user), remote: true, class: 'js-new-settings'
-
-      - if current_user.blank? || !user_signed_in?
-        li
-          = link_to "Войти", new_user_session_path, class: 'js-sign-in-link button special', remote: true
-      - else
-        li
-          = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'button special'
+          = link_to 'Настройки', edit_users_setting_url(current_user),
+                                 remote: true,
+                                 class: 'js-new-settings'
+      li
+        - unless user_signed_in?
+          = link_to "Войти", new_user_session_url,
+                             class: 'js-sign-in-link button special',
+                             remote: true
+        - else
+          = link_to 'Выйти', destroy_user_session_url,
+                             method: :delete,
+                             class: 'button special'
