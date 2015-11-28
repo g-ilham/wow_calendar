@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  mount_uploader :photo, PhotoUploader
 
-  has_many :events, dependent: :destroy
+  mount_uploader :photo, PhotoUploader
 
   begin :validations
     validates :first_name, :last_name,
@@ -11,40 +10,23 @@ class User < ActiveRecord::Base
       format: { with: /[а-яА-Яa-zA-Z]+/ },
       allow_nil: true,
       allow_blank: true
-    validates :email, presence: true
-    validate :image_size_validation, if: 'self.photo?'
-    validate :image_geometry_validation, if: 'self.photo?'
-    validate :image_mime_type_validation, if: 'self.photo?'
+
+    validates :email, presence: true,
+                      uniqueness: true, if: 'self.email_registration?'
+
+    validates_with PhotoValidator, if: 'self.photo?'
   end
 
-  def image_size_validation
-    if photo.size.to_f > 1.megabytes
-      errors.add(:photo, I18n.t("errors.messages.max_size_error",
-                                  max_size: '10мб'))
-    end
+  begin :associations
+    has_many :events, dependent: :destroy
   end
 
-  def image_mime_type_validation
-    type = photo.content_type.to_s
-
-    if !(/(\.|\/)(gif|jpeg|jpg|png)$/i).match(type).present?
-      errors.add(:mime_type, "не верно")
-    end
-  end
-
-  def image_geometry_validation
-    if photo.geometry
-
-      width, height = photo.geometry.map(&:to_f)
-      if width > 200.0 || height > 200.0
-        errors.add(:photo, I18n.t("errors.messages.max_dimentions_error",
-                                    max_dementions: "200x200"))
-      end
-    end
+  def email_registration?
+    vkontakte_uid.blank? && facebook_uid.blank?
   end
 
   def email_required?
-    super && vkontakte_uid.blank? && facebook_uid.blank?
+    super && email_registration?
   end
 
   class << self
@@ -108,13 +90,15 @@ class User < ActiveRecord::Base
         user.password = Devise.friendly_token[0,20]
 
         user.skip_confirmation!
-        user.save!(validate: false)
+        user.save!
       end
+
       user
     end
 
     def extend_photo(attrs, social_params)
       img_url = social_params.info.image
+
       if img_url.present?
         attrs[:remote_photo_url] = img_url
         attrs
