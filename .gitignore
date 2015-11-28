@@ -16,3 +16,4 @@ config/database.yml
 .env
 
 coverage/*
+secrets.yml
