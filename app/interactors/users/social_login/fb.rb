@@ -11,7 +11,7 @@ class Users::SocialLogin::Fb < Users::SocialLogin::Base
       }
     end
 
-    def find_for_facebook_oauth(social_params)
+    def oauth(social_params)
       user = User.where(facebook_uid: social_params.uid).first
       set_account!(user, "facebook", social_params)
     end
