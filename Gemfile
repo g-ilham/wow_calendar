@@ -26,7 +26,7 @@ gem 'active_model_serializers'
 gem "russian"
 
 # Plugins
-gem "recaptcha", require: "recaptcha/rails"
+gem 'recaptcha', '~> 0.4.0'
 gem 'validates_timeliness', '~> 3.0'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
