@@ -1,0 +1,9 @@
+p
+  ' Новое письмо от:
+  = mail_to @sender_email, "#{@name} (#{@sender_email})"
+p
+  = @message
+p
+  | С уважением,
+p
+  | WowCalendar Team

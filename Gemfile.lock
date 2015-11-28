@@ -85,6 +85,8 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    email_validator (1.6.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.6.0)
     fancybox2-rails (0.2.8)
@@ -285,6 +287,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   draper
+  email_validator
   fancybox2-rails (~> 0.2.8)
   font-awesome-rails
   foreman

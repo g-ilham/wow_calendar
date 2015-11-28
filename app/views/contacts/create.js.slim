@@ -1,0 +1,6 @@
+| $('.js-contacts-form').html("#{ j(render 'contacts/form') }");
+
+- if contact_form.valid?
+  | $('.js-contact-form-status-message').addClass("visible");
+  | $("#new_contact_form").find("input[type='text'], input[type='email'], textarea").val("");
+  | setTimeout("$('.js-contact-form-status-message').removeClass('visible')", 2000);

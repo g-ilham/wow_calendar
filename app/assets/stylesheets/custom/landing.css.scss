@@ -7,4 +7,12 @@
   }
 }
 
+.js-contact-form-status-message {
+  padding-bottom: 20px;
+  font-size: 18px;
+  display: none;
 
+  &.visible {
+    display: block;
+  }
+}

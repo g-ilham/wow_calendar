@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :users_settings, only: [ :edit, :update ]
   resources :events, except: [ :new, :edit ]
+  resources :contacts, only: [:create]
 
   get 'complete_social_registration_form', to: 'home#complete_social_registration_form'
   put 'add_email_for_social', to: 'home#add_email_for_social'

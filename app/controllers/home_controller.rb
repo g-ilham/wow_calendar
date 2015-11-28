@@ -18,6 +18,10 @@ class HomeController < ApplicationController
     current_user.email = email_params if email_params
   end
 
+  expose(:contact_form) do
+    ContactForm.new({})
+  end
+
   def index
   end
 

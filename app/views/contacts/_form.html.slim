@@ -1,0 +1,30 @@
+section#three.wrapper.style3.special
+  .container
+    header.major
+      h2 Будем на связи!
+      p Будем рады Вашим пожеланиям и замечаниям!
+
+    .container class="50%"
+      .js-contact-form-status-message
+        ' Ваше сообщение успешно отправлено!
+
+      = simple_form_for contact_form,
+                        as: :contact_form,
+                        url: contacts_path,
+                        method: :post,
+                        remote: true do |f|
+        .row.uniform
+          .6u class="12u$(small)"
+            = f.input_field :name, placeholder: "Имя"
+            = f.error :name, class: "form-error-message visible"
+          div class=("6u$ 12u$(small)")
+            = f.input_field :email, placeholder: "Email"
+            = f.error :email, class: "form-error-message visible"
+          div class="12u$"
+            = f.input_field :message, as: :text, placeholder: "Сообщение", rows: 6
+            = f.error :message, class: "form-error-message visible"
+
+          div class="12u$"
+            ul.actions
+              li
+                input.special.big type="submit" value="Отправить"

@@ -25,6 +25,10 @@
   margin: 0;
   color: #ed5565;
   display: none;
+
+  &.visible {
+    display: block;
+  }
 }
 #event_form_modal {
   .modal-header {
