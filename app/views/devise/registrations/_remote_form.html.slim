@@ -12,11 +12,11 @@
 
       .6u
         p.form-error-message Не корректная фамилия
-        = f.input_field :first_name, required: false, label: false, placeholder: 'First Name', maxLength: 200
+        = f.input_field :first_name, required: false, label: false, placeholder: 'Имя', maxLength: 200
 
       .6u
         p.form-error-message Не корректное имя
-        = f.input_field :last_name, required: false, label: false, placeholder: 'Last Name', maxLength: 200
+        = f.input_field :last_name, required: false, label: false, placeholder: 'Фамилия', maxLength: 200
 
       .12u
         p.form-error-message Не корректный пароль
@@ -24,7 +24,7 @@
 
       .12u
         p.form-error-message Не корректное подтверждение пароля
-        = f.input_field :password_confirmation, required: false, label: false, placeholder: 'Пароль Confirmation', maxLength: 200, hint: ("#{@minimum_password_length} минимально символов" if @minimum_password_length)
+        = f.input_field :password_confirmation, required: false, label: false, placeholder: 'Подтверждения пароля', maxLength: 200, hint: ("#{@minimum_password_length} минимально символов" if @minimum_password_length)
 
   .modal-footer
     ul.actions
