@@ -14,8 +14,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'slim-rails'
-gem 'html2slim', '~> 0.1.1'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'fancybox2-rails', '~> 0.2.8'
 
@@ -23,14 +22,14 @@ gem 'fancybox2-rails', '~> 0.2.8'
 gem 'active_model_serializers'
 
 # Localization
-gem "russian"
+gem 'russian'
 
 # Plugins
 gem 'recaptcha', '~> 0.4.0'
 gem 'validates_timeliness', '~> 3.0'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-gem "email_validator"
+gem 'email_validator'
 
 # Social Providers
 gem 'omniauth'
@@ -39,7 +38,9 @@ gem 'omniauth-facebook'
 
 # File Uploads
 gem 'carrierwave'
-gem "mini_magick"
+gem 'fog'
+gem 'fog-aws'
+gem 'mini_magick'
 # Rails4 file_fieId Can't verify CSRF token authenticity
 # https://github.com/rails/jquery-ujs/issues/331
 gem 'remotipart', '~> 1.2'
@@ -65,5 +66,5 @@ group :development, :test do
   gem 'letter_opener'
 
   # Code Review
-  gem "rails_best_practices"
+  gem 'rails_best_practices'
 end
