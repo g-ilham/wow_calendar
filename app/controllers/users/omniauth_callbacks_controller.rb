@@ -1,18 +1,18 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   expose(:vk_user) do
-    User.find_for_vkontakte_oauth request.env["omniauth.auth"]
+    Users::SocialLogin::Vk.oauth(request.env["omniauth.auth"])
   end
 
   expose(:fc_user) do
-    User.find_for_facebook_oauth request.env["omniauth.auth"]
+    Users::SocialLogin::Fb.oauth(request.env["omniauth.auth"])
   end
 
   def vkontakte
-    authorization_handler vk_user
+    authorization_handler(vk_user)
   end
 
   def facebook
-    authorization_handler fc_user
+    authorization_handler(fc_user)
   end
 
   protected
