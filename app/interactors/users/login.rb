@@ -29,7 +29,7 @@ module Users
     private
 
     def login_user!
-      System::CallSomeCHECKS.call_in_methods(CHECKS, self, true)
+      System::CallSomeMethods.call_in_methods(CHECKS, self, true)
     end
 
     def password_param_is_valid?
