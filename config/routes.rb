@@ -3,7 +3,12 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
-  devise_for :users
+  devise_for :users,
+    controllers: {
+      omniauth_callbacks: "users/omniauth_callbacks",
+      sessions: "users/sessions",
+      registrations: "users/registrations"
+    }
 
   resources :users_settings, only: [ :edit, :update ]
   resources :events, except: [ :new, :edit ]
