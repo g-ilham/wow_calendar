@@ -68,3 +68,15 @@ group :development, :test do
   # Code Review
   gem 'rails_best_practices'
 end
+
+group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
+  gem "timecop"
+  gem 'factory_girl_rails'
+end
