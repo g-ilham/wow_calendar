@@ -76,6 +76,10 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     draper (2.1.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -272,6 +276,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   decent_exposure
   devise
+  dotenv-rails
   draper
   fancybox2-rails (~> 0.2.8)
   font-awesome-rails

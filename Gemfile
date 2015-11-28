@@ -52,6 +52,9 @@ gem 'sidekiq'
 gem 'sidekiq-status'
 gem 'sinatra', require: false
 
+# Enviroment variables
+gem 'dotenv-rails'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'quiet_assets'

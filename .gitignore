@@ -13,3 +13,4 @@
 public/uploads
 
 config/database.yml
+.env
