@@ -13,19 +13,8 @@ script#edit_event_template type="text/x-handlebars-template"
             label Название
             input#event_title.string.optional.form-control.round-form name="event[title]" type="text" value="{{title}}" /
 
-          .form-group
-            label Начало события
-            .input-group#starts_at_date
-              input#event_starts_at.string.optional.form-control.round-form name="event[starts_at]" type="text" /
-              span.input-group-addon
-                span.glyphicon.glyphicon-calendar
-
-          .form-group
-            label Окончание события
-            .input-group#ends_at_date
-              input#event_ends_at.string.optional.form-control.round-form name="event[ends_at]" type="text" /
-              span.input-group-addon
-                span.glyphicon.glyphicon-calendar
+          = render 'handlebars_templates/events/starts_at_or_ends_at'
+          = render 'handlebars_templates/events/event_repeat'
 
           .form-group.text-center
             label Весь день?
