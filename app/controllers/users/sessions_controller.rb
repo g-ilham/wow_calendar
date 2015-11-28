@@ -3,7 +3,7 @@ class Users::SessionsController < Devise::SessionsController
   before_action :html?, only: [ :new, :create ]
 
   expose(:login) do
-    Users::UserLogin.new(params[:user])
+    Users::Login.new(params[:user])
   end
 
   def new

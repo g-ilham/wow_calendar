@@ -1,23 +1,23 @@
 module Users
-  class UserLogin
+  class Login
+    CHECKS = [
+      'email_exsist?',
+      'set_user',
+      'user_is_found?',
+      'password_param_is_valid?',
+      'password_is_valid?',
+      'is_confirmed?'
+    ]
 
     attr_reader :params,
                 :errors,
                 :user
 
-    METHODS = [
-                'email_exsist?',
-                'set_user',
-                'user_is_found?',
-                'password_param_is_valid?',
-                'password_is_valid?',
-                'is_confirmed?'
-              ]
-
     def initialize(params)
-      if params
+      if params.present?
         @params = params
         @errors = {}
+
         login_user!
       end
     end
@@ -29,7 +29,7 @@ module Users
     private
 
     def login_user!
-      System::CallSomeMethods.call_in_methods(METHODS, self, true)
+      System::CallSomeCHECKS.call_in_methods(CHECKS, self, true)
     end
 
     def password_param_is_valid?
