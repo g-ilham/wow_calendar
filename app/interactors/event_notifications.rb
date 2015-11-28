@@ -26,8 +26,7 @@ class EventNotifications
 
         puts "    [ EventNotifications ] send #{key}"
 
-        EventMailer.delay_until(sending_ops).send_notify(event,
-                                                            value)
+        EventMailer.delay_until(sending_ops).notify(event, value)
       end
     end
   end

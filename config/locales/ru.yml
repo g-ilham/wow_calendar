@@ -46,3 +46,7 @@ ru:
       date: '%Y-%m-%d'
       time: '%H:%M:%S'
       datetime: '%Y-%m-%d %H:%M'
+  mailers:
+    event:
+      subject:
+        notify: 'Напоминаем о грядущем событии'

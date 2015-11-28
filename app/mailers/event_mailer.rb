@@ -1,14 +1,12 @@
 class EventMailer < ApplicationMailer
-  def send_notify(event, message)
-    if event.present?
-      set_attrs(event, message)
-      mail(to: event.user.email, subject: 'Напоминаем о грядущем событии')
-    end
-  end
-
-  def set_attrs(event, message)
-    @message = message
-    @user = event.user
+  def notify(event, message)
     @event = event
+    @message = message
+    @user = event.user.decorate
+    @starts_at = Time.zone.parse("#{@event.starts_at}")
+    @ends_at = @event.ends_at
+
+    subject = I18n.t(:ru)[:mailers][:event][:subject][:notify]
+    mail(to: event.user.email, subject: subject)
   end
 end

@@ -24,3 +24,7 @@ en:
   recaptcha:
     errors:
       recaptcha_unreachable: 'Время сеанса истекло. Откройте и закройте окошко.'
+  mailers:
+    event:
+      subject:
+        notify: 'Напоминаем о грядущем событии'

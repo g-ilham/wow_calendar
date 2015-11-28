@@ -1,0 +1,13 @@
+= "#{@user.name_or_email}, "
+
+= @message
+= @event.title
+
+| С
+'
+= @starts_at
+'
+- if @ends_at.present?
+  | по
+  '
+  = @ends_at

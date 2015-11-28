@@ -57,4 +57,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'letter_opener'
+
+  # Code Review
+  gem "rails_best_practices"
 end

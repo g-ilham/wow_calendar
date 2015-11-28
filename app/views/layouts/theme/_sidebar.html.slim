@@ -7,7 +7,7 @@ aside
           a href="#{themes_path}"
             = image_tag current_user.photo.url(:thumb), class: 'img-circle', width: '60'
       h5.centered
-        = current_user.decorate.full_name
+        = current_user.decorate.provider_full_name
       li.mt
         a href="#{themes_path}"
           i.fa.fa-dashboard
