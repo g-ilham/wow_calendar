@@ -29,7 +29,7 @@ class PhotoValidator < ActiveModel::Validator
       if width > GEOMETRY_MAX_DIMENSION || height > GEOMETRY_MAX_DIMENSION
         record.errors.add(:photo,
           I18n.t("errors.messages.max_dimentions_error",
-                  max_dementions: "#{GEOMETRY_MAX_DIMENSION}x#{GEOMETRY_MAX_DIMENSION}")
+                  max_dementions: "#{GEOMETRY_MAX_DIMENSION.to_i} x #{GEOMETRY_MAX_DIMENSION.to_i}")
         )
       end
     end

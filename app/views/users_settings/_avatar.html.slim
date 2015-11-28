@@ -1,0 +1,13 @@
+.12u
+  span.image.pull-left.js-user-photo-preview
+    = image_tag current_user.photo.url(:medium)
+
+  .upload_photo_filed.pull-left
+    label
+      | Аватар
+
+    p.form-error-message
+      ' Не верные размеры
+    = f.input_field :photo, as: :file, label: false, required: false
+
+    p.help-block Пожалуйста, прикрепите фотографию ниже.

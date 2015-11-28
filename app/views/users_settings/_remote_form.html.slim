@@ -1,15 +1,18 @@
-= simple_form_for(current_user, url: users_setting_path(current_user), html: { method: :put, multipart: true}, remote: true) do |f|
+= simple_form_for current_user, url: users_setting_path(current_user),
+                                html: { method: :put, multipart: true},
+                                remote: true do |f|
 
   .modal-header
-    button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+    button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
     h4.modal-title Редактирование вашего аккаунта
+
   .modal-body
     .alert.alert-success.account_updated_message.hidden
       = I18n.t(:devise)[:registrations][:updated]
+
     .row.uniform class="50%"
-      .12u.edit-user-photo-wrapper
-        span.image
-          = image_tag current_user.photo.url(), class: 'edit-user-photo'
+      = render 'users_settings/avatar', f: f
+
       .12u
         p.form-error-message Не коректный email
         = f.input_field :email, required: false, autofocus: true, label: false, placeholder: 'Почтовый адрес', maxLength: 200
@@ -26,14 +29,6 @@
         h5 Настройки напоминаний о событиях
 
       = render 'users_settings/notify_blocks', f: f
-
-      .12u
-        .upload_photo_filed.pull-left
-          label
-            | Аватар
-          p.form-error-message Не верные размеры
-          = f.input_field :photo, as: :file, label: false, required: false
-          p.help-block Пожалуйста, прикрепите фотографию ниже.
 
   .modal-footer
     ul.actions
