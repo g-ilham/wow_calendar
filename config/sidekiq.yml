@@ -1,0 +1,16 @@
+# Sample configuration file for Sidekiq.
+# Options here can still be overridden by cmd line args.
+# Place this file at config/sidekiq.yml and Sidekiq will
+# pick it up automatically.
+---
+:verbose: true
+:concurrency: 2
+
+# Set timeout to 8 on Heroku, longer if you manage your own systems.
+:timeout: 30
+
+# you can override concurrency based on environment
+production:
+  :concurrency: 10
+staging:
+  :concurrency: 5

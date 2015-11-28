@@ -52,8 +52,10 @@ gem 'sidekiq'
 gem 'sidekiq-status'
 gem 'sinatra', require: false
 
-# Enviroment variables
+# Enviroment variables and Server Stuff
 gem 'dotenv-rails'
+gem 'foreman'
+gem 'unicorn'
 
 group :development, :test do
   gem 'pry-rails'
