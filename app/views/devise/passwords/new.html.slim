@@ -16,4 +16,4 @@
       = render "devise/shared/links"
 
 = content_for(:javascript_code) do
-  | SkelInit.init("#{skel_css_files}");
+  | SkelInit.init("#{System::SkelCssFilesUrls.new().paths}");
