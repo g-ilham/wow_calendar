@@ -14,7 +14,7 @@ module System
 
     def initialize
       asset_matcher = 'app/assets/stylesheets/'
-      path = 'app/assets/stylesheets/transit_theme/*.css.scss'
+      path = asset_matcher + 'transit_theme/*.css.scss'
       @paths = System::GetAssetFilesUrls.new(asset_matcher, path).paths
       sort_css_paths if paths
     end

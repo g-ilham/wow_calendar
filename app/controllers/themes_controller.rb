@@ -6,8 +6,8 @@ class ThemesController < ApplicationController
   end
 
   expose(:gallery_images_urls) do
-    path = 'app/assets/images/theme/portfolio/*.jpg'
     asset_matcher = 'app/assets/images/'
+    path = asset_matcher + 'theme/portfolio/*.jpg'
     System::GetAssetFilesUrls.new(asset_matcher, path, 'images').paths
   end
 

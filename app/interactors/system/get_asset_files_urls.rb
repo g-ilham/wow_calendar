@@ -30,8 +30,6 @@ module System
          paths.map do |current_path|
           get_asset_url(current_path)
         end
-      else
-        nil
       end
     end
 
