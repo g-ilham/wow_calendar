@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-  NAME_REGEXP = /\A[а-яА-Яa-zA-Z]+\z/
+  NAME_REGEXP = /\A[а-яА-Яa-zA-Z0-9\s]+\z/
 
   begin :validations
     validates :first_name, :last_name,

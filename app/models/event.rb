@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
     'not_repeat'
   ]
 
-  TITLE_REGEXP = /\A[а-яА-Яa-zA-Z]+\z/
+  TITLE_REGEXP = /\A[а-яА-Яa-zA-Z0-9\s]+\z/
 
   begin :asssociations
     belongs_to :user
