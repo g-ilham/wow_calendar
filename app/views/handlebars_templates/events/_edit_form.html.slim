@@ -14,13 +14,7 @@ script#edit_event_template type="text/x-handlebars-template"
             input#event_title.string.optional.form-control.round-form name="event[title]" type="text" value="{{title}}" /
 
           = render 'handlebars_templates/events/starts_at_or_ends_at'
-          = render 'handlebars_templates/events/event_repeat'
-
-          .form-group.text-center
-            label Весь день?
-            .checkbox
-              .switch
-                input#event_all_day name="event[all_day]" type="checkbox" data-toggle="switch"
+          = render 'handlebars_templates/events/event_repeat_and_all_day'
 
         .modal-footer
           ul.actions
