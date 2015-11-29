@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
 
   begin :scopes
     default_scope { order(starts_at: :asc) }
-    scope :childs_with_parent, -> (parent_id) { where("(id=#{parent_id}) OR (parent_id=#{parent_id})") }
+    scope :childs_with_parent, -> (parent_id) { where("(id=?) OR (parent_id=?)", parent_id, parent_id) }
   end
 
   begin :validations
