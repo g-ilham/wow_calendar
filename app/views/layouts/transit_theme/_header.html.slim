@@ -4,12 +4,15 @@ header#header
 
   nav#nav
     ul
-      li
-        = link_to "Главная", root_url
-      li
-        = link_to "Связаться с Нами", "#js-contact-form"
+      - if user_signed_in? && completed_registration? || !user_signed_in?
+        li
+          = link_to "Главная", root_url
 
-      - if user_signed_in? && current_user.email.present?
+        - if action_name == 'index'
+          li
+            = link_to "Связаться с Нами", "#js-contact-form"
+
+      - if user_signed_in? && completed_registration?
         li
           = link_to "Мои события", events_url
         li

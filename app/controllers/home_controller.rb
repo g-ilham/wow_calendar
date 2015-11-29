@@ -1,8 +1,10 @@
 class HomeController < ApplicationController
   layout :resolve_layout
-  skip_before_filter :complete_registration!
+
+  before_action :set_email, except: [ :index ]
+  before_action :not_completed_registration, except: [ :index ]
+  skip_before_filter :social_registration!, except: [ :index ]
   skip_before_filter :authenticate_user!, only: [ :index ]
-  before_action :set_email, only: [ :complete_social_registration_form, :add_email_for_social ]
 
   expose(:skel_css_files) do
     System::SkelCssFilesUrls.new().paths
@@ -14,7 +16,12 @@ class HomeController < ApplicationController
     end
   end
 
+  expose(:completed_registration?) do
+    current_user.email.present?
+  end
+
   expose(:set_email) do
+    completed_registration?
     current_user.email = email_params if email_params
   end
 
@@ -25,7 +32,7 @@ class HomeController < ApplicationController
   def index
   end
 
-  def complete_social_registration_form
+  def complete_social_registration
   end
 
   def add_email_for_social
@@ -43,6 +50,12 @@ class HomeController < ApplicationController
       'landing'
     else
       'devise'
+    end
+  end
+
+  def not_completed_registration
+    if completed_registration?
+      redirect_to root_url
     end
   end
 end
