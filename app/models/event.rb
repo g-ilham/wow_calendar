@@ -1,8 +1,5 @@
+require_dependency "#{Rails.root}/app/mailers/event_mailer"
 class Event < ActiveRecord::Base
-  require_dependency "#{Rails.root}/app/mailers/event_mailer"
-  belongs_to :user
-  belongs_to :parent, class_name: "Event", foreign_key: 'parent_id'
-  has_many :childs, class_name: "Event", foreign_key: 'parent_id', validate: false
 
   REPEAT_TYPES = [
     'every_day',
@@ -12,13 +9,21 @@ class Event < ActiveRecord::Base
     'not_repeat'
   ]
 
+  TITLE_REGEXP = /[а-яА-Яa-zA-Z]+/
+
+  begin :asssociations
+    belongs_to :user
+    belongs_to :parent, class_name: "Event", foreign_key: 'parent_id'
+    has_many :childs, class_name: "Event", foreign_key: 'parent_id', validate: false
+  end
+
   begin :scopes
     default_scope { order(starts_at: :asc) }
     scope :childs_with_parent, -> (parent_id) { where("(id=?) OR (parent_id=?)", parent_id, parent_id) }
   end
 
   begin :validations
-    validates :title, format: { with: /[а-яА-Яa-zA-Z]+/ }, if: 'self.title.present?'
+    validates :title, format: { with: TITLE_REGEXP  }, if: 'self.title.present?'
     validates :title, length: { minimum: 2, maximum: 100 }
     validates :repeat_type, inclusion: { in: REPEAT_TYPES }, allow_nil: true
     validates_datetime :starts_at, on_or_after: lambda { Time.zone.now.strftime("%F %H:%M") }
