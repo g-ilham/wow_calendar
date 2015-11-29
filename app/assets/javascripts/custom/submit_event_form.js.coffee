@@ -94,9 +94,7 @@ window.SubmitEventForm =
       window.my_full_calendar.fullCalendar( 'renderEvent',
                                               window.current_event[0], true )
 
-      if window.repeated_event[0] && window.current_event[0].id != window.repeated_event[0].id
-        window.my_full_calendar.fullCalendar( 'renderEvent',
-                                              window.repeated_event[0], true )
+      RemoveEvent.render_new_repeated_event()
 
       $('#event_form_modal').modal('hide')
 
