@@ -1,5 +1,5 @@
 require 'sidekiq/api'
-
+require_dependency "#{Rails.root}/app/mailers/event_mailer"
 class Events::Notifications
   attr_reader :user, :event
 
@@ -12,7 +12,6 @@ class Events::Notifications
   def initialize(user, event)
     @user = user
     @event = event
-    require_dependency "#{Rails.root}/app/mailers/event_mailer"
     run
   end
 

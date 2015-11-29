@@ -19,7 +19,8 @@ class Event < ActiveRecord::Base
 
   begin :scopes
     default_scope { order(starts_at: :asc) }
-    scope :childs_with_parent, -> (parent_id) { where("(id=?) OR (parent_id=?)", parent_id, parent_id) }
+    scope :childs_with_parent, -> (parent_id) { where("(id=?) OR (parent_id=?)",
+                                                       parent_id, parent_id) }
   end
 
   begin :validations
@@ -34,27 +35,29 @@ class Event < ActiveRecord::Base
 
     def delay_creating_clone!
       Rails.logger.info"\n"
-      Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] event repeat #{self.repeat_type != 'not_repeat'} "
+      Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] event repeat #{repeat_type != 'not_repeat'}"
 
-      if self.repeat_type != 'not_repeat'
-        create_clone_time = (self.get_clone_date_params[:starts_at] - 1.day).beginning_of_day
+      event_parent_id = (self.parent_id || self.id)
+      Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] event parent_id #{event_parent_id}"
+
+      if repeat_type != 'not_repeat'
+        create_clone_time = (get_clone_date_params[:starts_at] - 1.day).beginning_of_day
 
         Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create clone time #{create_clone_time}"
-        Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create clone day #{create_clone_time.day}"
 
         if create_clone_time.strftime("%D") > Time.zone.now.strftime("%D")
           Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create with delayed"
 
-          Event.delay_until(create_clone_time).create_clone(self.user, self)
+          Event.delay_until(create_clone_time).create_clone(user, event_parent_id)
           self
         else
           Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create now"
 
-          Event.create_clone(self.user, self)
+          Event.create_clone(user, event_parent_id)
         end
       else
-        CleanScheduledJobs.new(self.user,
-                                self, 'Sidekiq::Extensions::DelayedClass')
+        Events::CleanScheduledJobs.new(user,
+                                        parent_id, 'Sidekiq::Extensions::DelayedClass')
         self
       end
     end
@@ -106,20 +109,17 @@ class Event < ActiveRecord::Base
   end
 
   class << self
-    def create_clone(current_user, event)
-      Rails.logger.info"  [ Recurring | CREATE CLONE ] event for duplicate #{event.inspect}"
+    def create_clone(current_user, parent_id)
+      last_event = Event.childs_with_parent(parent_id).last
 
-      if event
+      Rails.logger.info"  [ Recurring | CREATE CLONE ] last event for duplicate #{last_event.inspect}"
 
-        dup = event.duplicate_attrs
-        Rails.logger.info"  [ Recurring | CREATE CLONE ] duplicate event AFTER: #{dup.inspect}"
+      dup = last_event.duplicate_attrs
+      Rails.logger.info"  [ Recurring | CREATE CLONE ] duplicate last event AFTER: #{dup.inspect}"
 
-        if dup.save!
-          Events::Notifications.new(current_user, dup)
-          dup.delay_creating_clone!; dup
-        end
-      else
-        Rails.logger.info"  [ Recurring | CREATE CLONE ] Event not present"
+      if dup.save!
+        # Events::Notifications.new(current_user, dup)
+        dup.delay_creating_clone!; dup
       end
     end
   end

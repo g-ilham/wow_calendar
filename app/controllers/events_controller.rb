@@ -25,16 +25,16 @@ class EventsController < ApplicationController
   end
 
   expose(:recurring) do
-    Events::Recurring.new(current_user, event, action_name, starts_at_changed).res
+    Events::Recurring.new(current_user, event, action_name).res
   end
 
   expose(:create_or_update_repeat_schedule) do
     if action_name == "create"
       puts "ON CREATE #{action_name}"
-      Events::Notifications.new(current_user, event)
+      # Events::Notifications.new(current_user, event)
       event.delay_creating_clone! if event.repeat_type != "not_repeat"
 
-    elsif (starts_at_changed || repeat_type_changed) && action_name != "create"
+    elsif action_name != "create" && (starts_at_changed || repeat_type_changed)
       puts "ON UPDATE #{action_name}"
       recurring
     else

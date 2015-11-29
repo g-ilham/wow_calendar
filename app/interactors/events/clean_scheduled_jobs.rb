@@ -1,20 +1,19 @@
 require 'sidekiq/api'
-
+require_dependency "#{Rails.root}/app/mailers/event_mailer"
 class Events::CleanScheduledJobs
   attr_reader :current_user,
-              :event,
+              :parent_id,
               :job,
               :first_attr,
               :second_attr,
               :class_name,
               :scheduled
 
-  def initialize(current_user, event, class_name)
+  def initialize(current_user, parent_id, class_name)
     @current_user = current_user
-    @event = event
+    @parent_id = parent_id
     @class_name = class_name
     @scheduled = Sidekiq::ScheduledSet.new
-    require_dependency "#{Rails.root}/app/mailers/event_mailer"
     clean
   end
 
@@ -32,7 +31,7 @@ class Events::CleanScheduledJobs
     EventMailer
     job_yml = YAML.load(job.args[0])
     @first_attr = job_yml.last.first.id
-    @second_attr = job_yml.last.second.id if job_yml.last.second.class == Event
+    @second_attr = job_yml.last.second
   end
 
   def remove_job
@@ -52,10 +51,10 @@ class Events::CleanScheduledJobs
   end
 
   def match_both_args
-    second_attr == event.id && first_attr == current_user.id
+    second_attr == parent_id && first_attr == current_user.id
   end
 
   def match_single_arg
-    first_attr == event.id
+    first_attr == parent_id
   end
 end
