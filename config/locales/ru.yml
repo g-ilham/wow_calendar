@@ -1,4 +1,4 @@
-#Example I18n.t(:ru)[:errors][:messages][:empty]
+#Example I18n.t(:errors)[:messages][:empty]
 ru:
   recaptcha:
     errors:

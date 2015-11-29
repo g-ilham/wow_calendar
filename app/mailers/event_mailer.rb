@@ -6,7 +6,7 @@ class EventMailer < ApplicationMailer
     @starts_at = Time.zone.parse("#{@event.starts_at}")
     @ends_at = @event.ends_at
 
-    subject = I18n.t(:ru)[:mailers][:event][:subject][:notify]
+    subject = I18n.t(:mailers)[:event][:subject][:notify]
     mail(to: event.user.email, subject: subject)
   end
 end
