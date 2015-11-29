@@ -9,7 +9,7 @@ header#header
       li
         = link_to "Связаться с Нами", "#js-contact-form"
 
-      - if user_signed_in? && hide_settings != 'true'
+      - if user_signed_in? && current_user.email.present?
         li
           = link_to "Мои события", events_url
         li
