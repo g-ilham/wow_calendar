@@ -32,11 +32,10 @@ window.FormDatetimepickers =
     self = FormDatetimepickers
 
     if form_type == 'new'
-      current_date = moment().toDate()
-      current_event_day = moment(window.current_event_start).date()
+      full_date = moment().toDate()
 
-      if current_event_day >= moment().date() && window.current_event_start < current_date
-        window.current_event_start = current_date
+      if window.current_event_start < full_date
+        window.current_event_start = full_date
 
     $.extend({}, self.base_confs(), defaultDate: window.current_event_start)
 
