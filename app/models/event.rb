@@ -43,9 +43,9 @@ class Event < ActiveRecord::Base
       if repeat_type != 'not_repeat'
         create_clone_time = (get_clone_date_params[:starts_at] - 1.day).beginning_of_day
 
-        Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create clone time #{create_clone_time}"
+        Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create clone time #{Date.parse("#{create_clone_time}")}"
 
-        if create_clone_time.strftime("%D") > Time.zone.now.strftime("%D")
+        if Date.parse("#{create_clone_time}") > Date.parse("#{Time.zone.now}")
           Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create with delayed"
 
           Event.delay_until(create_clone_time).create_clone(user, event_parent_id)
