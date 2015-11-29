@@ -2,12 +2,15 @@
 | $('#edit_user_settings input').prop('disabled', true);
 
 - if current_user.errors.present?
+
+  | $('.account_updated_message').addClass('hidden');
   - current_user.errors.messages.each do |key, value|
     | $("#edit_user_settings #user_" + "#{key}").parent().addClass("with_error");
     | $("#edit_user_settings #user_" + "#{key}").parent().find('.form-error-message').text("#{value.first}");
 
 - else
   | $('#edit_user_settings .modal-content').html("#{ j(render 'users_settings/remote_form') }");
+  | $('.account_updated_message').removeClass('hidden');
 
 | $('#edit_user_settings a').removeClass('disabled');
 | $('#edit_user_settings input').prop('disabled', false);

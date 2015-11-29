@@ -7,7 +7,9 @@
     h4.modal-title Редактирование вашего аккаунта
 
   .modal-body
-    .alert.alert-success.account_updated_message.hidden
+    .alert.alert-success.alert-dismissible.account_updated_message.hidden role="alert"
+      button.close aria-label="Close" data-dismiss="alert" type="button"
+        span aria-hidden="true"  &times;
       = I18n.t(:devise)[:registrations][:updated]
 
     .row.uniform class="50%"

@@ -1,8 +1,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require jquery-ui
 //= require bootstrap/modal
+//= require bootstrap/alert
+//= require jquery-ui
 //= require ./transit_theme/skel.min
 //= require ./transit_theme/skel-layers.min
 //= require ./transit_theme/init
