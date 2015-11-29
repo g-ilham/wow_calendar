@@ -70,12 +70,16 @@ class Events::Recurring
       Rails.logger.info"\n"
       Rails.logger.info"  [ Recurring ] call update recurring for #{childs.last.inspect}"
 
+      event.destroy
       returned_event = childs.last.delay_creating_clone!
 
       if returned_event.new_record?
         # Events::Notifications.new(current_user, returned_event)
       end
       returned_event
+    else
+      event.destroy
     end
+    returned_event
   end
 end

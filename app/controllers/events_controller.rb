@@ -59,7 +59,6 @@ class EventsController < ApplicationController
   def destroy
     if event
       repeated_event = serialize_event(recurring)
-      event.destroy
       render json: { repeated_event: repeated_event }, status: :ok
     else
       errors_response
