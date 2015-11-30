@@ -20,7 +20,7 @@ module System
     end
 
     def sort_css_paths
-      @paths = SORTED_NAMES.each_with_index.map do |current_path, index|
+      @paths = SORTED_NAMES.each do |current_path|
         match = select_with_current(current_path)
         if match
           match

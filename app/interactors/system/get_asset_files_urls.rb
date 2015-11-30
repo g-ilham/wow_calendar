@@ -27,7 +27,7 @@ module System
 
       @paths = if paths
         @paths = clean_assets_urls
-         paths.map do |current_path|
+        paths.map do |current_path|
           get_asset_url(current_path)
         end
       end

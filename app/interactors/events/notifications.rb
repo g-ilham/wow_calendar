@@ -1,7 +1,7 @@
 require 'sidekiq/api'
 require_dependency "#{Rails.root}/app/mailers/event_mailer"
+
 class Events::Notifications
-  attr_reader :user, :event
 
   OPTIONS = {
     in_fifteen_minutes: 'Через пятнадцать минут у вас событие: ',
@@ -9,8 +9,9 @@ class Events::Notifications
     in_day: 'Через день у вас событие: '
   }
 
-  def initialize(user, event)
-    @user = user
+  attr_reader :event
+
+  def initialize(event)
     @event = event
     run
   end
@@ -22,7 +23,7 @@ class Events::Notifications
       sending_ops = get_sending_time(key)
       puts "   [ Events::Notifications ] user conf #{key} sending time #{sending_ops}"
 
-      if sending_ops > event.updated_at && user.send(key)
+      if sending_ops > event.updated_at && event.user.send(key)
 
         puts "    [ Events::Notifications ] send #{key}"
 

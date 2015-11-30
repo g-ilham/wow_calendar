@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     if current_user.valid?
       current_user.update_column(:email,  email_params)
       current_user.skip_confirmation!; current_user.save!
-   end
+    end
   end
 
   private

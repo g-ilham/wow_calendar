@@ -35,29 +35,31 @@ class Event < ActiveRecord::Base
 
     def delay_creating_clone!
       Rails.logger.info"\n"
-      Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] event repeat #{repeat_type != 'not_repeat'}"
+      base_log_name = "  [ Recurring | DELAY CREATING CLONE ]"
+      Rails.logger.info"#{base_log_name} event repeat #{repeat_type != 'not_repeat'}"
 
       event_parent_id = (self.parent_id || self.id)
-      Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] event parent_id #{event_parent_id}"
+      Rails.logger.info"#{base_log_name} event parent_id #{event_parent_id}"
 
       if repeat_type != 'not_repeat'
         create_clone_time = (get_clone_date_params[:starts_at] - 1.day).beginning_of_day
 
-        Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create clone time #{Date.parse("#{create_clone_time}")}"
+        Rails.logger.info"#{base_log_name} create clone time #{Date.parse("#{create_clone_time}")}"
 
         if Date.parse("#{create_clone_time}") > Date.parse("#{Time.zone.now}")
-          Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create with delayed"
 
-          Event.delay_until(create_clone_time).create_clone(user, event_parent_id)
+          Rails.logger.info"#{base_log_name} create with delayed"
+
+          Event.delay_until(create_clone_time).create_clone(event_parent_id)
           self
         else
-          Rails.logger.info"  [ Recurring | DELAY CREATING CLONE ] create now"
+          Rails.logger.info"#{base_log_name} create now"
 
-          Event.create_clone(user, event_parent_id)
+          Event.create_clone(event_parent_id)
         end
       else
-        Events::CleanScheduledJobs.new(user,
-                                        parent_id, 'Sidekiq::Extensions::DelayedClass')
+        Events::CleanScheduledJobs.new(parent_id,
+                                        'Sidekiq::Extensions::DelayedClass')
         self
       end
     end
@@ -109,7 +111,7 @@ class Event < ActiveRecord::Base
   end
 
   class << self
-    def create_clone(current_user, parent_id)
+    def create_clone(parent_id)
       last_event = Event.childs_with_parent(parent_id).last
 
       Rails.logger.info"  [ Recurring | CREATE CLONE ] last event for duplicate #{last_event.inspect}"
@@ -118,7 +120,7 @@ class Event < ActiveRecord::Base
       Rails.logger.info"  [ Recurring | CREATE CLONE ] duplicate last event AFTER: #{dup.inspect}"
 
       if dup.save!
-        # Events::Notifications.new(current_user, dup)
+        # Events::Notifications.new(dup)
         dup.delay_creating_clone!; dup
       end
     end

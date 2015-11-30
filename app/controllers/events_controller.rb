@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   expose(:create_or_update_repeat_schedule) do
     if action_name == "create"
       puts "ON CREATE #{action_name}"
-      # Events::Notifications.new(current_user, event)
+      # Events::Notifications.new(event)
       event.delay_creating_clone! if event.repeat_type != "not_repeat"
 
     elsif action_name != "create" && (starts_at_changed || repeat_type_changed)

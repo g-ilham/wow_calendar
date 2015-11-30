@@ -9,7 +9,7 @@ class Users::SocialLogin::Base
 
     def get_attrs(provider, social_params)
       attrs = provider == "vk" ? vk_attrs(social_params) : fb_attrs(social_params)
-      attrs = extend_photo(attrs, social_params)
+      extend_photo(attrs, social_params)
     end
 
     def extend_photo(attrs, social_params)

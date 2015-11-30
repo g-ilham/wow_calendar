@@ -1,16 +1,16 @@
 require 'sidekiq/api'
 require_dependency "#{Rails.root}/app/mailers/event_mailer"
+
 class Events::CleanScheduledJobs
-  attr_reader :current_user,
-              :parent_id,
+
+  attr_reader :parent_id,
               :job,
               :first_attr,
               :second_attr,
               :class_name,
               :scheduled
 
-  def initialize(current_user, parent_id, class_name)
-    @current_user = current_user
+  def initialize(parent_id, class_name)
     @parent_id = parent_id
     @class_name = class_name
     @scheduled = Sidekiq::ScheduledSet.new
@@ -44,17 +44,9 @@ class Events::CleanScheduledJobs
   def condition
     case class_name
     when 'Sidekiq::Extensions::DelayedClass'
-      match_both_args
+      second_attr == parent_id
     when 'Sidekiq::Extensions::DelayedMailer'
-      match_single_arg
+      first_attr == parent_id
     end
-  end
-
-  def match_both_args
-    second_attr == parent_id && first_attr == current_user.id
-  end
-
-  def match_single_arg
-    first_attr == parent_id
   end
 end
