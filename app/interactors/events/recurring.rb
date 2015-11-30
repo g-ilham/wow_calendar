@@ -68,9 +68,8 @@ class Events::Recurring
 
       delay_and_destroy_event
     else
-      event.destroy
+      event.destroy; nil
     end
-    returned_event
   end
 
   def clean_up_childs

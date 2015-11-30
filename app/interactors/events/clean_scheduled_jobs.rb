@@ -6,7 +6,6 @@ class Events::CleanScheduledJobs
   attr_reader :parent_id,
               :job,
               :first_attr,
-              :second_attr,
               :class_name,
               :scheduled
 
@@ -30,8 +29,15 @@ class Events::CleanScheduledJobs
     @job = job
     EventMailer
     job_yml = YAML.load(job.args[0])
-    @first_attr = job_yml.last.first.id
-    @second_attr = job_yml.last.second
+    get_first_attr(job_yml)
+  end
+
+  def get_first_attr(job_yml)
+    @first_attr = if class_name == 'Sidekiq::Extensions::DelayedClass'
+      job_yml.last.first
+    else
+      job_yml.last.first.id
+    end
   end
 
   def remove_job
@@ -44,7 +50,7 @@ class Events::CleanScheduledJobs
   def condition
     case class_name
     when 'Sidekiq::Extensions::DelayedClass'
-      second_attr == parent_id
+      first_attr == parent_id
     when 'Sidekiq::Extensions::DelayedMailer'
       first_attr == parent_id
     end
