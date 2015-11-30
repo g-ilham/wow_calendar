@@ -31,6 +31,14 @@ class Event < ActiveRecord::Base
     validates_datetime :ends_at, on_or_after: :starts_at, if: "!self.all_day"
   end
 
+  begin :callbacks
+    before_validation :trim_title
+  end
+
+  def trim_title
+    self.title = self.title.strip()
+  end
+
   begin :recurrings
 
     def delay_creating_clone!
