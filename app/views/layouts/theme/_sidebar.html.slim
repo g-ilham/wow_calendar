@@ -1,6 +1,5 @@
 aside
   #sidebar.nav-collapse
-    /! sidebar menu start
     ul#nav-accordion.sidebar-menu
       - if current_user.photo.present?
         p.centered
@@ -36,7 +35,7 @@ aside
           li
             a href="#{gallery_themes_path}"  Gallery
           li
-            a href="#{todos_themes_path}"  Todo List
+            a href="#{task_lists_themes_path}"  Task List
       li.sub-menu
         a href="javascript:;"
           i.fa.fa-book
@@ -77,4 +76,3 @@ aside
             a href="#"  Morris
           li
             a href="#"  Chartjs
-    /! sidebar menu end

@@ -32,7 +32,7 @@ class ThemesController < ApplicationController
   def gallery
   end
 
-  def todos
+  def task_lists
   end
 
   def login

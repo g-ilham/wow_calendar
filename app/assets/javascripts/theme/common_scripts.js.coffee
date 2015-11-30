@@ -105,7 +105,7 @@ window.CommonScripts =
 
   tooltips_and_popovers: ->
     #    tool tips
-    $('fa.tooltips').tooltip()
+    $('.tooltips').tooltip()
     #    popovers
     $('.popovers').popover()
 
