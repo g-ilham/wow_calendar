@@ -29,14 +29,14 @@ class Events::CleanScheduledJobs
     @job = job
     EventMailer
     job_yml = YAML.load(job.args[0])
-    get_first_attr(job_yml)
+    get_first_attr(job_yml.last)
   end
 
   def get_first_attr(job_yml)
     @first_attr = if class_name == 'Sidekiq::Extensions::DelayedClass'
-      job_yml.last.first
+      job_yml.first
     else
-      job_yml.last.first.id
+      (job_yml.first.parent_id || job_yml.first.id)
     end
   end
 
