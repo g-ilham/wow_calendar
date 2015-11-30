@@ -36,7 +36,7 @@ class Events::CleanScheduledJobs
     @first_attr = if class_name == 'Sidekiq::Extensions::DelayedClass'
       job_yml.first
     else
-      (job_yml.first.parent_id || job_yml.first.id)
+      job_yml.first.id
     end
   end
 
