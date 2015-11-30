@@ -28,7 +28,7 @@ class Events::Recurring
 
     Events::CleanScheduledJobs.new(last_child_parent_id,
                                     'Sidekiq::Extensions::DelayedClass')
-    # update_notifications!
+    update_notifications!
     @res = delay_job!
   end
 
@@ -42,7 +42,7 @@ class Events::Recurring
     Rails.logger.info"\n"
     Rails.logger.info"  [ Recurring | REMOVE NOTIFICATIONS ] for #{event.inspect}"
 
-    Events::CleanScheduledJobs.new(event,
+    Events::CleanScheduledJobs.new(event.id,
                                     'Sidekiq::Extensions::DelayedMailer')
 
     if action_name != "destroy"
@@ -85,7 +85,7 @@ class Events::Recurring
 
     event.destroy
     returned_event = childs.last.delay_creating_clone!
-    # Events::Notifications.new(returned_event) if returned_event.new_record?
+    Events::Notifications.new(returned_event) if returned_event.new_record?
     returned_event
   end
 end

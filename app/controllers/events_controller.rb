@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   expose(:recurring_event_interactions) do
     if action_name == "create"
       Rails.logger.info"ON CREATE #{action_name}"
-      # Events::Notifications.new(event)
+      Events::Notifications.new(event)
       event.delay_creating_clone! if event.repeat_type != "not_repeat"
 
     elsif (starts_at_changed || repeat_type_changed)

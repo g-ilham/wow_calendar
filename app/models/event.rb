@@ -124,7 +124,7 @@ class Event < ActiveRecord::Base
       Rails.logger.info"  [ Recurring | CREATE CLONE ] duplicate last event AFTER: #{dup.inspect}"
 
       if dup.save!
-        # Events::Notifications.new(dup)
+        Events::Notifications.new(dup)
         dup.delay_creating_clone!; dup
       end
     end
