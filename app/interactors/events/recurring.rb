@@ -62,23 +62,30 @@ class Events::Recurring
   end
 
   def remove_action
-    @childs = childs.to_a.delete_if { |e| e.id == event.id }
+    clean_up_childs
 
     if childs.size > 0
 
-      Rails.logger.info"\n"
-      Rails.logger.info"  [ Recurring ] call update recurring for #{childs.last.inspect}"
-
-      event.destroy
-      returned_event = childs.last.delay_creating_clone!
-
-      if returned_event.new_record?
-        # Events::Notifications.new(returned_event)
-      end
-      returned_event
+      delay_and_destroy_event
     else
       event.destroy
     end
+    returned_event
+  end
+
+  def clean_up_childs
+    @childs = childs.to_a.delete_if do |e|
+      e.id == event.id
+    end
+  end
+
+  def delay_and_destroy_event
+    Rails.logger.info"\n"
+    Rails.logger.info"  [ Recurring ] call update recurring for #{childs.last.inspect}"
+
+    event.destroy
+    returned_event = childs.last.delay_creating_clone!
+    # Events::Notifications.new(returned_event) if returned_event.new_record?
     returned_event
   end
 end
