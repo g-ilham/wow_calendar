@@ -23,6 +23,15 @@ class User < ActiveRecord::Base
     has_many :events, dependent: :destroy
   end
 
+  begin :callbacks
+    before_validation :trim_name
+  end
+
+  def trim_name
+    self.first_name = self.first_name.strip()
+    self.last_name = self.last_name.strip()
+  end
+
   def email_registration?
     vkontakte_uid.blank? && facebook_uid.blank?
   end
