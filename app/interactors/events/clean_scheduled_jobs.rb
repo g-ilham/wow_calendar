@@ -17,10 +17,10 @@ class Events::CleanScheduledJobs
   end
 
   def clean
-    puts "\n"
+    Rails.logger.info"\n"
     scheduled.select do |job|
       attrs(job)
-      puts "   [ CleanScheduledJobs ] #{class_name}"
+      Rails.logger.info"   [ CleanScheduledJobs ] #{class_name}"
       remove_job
     end
   end
@@ -42,7 +42,7 @@ class Events::CleanScheduledJobs
 
   def remove_job
     if condition
-      puts "     [ CleanScheduledJobs ] remove_job"
+      Rails.logger.info"     [ CleanScheduledJobs ] remove_job"
       job.delete
     end
   end

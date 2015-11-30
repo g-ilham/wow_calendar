@@ -2,10 +2,7 @@ class EventsController < ApplicationController
   layout 'theme'
 
   expose(:events) do
-    ActiveModel::ArraySerializer.new(
-      current_user.events,
-      each_serializer: EventSerializer
-    )
+    serialize_events(current_user.events)
   end
 
   expose(:event) do
@@ -16,7 +13,7 @@ class EventsController < ApplicationController
     if event
       event.errors.full_messages
     else
-      [event.empty_event_message]
+      [event.empty_message]
     end
   end
 
@@ -28,18 +25,15 @@ class EventsController < ApplicationController
     Events::Recurring.new(current_user, event, action_name).res
   end
 
-  expose(:create_or_update_repeat_schedule) do
+  expose(:recurring_event_interactions) do
     if action_name == "create"
-      puts "ON CREATE #{action_name}"
+      Rails.logger.info"ON CREATE #{action_name}"
       # Events::Notifications.new(event)
       event.delay_creating_clone! if event.repeat_type != "not_repeat"
 
-    elsif action_name != "create" && (starts_at_changed || repeat_type_changed)
-      puts "ON UPDATE #{action_name}"
+    elsif (starts_at_changed || repeat_type_changed)
+      Rails.logger.info"ON UPDATE #{action_name}"
       recurring
-    else
-      puts "DELAY NOT CREATE #{action_name}"
-      event
     end
   end
 
@@ -58,7 +52,7 @@ class EventsController < ApplicationController
 
   def destroy
     if event
-      repeated_event = serialize_event(recurring)
+      repeated_event = serialize_events(recurring)
       render json: { repeated_event: repeated_event }, status: :ok
     else
       errors_response
@@ -90,11 +84,11 @@ class EventsController < ApplicationController
 
   def create_or_update(call_method)
     if event && call_method
-      repeated_event = serialize_event(create_or_update_repeat_schedule)
+      repeated_event = serialize_events(recurring_event_interactions)
 
       render json: {
 
-        event: serialize_event(event),
+        event: serialize_events(event),
         repeated_event: repeated_event
 
       }, status: :ok
@@ -103,9 +97,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def serialize_event(current_event)
+  def serialize_events(current_event_or_events)
     ActiveModel::ArraySerializer.new(
-      [current_event],
+      [current_event_or_events].flatten,
       each_serializer: EventSerializer
     )
   end

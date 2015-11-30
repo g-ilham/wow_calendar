@@ -1,6 +1,8 @@
 require 'sidekiq/api'
 require_dependency "#{Rails.root}/app/mailers/event_mailer"
+
 class Events::Recurring
+
   attr_reader :event,
               :current_user,
               :childs,
@@ -26,7 +28,7 @@ class Events::Recurring
 
     Events::CleanScheduledJobs.new(last_child_parent_id,
                                     'Sidekiq::Extensions::DelayedClass')
-    # update_notifications
+    # update_notifications!
     @res = delay_job!
   end
 
@@ -36,7 +38,7 @@ class Events::Recurring
     @last_child_parent_id = (last_child.parent_id || last_child.id)
   end
 
-  def update_notifications
+  def update_notifications!
     Rails.logger.info"\n"
     Rails.logger.info"  [ Recurring | REMOVE NOTIFICATIONS ] for #{event.inspect}"
 
@@ -65,7 +67,6 @@ class Events::Recurring
     clean_up_childs
 
     if childs.size > 0
-
       delay_and_destroy_event
     else
       event.destroy; nil

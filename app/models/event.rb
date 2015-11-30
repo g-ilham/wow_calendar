@@ -34,33 +34,37 @@ class Event < ActiveRecord::Base
   begin :recurrings
 
     def delay_creating_clone!
-      Rails.logger.info"\n"
       base_log_name = "  [ Recurring | DELAY CREATING CLONE ]"
-      Rails.logger.info"#{base_log_name} event repeat #{repeat_type != 'not_repeat'}"
-
       event_parent_id = (self.parent_id || self.id)
+
+      Rails.logger.info"\n"
+      Rails.logger.info"#{base_log_name} event repeat #{repeat_type}"
       Rails.logger.info"#{base_log_name} event parent_id #{event_parent_id}"
 
       if repeat_type != 'not_repeat'
-        create_clone_time = (get_clone_date_params[:starts_at] - 1.day).beginning_of_day
-
-        Rails.logger.info"#{base_log_name} create clone time #{Date.parse("#{create_clone_time}")}"
-
-        if Date.parse("#{create_clone_time}") > Date.parse("#{Time.zone.now}")
-
-          Rails.logger.info"#{base_log_name} create with delayed"
-
-          Event.delay_until(create_clone_time).create_clone(event_parent_id)
-          self
-        else
-          Rails.logger.info"#{base_log_name} create now"
-
-          Event.create_clone(event_parent_id)
-        end
+        check_create_now_or_delay(base_log_name, event_parent_id)
       else
-        Events::CleanScheduledJobs.new(parent_id,
+        Events::CleanScheduledJobs.new(event_parent_id,
                                         'Sidekiq::Extensions::DelayedClass')
         self
+      end
+    end
+
+    def check_create_now_or_delay(base_log_name, event_parent_id)
+      create_clone_time = (get_clone_date_params[:starts_at] - 1.day).beginning_of_day
+
+      Rails.logger.info"#{base_log_name} create clone time #{Date.parse("#{create_clone_time}")}"
+
+      if Date.parse("#{create_clone_time}") > Date.parse("#{Time.zone.now}")
+
+        Rails.logger.info"#{base_log_name} create with delayed"
+
+        Event.delay_until(create_clone_time).create_clone(event_parent_id)
+        self
+      else
+        Rails.logger.info"#{base_log_name} create now"
+
+        Event.create_clone(event_parent_id)
       end
     end
 
@@ -103,7 +107,7 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def empty_event_message
+  def empty_message
     [
       I18n.t(:activerecord)[:models][:event] + ' ' +
       I18n.t(:errors)[:messages][:empty]

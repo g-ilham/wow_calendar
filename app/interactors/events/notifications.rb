@@ -21,11 +21,11 @@ class Events::Notifications
     OPTIONS.each do |key, value|
       key = key.to_s
       sending_ops = get_sending_time(key)
-      puts "   [ Events::Notifications ] user conf #{key} sending time #{sending_ops}"
+      Rails.logger.info"   [ Events::Notifications ] user conf #{key} sending time #{sending_ops}"
 
       if sending_ops > event.updated_at && event.user.send(key)
 
-        puts "    [ Events::Notifications ] send #{key}"
+        Rails.logger.info"    [ Events::Notifications ] send #{key}"
 
         EventMailer.delay_until(sending_ops).notify(event, value)
       end
