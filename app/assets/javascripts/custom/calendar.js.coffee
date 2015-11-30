@@ -98,6 +98,5 @@ window.Calendar =
       $.each events, (index, event_in_arr) ->
         if event_in_arr && !event_in_arr['end']
           delete events[index]['end']
-      events
-    else
-      events
+
+    events

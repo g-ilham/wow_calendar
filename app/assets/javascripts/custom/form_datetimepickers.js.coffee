@@ -16,16 +16,8 @@ window.FormDatetimepickers =
   update_ends_date_after_change_start_date: ->
     self = FormDatetimepickers
     $('#starts_at_date').on 'dp.hide', (e) ->
-      update_start_date = e.date.toDate()
-      ends_date_params = $('#ends_at_date').data("DateTimePicker").date()
-
-      ends_date = if ends_date_params
-        ends_date_params.toDate()
-      else
-        undefined
-
-      if (!ends_date || update_start_date > ends_date) && !window.current_all_day
-        $('#ends_at_date').data("DateTimePicker").date(self.increase_date(update_start_date))
+      starts_date = e.date.toDate()
+      self.set_ends_at_column_to_starts_at(starts_date)
       return
 
   get_starts_at_options: (form_type)->
@@ -64,3 +56,15 @@ window.FormDatetimepickers =
 
   increase_date: (current_date)->
     moment(current_date).add(10, 'm').toDate()
+
+  set_ends_at_column_to_starts_at: (starts_date)->
+    ends_date_params = $('#ends_at_date').data("DateTimePicker").date()
+
+    ends_date = if ends_date_params
+      ends_date_params.toDate()
+    else
+      undefined
+
+    if (!ends_date || starts_date > ends_date) && !window.current_all_day
+      increased_starts_date = FormDatetimepickers.increase_date(starts_date)
+      $('#ends_at_date').data("DateTimePicker").date(increased_starts_date)
