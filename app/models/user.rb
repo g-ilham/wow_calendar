@@ -39,4 +39,12 @@ class User < ActiveRecord::Base
   def email_required?
     super && email_registration?
   end
+
+  def notifications_options
+    [
+      in_fifteen_minutes,
+      in_hour,
+      in_day
+    ]
+  end
 end

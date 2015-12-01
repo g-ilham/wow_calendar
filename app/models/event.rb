@@ -1,4 +1,3 @@
-require_dependency "#{Rails.root}/app/mailers/event_mailer"
 class Event < ActiveRecord::Base
 
   REPEAT_TYPES = [
@@ -39,80 +38,12 @@ class Event < ActiveRecord::Base
     self.title = self.title.strip()
   end
 
-  begin :recurrings
-
-    def delay_creating_clone!
-      base_log_name = "  [ Recurring | DELAY CREATING CLONE ]"
-      event_parent_id = (self.parent_id || self.id)
-
-      Rails.logger.info"\n"
-      Rails.logger.info"#{base_log_name} event repeat #{repeat_type}"
-      Rails.logger.info"#{base_log_name} event parent_id #{event_parent_id}"
-
-      if repeat_type != 'not_repeat'
-        check_create_now_or_delay(base_log_name, event_parent_id)
-      else
-        Events::CleanScheduledJobs.new(event_parent_id,
-                                        'Sidekiq::Extensions::DelayedClass')
-        self
-      end
+  def childs_with_parent
+    parent_id = self.parent_id
+    if !parent_id
+      parent_id = self.id
     end
-
-    def check_create_now_or_delay(base_log_name, event_parent_id)
-      create_clone_time = (get_clone_date_params[:starts_at] - 1.day).beginning_of_day
-
-      Rails.logger.info"#{base_log_name} create clone time #{Date.parse("#{create_clone_time}")}"
-
-      if Date.parse("#{create_clone_time}") > Date.parse("#{Time.zone.now}")
-
-        Rails.logger.info"#{base_log_name} create with delayed"
-
-        Event.delay_until(create_clone_time).create_clone(event_parent_id)
-        self
-      else
-        Rails.logger.info"#{base_log_name} create now"
-
-        Event.create_clone(event_parent_id)
-      end
-    end
-
-    def get_repeat_type
-      case self.repeat_type
-      when 'every_day'
-        1.day
-      when 'every_week'
-        1.week
-      when 'every_month'
-        1.month
-      when 'every_year'
-        1.year
-      end
-    end
-
-    def duplicate_attrs
-      dup = self.dup
-      dup.starts_at = self.get_clone_date_params[:starts_at]
-      dup.ends_at = self.get_clone_date_params[:ends_at]
-      dup.parent_id = (self.parent_id || self.id); dup
-    end
-
-    def get_clone_date_params
-      repeat_type = self.get_repeat_type
-      hash = { starts_at: self.starts_at + repeat_type, ends_at: self.ends_at }
-
-      if self.ends_at
-        hash[:ends_at] = self.ends_at + repeat_type
-      end
-      hash
-    end
-
-    def childs_with_parent
-      parent_id = self.parent_id
-      if !parent_id
-        parent_id = self.id
-      end
-      Event.childs_with_parent(parent_id)
-    end
+    Event.childs_with_parent(parent_id)
   end
 
   def empty_message
@@ -120,21 +51,5 @@ class Event < ActiveRecord::Base
       I18n.t(:activerecord)[:models][:event] + ' ' +
       I18n.t(:errors)[:messages][:empty]
     ]
-  end
-
-  class << self
-    def create_clone(parent_id)
-      last_event = Event.childs_with_parent(parent_id).last
-
-      Rails.logger.info"  [ Recurring | CREATE CLONE ] last event for duplicate #{last_event.inspect}"
-
-      dup = last_event.duplicate_attrs
-      Rails.logger.info"  [ Recurring | CREATE CLONE ] duplicate last event AFTER: #{dup.inspect}"
-
-      if dup.save!
-        Events::Notifications.new(dup)
-        dup.delay_creating_clone!; dup
-      end
-    end
   end
 end

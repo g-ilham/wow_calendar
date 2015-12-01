@@ -9,11 +9,12 @@ class Events::Notifications
     in_day: 'Через день у вас событие: '
   }
 
-  attr_reader :event
+  attr_reader :event,
+              :action_name
 
-  def initialize(event)
+  def initialize(event, action_name="update")
     @event = event
-    run
+    @action_name = action_name
   end
 
   def run
@@ -40,6 +41,19 @@ class Events::Notifications
       event.starts_at - 1.hour
     when 'in_day'
       event.starts_at - 1.day
+    end
+  end
+
+  def update_notifications!
+    Rails.logger.info"\n"
+    Rails.logger.info"   [ Notifications | REMOVE NOTIFICATIONS ] for #{event.inspect}"
+    Events::CleanScheduledJobs.new(event.id,
+                                    'EventMailer')
+    Rails.logger.info"\n"
+    Rails.logger.info"   [ Notifications ] action_name #{action_name}"
+
+    if action_name != "destroy"
+      run
     end
   end
 end

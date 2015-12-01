@@ -10,6 +10,21 @@ class ApplicationController < ActionController::Base
     System::GetAssetFilesUrls.get_image_url('theme/ui-sam.jpg')
   end
 
+  expose(:recurring_with_notifications) do
+    Events::RecurringWithNotifications.new(current_user,
+                                            event,
+                                            action_name,
+                                            @prev_event_attr)
+  end
+
+  expose(:events) do
+    serialize_events(current_user.events)
+  end
+
+  expose(:event) do
+    current_user.events.find_by_id(params[:id])
+  end
+
   protected
 
   def configure_permitted_parameters
@@ -22,5 +37,12 @@ class ApplicationController < ActionController::Base
     if current_user && current_user.email.blank?
       redirect_to complete_social_registration_path
     end
+  end
+
+  def serialize_events(current_event_or_events)
+    ActiveModel::ArraySerializer.new(
+      [current_event_or_events].flatten,
+      each_serializer: EventSerializer
+    )
   end
 end
