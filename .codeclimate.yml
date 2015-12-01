@@ -1,5 +1,13 @@
 languages:
   Ruby: true
-
 exclude_paths:
-- "app/assets/*"
+- app/assets/*
+- config/**/*
+- db/**/*
+- spec/**/*
+- vendor/**/*
+- Capfile
+- Gemfile*
+- public/**/*
+- bin/**/*
+- config.ru
