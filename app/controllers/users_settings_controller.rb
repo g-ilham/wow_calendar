@@ -1,11 +1,19 @@
 class UsersSettingsController < ApplicationController
   respond_to :json
+  before_action :get_prev_notifications_options, only: [ :update ]
+
+  expose(:check_changed_notifications_options) do
+    if check_notification_options
+      recurring_with_notifications.update_events_notifications!
+    end
+  end
 
   def edit
   end
 
   def update
     current_user.update(user_params)
+    check_changed_notifications_options
   end
 
   private
@@ -18,5 +26,13 @@ class UsersSettingsController < ApplicationController
                                 :in_fifteen_minutes,
                                 :in_hour,
                                 :in_day)
+  end
+
+  def get_prev_notifications_options
+    @prev_notifications_options = current_user.notifications_options
+  end
+
+  def check_notification_options
+    current_user.notifications_options != @prev_notifications_options
   end
 end
