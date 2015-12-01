@@ -114,7 +114,6 @@ class Events::RecurringWithNotifications
 
   def update_events_notifications!
     user.events.each do |event|
-      @event = event
       Events::Notifications.new(event).update_notifications!
     end
   end
