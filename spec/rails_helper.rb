@@ -5,7 +5,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'shoulda/matchers'
-require "capybara-screenshot/rspec"
+require "capybara-screenshot/rspec" #screenshot_and_open_image
 
 if ENV["COVERAGE"]
   require "simplecov"
@@ -24,6 +24,15 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include ExpectationHelper, type: :feature
   config.include Devise::TestHelpers, type: :controller
+  config.include Warden::Test::Helpers, type: :feature
+
+  config.before :suite do
+    Warden.test_mode!
+  end
+
+  config.after :each do
+    Warden.test_reset!
+  end
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
