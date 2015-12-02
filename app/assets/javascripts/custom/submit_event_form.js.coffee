@@ -14,9 +14,7 @@ window.SubmitEventForm =
       dataType: 'json'
       data: { event: self.get_form_params(event_type) }
       success: (response) =>
-        if event_type != 'drop_or_resize'
-          self.success_handle(button, response)
-
+        self.success_handle(button, response, event_type)
         window.current_event_revert = undefined
         return false
 
@@ -80,19 +78,20 @@ window.SubmitEventForm =
         repeat_type: window.current_event_repeat_type
       }
 
-  success_handle: (button, response)->
+  success_handle: (button, response, event_type)->
     self = SubmitEventForm
     if response && response.event
-
       window.current_event = Calendar.prepare_events_array(response.event)
       window.repeated_event = Calendar.prepare_events_array(response.repeated_event)
 
-      if !button.hasClass 'js-create-event-link'
-        window.my_full_calendar.fullCalendar( 'removeEvents',
-                                              window.current_event[0].id )
+      if event_type != 'drop_or_resize'
+        if !button.hasClass 'js-create-event-link'
+          window.my_full_calendar.fullCalendar( 'removeEvents',
+                                                window.current_event[0].id )
 
-      window.my_full_calendar.fullCalendar( 'renderEvent',
-                                              window.current_event[0], true )
+
+          window.my_full_calendar.fullCalendar( 'renderEvent',
+                                                window.current_event[0], true )
 
       RemoveEvent.render_new_repeated_event()
 
