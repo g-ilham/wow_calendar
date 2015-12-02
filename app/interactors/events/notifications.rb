@@ -10,9 +10,11 @@ class Events::Notifications
   }
 
   attr_reader :event,
-              :action_name
+              :action_name,
+              :user,
+              :prev_notifications_options
 
-  def initialize(event, action_name="update")
+  def initialize(event, action_name="not_destroy")
     @event = event
     @action_name = action_name
   end
@@ -44,7 +46,38 @@ class Events::Notifications
     end
   end
 
-  def update_notifications!
+  def notification_options_updated?
+    user.notifications_options != prev_notifications_options
+  end
+
+  def not_selected_anything
+    user.notifications_options.uniq.size == 1 &&
+    user.notifications_options.uniq == false
+  end
+
+  def update_events_notifications!(user, prev_notifications_options)
+    @user = user
+    @prev_notifications_options = prev_notifications_options
+
+    if notification_options_updated?
+      run_update_for_collection!
+    end
+  end
+
+  def run_update_for_collection!
+    user.events.each do |event|
+      if !not_selected_anything
+        Rails.logger.info"   [ Notifications | UPDATE FOR EVENT ] for #{event.inspect}"
+        Events::Notifications.new(event).update_for_event!
+      else
+        Rails.logger.info"   [ Notifications | CLEAN FOR EVENT ] for #{event.inspect}"
+        Events::CleanScheduledJobs.new(event.id,
+                                        'EventMailer')
+      end
+    end
+  end
+
+  def update_for_event!
     Rails.logger.info"\n"
     Rails.logger.info"   [ Notifications | REMOVE NOTIFICATIONS ] for #{event.inspect}"
     Events::CleanScheduledJobs.new(event.id,

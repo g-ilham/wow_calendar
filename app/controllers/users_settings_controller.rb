@@ -3,9 +3,8 @@ class UsersSettingsController < ApplicationController
   before_action :get_prev_notifications_options, only: [ :update ]
 
   expose(:check_changed_notifications_options) do
-    if check_notification_options
-      recurring_with_notifications.update_events_notifications!
-    end
+    Events::Notifications.new(nil).
+      update_events_notifications!(current_user, @prev_notifications_options)
   end
 
   def edit
@@ -30,9 +29,5 @@ class UsersSettingsController < ApplicationController
 
   def get_prev_notifications_options
     @prev_notifications_options = current_user.notifications_options
-  end
-
-  def check_notification_options
-    current_user.notifications_options != @prev_notifications_options
   end
 end
