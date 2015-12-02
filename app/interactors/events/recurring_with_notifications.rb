@@ -9,15 +9,12 @@ class Events::RecurringWithNotifications
               :action_name,
               :parent_id,
               :res,
-              :user,
               :prev_event_attr
 
-  def initialize(user, event, action_name, prev_event_attr)
-    @user = user
+  def initialize(event, action_name, prev_event_attr)
     @event = event
     @prev_event_attr = prev_event_attr
     @action_name = action_name
-    @parent_id = (event.parent_id || event.id) if event
   end
 
   def base_handle
@@ -34,7 +31,7 @@ class Events::RecurringWithNotifications
     else
       Rails.logger.info"  [ RecurringWithNotifications ] only update without change event some attrs"
       event.touch(:updated_at) if updated_at_not_changed
-      Events::Notifications.new(event).update_notifications!
+      Events::Notifications.new(event).update_for_event!
       event
     end
   end
@@ -61,7 +58,7 @@ class Events::RecurringWithNotifications
     Rails.logger.info"   [ RecurringWithNotifications ] event_parent_id #{parent_id}"
 
     get_childs_and_last_child
-    Events::Notifications.new(event, action_name).update_notifications!
+    Events::Notifications.new(event, action_name).update_for_event!
     update_recurring!
   end
 
@@ -81,6 +78,7 @@ class Events::RecurringWithNotifications
   def update_recurring!
     Rails.logger.info"\n"
     Rails.logger.info"   [ RecurringWithNotifications | REMOVE RECURRNIG ] with parent_id #{parent_id}"
+    parent_id = (last_child.parent_id || last_child.id)
     Events::CleanScheduledJobs.new(parent_id,
                                     "Events::DelayCreateClone")
 
@@ -90,19 +88,19 @@ class Events::RecurringWithNotifications
       Rails.logger.info"\n"
       Rails.logger.info"   [ RecurringWithNotifications ] call update recurring for #{event.inspect}"
 
-      Events::DelayCreateClone.new(event).res
+      Events::DelayCreateClone.new(last_child).res
     end
   end
 
   def check_childs
     if childs.size > 0
-      destroy_event_with_delay
+      destroy_event_with_delay!
     else
       event.destroy; nil
     end
   end
 
-  def destroy_event_with_delay
+  def destroy_event_with_delay!
     Rails.logger.info"\n"
     Rails.logger.info"   [ RecurringWithNotifications ] call update recurring for #{last_child.inspect}"
 
@@ -110,11 +108,5 @@ class Events::RecurringWithNotifications
     returned_event = Events::DelayCreateClone.new(last_child).res
     Events::Notifications.new(returned_event).run if returned_event.new_record?
     returned_event
-  end
-
-  def update_events_notifications!
-    user.events.each do |event|
-      Events::Notifications.new(event).update_notifications!
-    end
   end
 end
