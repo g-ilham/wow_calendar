@@ -50,3 +50,6 @@ ru:
     event:
       subject:
         notify: 'Напоминаем о грядущем событии'
+  form_objects:
+    contact_form:
+      success: Ваше сообщение успешно отправлено!

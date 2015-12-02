@@ -6,7 +6,8 @@ section#js-contact-form.wrapper.style3.special
 
     .container class="50%"
       .js-contact-form-status-message
-        ' Ваше сообщение успешно отправлено!
+        '
+        = I18n.t(:form_objects)[:contact_form][:success]
 
       = simple_form_for contact_form,
                         as: :contact_form,
