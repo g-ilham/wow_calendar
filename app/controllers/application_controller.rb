@@ -10,13 +10,6 @@ class ApplicationController < ActionController::Base
     System::GetAssetFilesUrls.get_image_url('theme/ui-sam.jpg')
   end
 
-  expose(:recurring_with_notifications) do
-    Events::RecurringWithNotifications.new(current_user,
-                                            event,
-                                            action_name,
-                                            @prev_event_attr)
-  end
-
   expose(:events) do
     serialize_events(current_user.events)
   end
