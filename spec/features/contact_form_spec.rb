@@ -24,7 +24,7 @@ so that I can leave some feedbacks or suggestions about service
     end.to_not change(Sidekiq::Extensions::DelayedMailer.jobs, :size)
 
     expect_to_see I18n.t(:errors)[:messages][:empty]
-    expect_to_see_no "Ваше сообщение успешно отправлено!"
+    expect_to_see_no I18n.t(:form_objects)[:contact_form][:success]
   end
 
   it "I mistakenly submit contact form with incorrect email" do
@@ -38,7 +38,7 @@ so that I can leave some feedbacks or suggestions about service
     end.to_not change(Sidekiq::Extensions::DelayedMailer.jobs, :size)
 
     expect_to_see I18n.t(:errors)[:messages][:invalid]
-    expect_to_see_no "Ваше сообщение успешно отправлено!"
+    expect_to_see_no I18n.t(:form_objects)[:contact_form][:success]
   end
 
   it "I submit contact form with correct data" do
@@ -51,7 +51,7 @@ so that I can leave some feedbacks or suggestions about service
       end
     end.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
 
-    expect_to_see "Ваше сообщение успешно отправлено!"
+    expect_to_see I18n.t(:form_objects)[:contact_form][:success]
   end
 
   private
