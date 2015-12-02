@@ -4,7 +4,7 @@ class ContactForm
   attr_reader :name, :email, :message
 
   validates :email, presence: true,
-                    email: { message: "is not email" }
+                    email: { message: I18n.t(:errors)[:messages][:invalid] }
 
   validates :name,
             presence: true,
