@@ -23,7 +23,7 @@ so that I can leave some feedbacks or suggestions about service
       end
     end.to_not change(Sidekiq::Extensions::DelayedMailer.jobs, :size)
 
-    expect_to_see "не может быть пустым"
+    expect_to_see I18n.t(:errors)[:messages][:empty]
     expect_to_see_no "Ваше сообщение успешно отправлено!"
   end
 
@@ -37,7 +37,7 @@ so that I can leave some feedbacks or suggestions about service
       end
     end.to_not change(Sidekiq::Extensions::DelayedMailer.jobs, :size)
 
-    expect_to_see "is not email"
+    expect_to_see I18n.t(:errors)[:messages][:invalid]
     expect_to_see_no "Ваше сообщение успешно отправлено!"
   end
 
