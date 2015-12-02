@@ -63,16 +63,8 @@ class Events::RecurringWithNotifications
   end
 
   def get_childs_and_last_child
-    @childs = event.childs_with_parent.where.not(id: except_id)
+    @childs = event.childs_with_parent
     @last_child = childs.last
-  end
-
-  def except_id
-    if action_name == 'destroy'
-      event.id
-    else
-      []
-    end
   end
 
   def update_recurring!
@@ -93,6 +85,8 @@ class Events::RecurringWithNotifications
   end
 
   def check_childs
+    @childs = childs.to_a.delete_if { |child| child.id = event.id }
+
     if childs.size > 0
       destroy_event_with_delay!
     else
@@ -102,10 +96,10 @@ class Events::RecurringWithNotifications
 
   def destroy_event_with_delay!
     Rails.logger.info"\n"
-    Rails.logger.info"   [ RecurringWithNotifications ] call update recurring for #{last_child.inspect}"
+    Rails.logger.info"   [ RecurringWithNotifications ] call update recurring for #{childs.last.inspect}"
 
     event.destroy
-    returned_event = Events::DelayCreateClone.new(last_child).res
+    returned_event = Events::DelayCreateClone.new(childs.last).res
     Events::Notifications.new(returned_event).run if returned_event.new_record?
     returned_event
   end
