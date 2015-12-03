@@ -36,12 +36,12 @@ class Event < ActiveRecord::Base
   end
 
   def trim_title
-    self.title = title.strip()
+    self.title = self.title.strip()
   end
 
   def parse_event_date
-    self.starts_at = Time.zone.parse(starts_at.to_s)
-    self.ends_at = Time.zone.parse(ends_at.to_s)
+    self.starts_at = Time.zone.parse(self.starts_at.to_s)
+    self.ends_at = Time.zone.parse(self.ends_at.to_s)
   end
 
   def childs_with_parent

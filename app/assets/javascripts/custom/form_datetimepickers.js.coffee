@@ -51,7 +51,7 @@ window.FormDatetimepickers =
   base_confs: ->
     {
       useCurrent: false,
-      locale: moment().locale('ru')
+      locale: moment().locale('ru-RU')
     }
 
   increase_date: (current_date)->

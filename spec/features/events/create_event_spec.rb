@@ -15,9 +15,12 @@ I want to have ability to create event
   end
 
   it "I'll see the correct start and end date" do
-    puts "start  js value #{js_value('#event_starts_at')}"
-    puts "start  matcher #{datetimepicker_date(Time.zone.now)}"
+    # puts "start  js value #{js_value('#event_starts_at')}"
+    # puts "start  matcher #{datetimepicker_date(Time.zone.now)}"
     puts page.evaluate_script("window.navigator.language")
+    puts page.evaluate_script("$.fn.datetimepicker.defaults.locale")
+    puts page.evaluate_script("moment().toDate()")
+    puts page.evaluate_script("moment().locale()")
 
     to_eq_in_selector(js_value('#event_starts_at'),
                               "#{datetimepicker_date(Time.zone.now)}")
@@ -25,18 +28,18 @@ I want to have ability to create event
                               "#{datetimepicker_date(Time.zone.now + 10.minute)}")
   end
 
-  it "I mistakenly submit event form with incorrect title" do
-    expect do
-      within("#event_form_modal") do
-        fill_in "event_title", with: ""
-        click_on "Создать"
-        wait_for_ajax
-      end
-    end.to change(Event, :count).by(0)
+  # it "I mistakenly submit event form with incorrect title" do
+  #   expect do
+  #     within("#event_form_modal") do
+  #       fill_in "event_title", with: ""
+  #       click_on "Создать"
+  #       wait_for_ajax
+  #     end
+  #   end.to change(Event, :count).by(0)
 
-    expect_to_see I18n.t("errors.messages.too_short.few", count: 2)
-    expect_to_see "Создание события"
-  end
+  #   expect_to_see I18n.t("errors.messages.too_short.few", count: 2)
+  #   expect_to_see "Создание события"
+  # end
 
   it "I submit event form with correct data" do
     expect do
