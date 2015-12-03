@@ -40,7 +40,7 @@ class Event < ActiveRecord::Base
   end
 
   def parse_event_date
-    starts_at = Time.zone.parse(starts_at.to_s)
+    self.starts_at = Time.zone.parse(starts_at.to_s)
     self.ends_at = Time.zone.parse(ends_at.to_s)
   end
 
