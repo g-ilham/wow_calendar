@@ -15,11 +15,10 @@ I want to have ability to create event
   end
 
   it "I'll see the correct start and end date" do
-    # puts "start  js value #{js_value('#event_starts_at')}"
-    # puts "start  matcher #{datetimepicker_date(Time.zone.now)}"
-    puts page.evaluate_script("window.navigator.language")
+    puts "start  js value #{js_value('#event_starts_at')}"
+    puts "start  matcher #{datetimepicker_date(Time.zone.now)}"
+    puts "time zone name #{Time.zone.name}"
     puts page.evaluate_script("$.fn.datetimepicker.defaults.locale")
-    puts page.evaluate_script("moment().toDate()")
     puts page.evaluate_script("moment().locale()")
     puts page.evaluate_script("window.current_event_start")
 
