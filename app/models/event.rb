@@ -32,10 +32,16 @@ class Event < ActiveRecord::Base
 
   begin :callbacks
     before_validation :trim_title
+    before_validation :parse_event_date
   end
 
   def trim_title
-    self.title = self.title.strip()
+    self.title = title.strip()
+  end
+
+  def parse_event_date
+    self.starts_at = Time.zone.parse(starts_at.to_s)
+    self.ends_at = Time.zone.parse(ends_at.to_s)
   end
 
   def childs_with_parent
