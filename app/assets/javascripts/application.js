@@ -5,6 +5,7 @@
 //= require bootstrap-sprockets
 //= require fancybox
 //= require moment
+//= require moment/ru
 //= require bootstrap-datetimepicker
 //= require_tree ./plugins
 //= require_tree ./theme
