@@ -13,8 +13,8 @@ that I can update user data
   before do
     login_as(user, scope: :user)
     visit root_path
-    show_edit_modal
-    page.execute_script("$('.modal-backdrop').hide()")
+    remove_animation_modal
+    show_modal
   end
 
   it "I'm going to see your data" do
@@ -52,8 +52,9 @@ that I can update user data
     page.execute_script("$('#user_in_fifteen_minutes').trigger('click')")
   end
 
-  def show_edit_modal
+  def show_modal
     click_link "Настройки"
     wait_for_ajax
+    page.execute_script("$('.modal-backdrop').hide()")
   end
 end
