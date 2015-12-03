@@ -24,7 +24,7 @@ window.FormDatetimepickers =
     self = FormDatetimepickers
 
     if form_type == 'new'
-      full_date = moment().toDate()
+      full_date = moment().locale('ru').toDate()
 
       if window.current_event_start < full_date
         window.current_event_start = full_date
@@ -55,7 +55,7 @@ window.FormDatetimepickers =
     }
 
   increase_date: (current_date)->
-    moment(current_date).add(10, 'm').toDate()
+    moment(current_date).locale('ru').add(10, 'm').toDate()
 
   set_ends_at_column_to_starts_at: (starts_date)->
     ends_date_params = $('#ends_at_date').data("DateTimePicker").date()
