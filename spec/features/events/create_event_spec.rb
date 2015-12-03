@@ -21,6 +21,7 @@ I want to have ability to create event
     puts page.evaluate_script("$.fn.datetimepicker.defaults.locale")
     puts page.evaluate_script("moment().toDate()")
     puts page.evaluate_script("moment().locale()")
+    puts page.evaluate_script("window.current_event_start")
 
     to_eq_in_selector(js_value('#event_starts_at'),
                               "#{datetimepicker_date(Time.zone.now)}")
