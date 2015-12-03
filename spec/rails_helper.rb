@@ -25,6 +25,7 @@ RSpec.configure do |config|
   config.include ExpectationHelper, type: :feature
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
+  config.include RemoveAnimationModal, type: :feature
 
   config.before :suite do
     Warden.test_mode!
