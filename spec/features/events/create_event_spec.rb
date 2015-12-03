@@ -15,6 +15,8 @@ I want to have ability to create event
   end
 
   it "I'll see the correct start and end date" do
+    puts "start  js value #{js_value('#event_starts_at')}"
+    puts "start  matcher #{datetimepicker_date(Time.zone.now)}"
     to_eq_in_selector(js_value('#event_starts_at'),
                               "#{datetimepicker_date(Time.zone.now)}")
     to_eq_in_selector(js_value('#event_ends_at'),
