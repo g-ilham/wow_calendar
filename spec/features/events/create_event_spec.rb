@@ -14,32 +14,18 @@ I want to have ability to create event
     show_modal
   end
 
-  it "I'll see the correct start and end date" do
-    puts "start  js value #{js_value('#event_starts_at')}"
-    puts "start  matcher #{datetimepicker_date(Time.zone.now)}"
-    puts "time zone name #{Time.zone.name}"
-    puts page.evaluate_script("$.fn.datetimepicker.defaults.locale")
-    puts page.evaluate_script("moment().locale()")
-    puts page.evaluate_script("window.current_event_start")
+  it "I mistakenly submit event form with incorrect title" do
+    expect do
+      within("#event_form_modal") do
+        fill_in "event_title", with: ""
+        click_on "Создать"
+        wait_for_ajax
+      end
+    end.to change(Event, :count).by(0)
 
-    to_eq_in_selector(js_value('#event_starts_at'),
-                              "#{datetimepicker_date(Time.zone.now)}")
-    to_eq_in_selector(js_value('#event_ends_at'),
-                              "#{datetimepicker_date(Time.zone.now + 10.minute)}")
+    expect_to_see I18n.t("errors.messages.too_short.few", count: 2)
+    expect_to_see "Создание события"
   end
-
-  # it "I mistakenly submit event form with incorrect title" do
-  #   expect do
-  #     within("#event_form_modal") do
-  #       fill_in "event_title", with: ""
-  #       click_on "Создать"
-  #       wait_for_ajax
-  #     end
-  #   end.to change(Event, :count).by(0)
-
-  #   expect_to_see I18n.t("errors.messages.too_short.few", count: 2)
-  #   expect_to_see "Создание события"
-  # end
 
   it "I submit event form with correct data" do
     expect do
@@ -58,13 +44,5 @@ I want to have ability to create event
   def show_modal
     remove_animation_modal
     page.execute_script("$('.js-alt-create-event-link').trigger('click')")
-  end
-
-  def js_value(id)
-    page.evaluate_script("$('#{id}').val()")
-  end
-
-  def datetimepicker_date(time)
-    time.strftime('%d.%m.%Y %H:%M')
   end
 end
