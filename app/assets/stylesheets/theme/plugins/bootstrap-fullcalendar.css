@@ -10,7 +10,7 @@
  */
 
 
-.fc {
+ .fc {
   direction: ltr;
   text-align: left;
 }
@@ -125,10 +125,10 @@ html .fc,
 
 .fc-widget-header {
   background-image: -moz-linear-gradient(top, #fafafa, #efefef);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#efefef));
-    background-image: -webkit-linear-gradient(top, #fafafa, #efefef);
-    background-image: -o-linear-gradient(top, #fafafa, #efefef);
-    background-image: linear-gradient(to bottom, #fafafa, #efefef);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#efefef));
+  background-image: -webkit-linear-gradient(top, #fafafa, #efefef);
+  background-image: -o-linear-gradient(top, #fafafa, #efefef);
+  background-image: linear-gradient(to bottom, #fafafa, #efefef);
   color: #646464;
 }
 
@@ -144,7 +144,7 @@ html .fc,
 
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
   background: #9cf;
-  opacity: 0.2;
+  opacity: .2;
   filter: alpha(opacity=20); /* for IE */
 }
 
@@ -188,7 +188,7 @@ html .fc,
   float: left;
   height: 1.9em;
   line-height: 1.9em;
-  padding: 0.6em;
+  padding: 0 .6em;
   white-space: nowrap;
 }
 
@@ -214,6 +214,10 @@ html .fc,
   position: absolute;
   top: 50%;
   left: 0;
+}
+
+.fc-state-default .fc-button-effect span {
+
 }
 
 /* button states (determines colors)  */
@@ -271,7 +275,7 @@ html .fc,
 .fc-event {
   border-style: solid;
   border-width: 0;
-  font-size: 0.85em;
+  font-size: .85em;
   cursor: default;
 }
 
@@ -309,12 +313,12 @@ a.fc-event {
 }
 
 .fc .ui-resizable-handle { /*** TODO: don't use ui-resizable anymore, change class ***/
-  display: block;
-  position: absolute;
-  z-index: 99999;
-  overflow: hidden; /* hacky spaces (IE6/7) */
-  font-size: 300%;  /* */
-  line-height: 50%; /* */
+display: block;
+position: absolute;
+z-index: 99999;
+overflow: hidden; /* hacky spaces (IE6/7) */
+font-size: 300%;  /* */
+line-height: 50%; /* */
 }
 
 
@@ -346,7 +350,7 @@ a.fc-event {
 }
 
 .fc-event-hori .ui-resizable-handle {
-  padding-bottom: 14px; /* IE6 had 0 height */
+  _padding-bottom: 14px; /* IE6 had 0 height */
 }
 
 
@@ -416,6 +420,7 @@ a.fc-event {
 
 table.fc-border-separate {
   border-collapse: separate;
+
 }
 
 .fc-border-separate th,
@@ -458,28 +463,28 @@ table.fc-border-separate {
   /* opacity with small font can sometimes look too faded
      might want to set the 'color' property instead
      making day-numbers bold also fixes the problem */
-}
+   }
 
-.fc-grid .fc-day-content {
-  clear: both;
-  padding: 2px 2px 1px; /* distance between events and day edges */
-}
+   .fc-grid .fc-day-content {
+    clear: both;
+    padding: 2px 2px 1px; /* distance between events and day edges */
+  }
 
-/* event styles */
+  /* event styles */
 
-.fc-grid .fc-event-time {
-  font-weight: bold;
-}
+  .fc-grid .fc-event-time {
+    font-weight: bold;
+  }
 
-/* right-to-left */
+  /* right-to-left */
 
-.fc-rtl .fc-grid .fc-day-number {
-  float: left;
-}
+  .fc-rtl .fc-grid .fc-day-number {
+    float: left;
+  }
 
-.fc-rtl .fc-grid .fc-event-time {
-  float: right;
-}
+  .fc-rtl .fc-grid .fc-event-time {
+    float: right;
+  }
 
 
 
@@ -525,7 +530,7 @@ table.fc-border-separate {
 
 .fc-agenda-allday .fc-day-content {
   min-height: 34px; /* TODO: doesnt work well in quirksmode */
-  height: 34px;
+  _height: 34px;
 }
 
 /* divider (between all-day and slots) */
@@ -598,7 +603,7 @@ table.fc-border-separate {
   width: 100%;
   height: 100%;
   background: #fff;
-  opacity: 0.3;
+  opacity: .3;
   filter: alpha(opacity=30);
 }
 
@@ -622,5 +627,5 @@ table.fc-border-separate {
 }
 
 .fc-agenda .ui-resizable-resizing { /* TODO: better selector */
-  overflow: hidden;
+  _overflow: hidden;
 }
