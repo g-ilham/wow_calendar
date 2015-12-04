@@ -26,6 +26,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
   config.include RemoveAnimationModal, type: :feature
+  config.include DateTimeHelpers, type: :feature
 
   config.before :suite do
     Warden.test_mode!
