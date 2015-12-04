@@ -51,7 +51,7 @@ window.FormDatetimepickers =
   base_confs: ->
     {
       useCurrent: false,
-      format: 'YYYY-M-DDTHH:mmZ'
+      format: 'YYYY-M-DD HH:mm Z',
       locale: 'ru'
     }
 

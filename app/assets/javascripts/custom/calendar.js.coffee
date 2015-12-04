@@ -28,10 +28,12 @@ window.Calendar =
           day: "День"
       },
       allDayText: 'Весь день',
-      timeFormat: {
-                    agenda: 'H:mm { - H:mm } ',
-                  },
       editable: true,
+      ignoreTimezone: false,
+      axisFormat: 'HH:mm',
+      timeFormat: {
+        agenda: 'HH:mm{ - hh:mm}'
+      },
       events: window.calendar_events,
       dayClick: (date, allDay, jsEvent, view)->
         console.log ' '
@@ -65,6 +67,9 @@ window.Calendar =
         console.log ' '
         console.log 'eventResize'
         Calendar.drop_or_resize(event, revertFunc)
+
+      eventRender: (event, element) ->
+        element.attr('data-event-id', event.id)
 
   drop_or_resize: (event, revertFunc)->
     window.current_event_revert = revertFunc
