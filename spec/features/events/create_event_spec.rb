@@ -34,7 +34,7 @@ I want to have ability to create event
     expect_to_see "Создание события"
   end
 
-  it "I submit event form with correct data" do
+  it "I mistakenly submit event form with correct data" do
     expect do
       within("#event_form_modal") do
         fill_in "event_title", with: title
