@@ -27,6 +27,8 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :feature
   config.include RemoveAnimationModal, type: :feature
   config.include DateTimeHelpers, type: :feature
+  config.include Shoulda::Matchers::ActiveModel, type: :model
+  config.include Shoulda::Matchers::ActiveRecord, type: :model
 
   config.before :suite do
     Warden.test_mode!
