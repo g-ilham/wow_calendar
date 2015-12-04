@@ -18,7 +18,7 @@ I want to have ability to remove event
       within("#event_form_modal") do
         find(:css, ".js-event-remove").click
         # wait_for_ajax
-        sleep 1
+        sleep 3
       end
     end.to change(Event, :count).from(1).to(0)
 

@@ -31,7 +31,7 @@ I want to have ability to update event
       fill_form_attrs("", "")
       click_on "Обновить"
       # wait_for_ajax
-      sleep 1
+      sleep 3
     end
 
     expect_to_see I18n.t("errors.messages.too_short.few", count: 2)
@@ -43,7 +43,7 @@ I want to have ability to update event
       fill_form_attrs(title, event_date_parsed(starts_at))
       click_on "Обновить"
       # wait_for_ajax
-      sleep 1
+      sleep 3
     end
 
     expect_to_see title
