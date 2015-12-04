@@ -8,8 +8,16 @@ FactoryGirl.define do
     last_name "Ivanov"
     email "test@example.com"
     password Devise.friendly_token[0,20]
-    confirmed_at DateTime.now
+    confirmed_at Time.zone.now
     photo { Rack::Test::UploadedFile.new(File.join(Rails.root,
             'spec', 'support', 'images', 'test_user_photo.jpg')) }
+  end
+
+  factory :event do
+    association :user
+    title "Встреча с одноклассниками"
+    starts_at Time.zone.now
+    ends_at (Time.zone.now + 1.hour)
+    repeat_type 'not_repeat'
   end
 end
