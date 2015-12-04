@@ -30,7 +30,8 @@ I want to have ability to update event
     within("#event_form_modal") do
       fill_form_attrs("", "")
       click_on "Обновить"
-      wait_for_ajax
+      # wait_for_ajax
+      sleep 1
     end
 
     expect_to_see I18n.t("errors.messages.too_short.few", count: 2)
@@ -41,7 +42,8 @@ I want to have ability to update event
     within("#event_form_modal") do
       fill_form_attrs(title, event_date_parsed(starts_at))
       click_on "Обновить"
-      wait_for_ajax
+      # wait_for_ajax
+      sleep 1
     end
 
     expect_to_see title
