@@ -17,7 +17,7 @@ FactoryGirl.define do
     association :user
     title "Встреча с одноклассниками"
     starts_at Time.zone.now
-    ends_at (Time.zone.now + 1.hour)
+    ends_at (Time.zone.now + 3.hour)
     repeat_type 'not_repeat'
   end
 end
