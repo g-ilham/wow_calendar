@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
     validates :title, length: { minimum: 2, maximum: 100 }
     validates :repeat_type, inclusion: { in: REPEAT_TYPES }, allow_nil: true
     validates_datetime :starts_at, on_or_after: lambda { Time.zone.now.strftime("%F %H:%M") }
-    validates_datetime :ends_at, on_or_after: :starts_at, if: "!self.all_day"
+    validates_datetime :ends_at, on_or_after: :starts_at, if: :need_validate_ends_at
   end
 
   begin :callbacks
@@ -57,5 +57,9 @@ class Event < ActiveRecord::Base
       I18n.t(:activerecord)[:models][:event] + ' ' +
       I18n.t(:errors)[:messages][:empty]
     ]
+  end
+
+  def need_validate_ends_at
+    !self.all_day && self.starts_at.present?
   end
 end
