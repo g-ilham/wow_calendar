@@ -12,10 +12,6 @@ class User < ActiveRecord::Base
       format: { with: NAME_REGEXP },
       allow_nil: true,
       allow_blank: true
-
-    validates :email, presence: true,
-                      uniqueness: true, if: 'self.email_registration?'
-
     validates_with PhotoValidator, if: 'self.photo?'
   end
 
@@ -28,8 +24,8 @@ class User < ActiveRecord::Base
   end
 
   def trim_name
-    self.first_name = self.first_name.strip()
-    self.last_name = self.last_name.strip()
+    self.first_name = self.first_name.strip() if first_name
+    self.last_name = self.last_name.strip() if last_name
   end
 
   def email_registration?
