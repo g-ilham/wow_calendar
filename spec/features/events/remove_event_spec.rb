@@ -16,7 +16,7 @@ I want to have ability to remove event
   it "I submit remove request for destroy event" do
     expect do
       within("#event_form_modal") do
-        click_on "Удалить"
+        find(:css, ".js-event-remove").click
         wait_for_ajax
       end
     end.to change(Event, :count).from(1).to(0)
