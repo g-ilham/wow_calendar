@@ -14,6 +14,13 @@ I want to have ability to create event
     show_modal
   end
 
+  it "I'll see the correct start and end date" do
+    to_eq_in_selector(js_value('#event_starts_at'),
+                              "#{event_date_parsed(Time.zone.now)}")
+    to_eq_in_selector(js_value('#event_ends_at'),
+                              "#{event_date_parsed(Time.zone.now + 10.minute)}")
+  end
+
   it "I mistakenly submit event form with incorrect title" do
     expect do
       within("#event_form_modal") do
