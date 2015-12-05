@@ -9,6 +9,8 @@ I want to have ability to remove event
 
   before do
     login_as(event.user, scope: :user)
+    page.driver.browser.timeout = 10
+
     visit events_path
     show_modal
   end
