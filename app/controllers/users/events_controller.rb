@@ -1,59 +1,75 @@
 class Users::EventsController < ApplicationController
   layout 'theme'
+
   before_action :fetch_prev_event_attrs, only: [ :update ]
 
-  expose(:recurring_with_notifications) do
-    Events::RecurringWithNotifications.new(event,
-                                          action_name,
-                                          @prev_event_attr)
+  expose(:events) do
+    serialize(current_user.events)
   end
 
-  expose(:errors) do
-    if event
-      event.errors.full_messages
-    else
-      [event.empty_message]
-    end
+  expose(:event) do
+    current_user.events.find_by_id(params[:id])
   end
 
-  expose(:errors_response) do
-    render json: { errors: errors }, status: :unprocessable_entity
+  expose(:event_eliminator) do
+    Events::Eliminator.new(event)
   end
 
-  expose(:success_response) do
-    res = { repeated_event: after_processing_event_action }
-    if action_name == 'destroy'
-      res
-    else
-      res[:event] = serialize_events(event)
-    end
-    res
+  expose(:event_settings_creator) do
+    Events::SettingsCreator.new(event)
   end
 
-  def index
+  expose(:event_settings_updator) do
+    Events::SettingUpdator.new(event, @prev_event_attr)
   end
 
   def create
     self.event = current_user.events.new(event_params)
-    handle_event_actions(event.save)
+
+    if event.save
+      repeated_event = event_settings_creator.run
+
+      render json: {
+        event: serialize(event),
+        repeated_event: serialize(repeated_event)
+      }, status: :ok
+    else
+      errors_response
+    end
   end
 
   def update
-    handle_event_actions(event.update(event_params))
+    if event.update(event_params)
+      repeated_event = event_settings_updator.run
+
+      render json: {
+        event: serialize(event),
+        repeated_event: serialize(repeated_event)
+      }, status: :ok
+    else
+      errors_response
+    end
   end
 
   def destroy
-    handle_event_actions(true)
+    if event_eliminator.success?
+      self.event = event_eliminator.run
+
+      render json: { repeated_event: serialize(event) }, status: :ok
+    else
+      errors_response
+    end
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:title,
-                                  :starts_at,
-                                  :ends_at,
-                                  :repeat_type,
-                                  :all_day)
+    params.require(:event).permit(
+      :title,
+      :starts_at,
+      :ends_at,
+      :repeat_type,
+      :all_day)
   end
 
   def fetch_prev_event_attrs
@@ -64,15 +80,20 @@ class Users::EventsController < ApplicationController
     }
   end
 
-  def handle_event_actions(call_method)
-    if event && call_method
-      render json: success_response, status: :ok
-    else
-      errors_response
-    end
+  def serialize(event)
+    ActiveModel::ArraySerializer.new(event,
+                                     each_serializer: EventSerializer)
   end
 
-  def after_processing_event_action
-    serialize_events(recurring_with_notifications.base_handle)
+  def errors_response
+    render json: { errors: errors }, status: :unprocessable_entity
+  end
+
+  def errors
+    if event.present?
+      event.errors.full_messages
+    else
+      [event.empty_message]
+    end
   end
 end
