@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
   begin :validations
     validates :title, format: { with: TITLE_REGEXP  }, if: 'self.title.present?'
     validates :title, length: { minimum: 2, maximum: 100 }
-    validates :repeat_type, inclusion: { in: REPEAT_TYPES }, allow_nil: true
+    validates :repeat_type, inclusion: { in: REPEAT_TYPES }
     validates_datetime :starts_at, on_or_after: lambda { Time.zone.now.strftime("%F %H:%M") }
     validates_datetime :ends_at, on_or_after: :starts_at, if: :need_validate_ends_at
   end
