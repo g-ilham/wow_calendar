@@ -14,7 +14,7 @@ header#header
 
       - if user_signed_in? && completed_registration?
         li
-          = link_to "Мои события", events_url
+          = link_to "Мои события", users_events_url
         li
           = link_to 'Настройки', edit_users_setting_url(current_user),
                                  remote: true,

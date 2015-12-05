@@ -1,14 +1,14 @@
 script#new_event_template type="text/x-handlebars-template"
   .modal-dialog
     .modal-content
-      form#new_event.simple_form.new_event accept-charset="UTF-8" action="/events" data-remote="true" method="post" novalidate="novalidate"
+      #new_event.simple_form.new_event
         input name="utf8" type="hidden" value="✓" /
         .modal-header
           button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
           h4.modal-title
             | Создание события
         .modal-body
-          = render 'events/errors'
+          = render 'users/events/errors'
           .form-group
             label Название
             input#event_title.string.optional.form-control.round-form name="event[title]" type="text" /

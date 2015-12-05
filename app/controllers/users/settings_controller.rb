@@ -1,4 +1,4 @@
-class UsersSettingsController < ApplicationController
+class Users::SettingsController < ApplicationController
   respond_to :json
   before_action :get_prev_notifications_options, only: [ :update ]
 

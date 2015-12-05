@@ -1,11 +1,11 @@
-class EventsController < ApplicationController
+class Users::EventsController < ApplicationController
   layout 'theme'
   before_action :fetch_prev_event_attrs, only: [ :update ]
 
   expose(:recurring_with_notifications) do
     Events::RecurringWithNotifications.new(event,
-                                            action_name,
-                                            @prev_event_attr)
+                                          action_name,
+                                          @prev_event_attr)
   end
 
   expose(:errors) do

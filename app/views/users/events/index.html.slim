@@ -1,6 +1,6 @@
 section#main-content
   section.wrapper.site-min-height#calendar_page
-    = render 'events/content'
+    = render 'content'
 
 #event_form_modal.modal.fade aria-hidden="true" aria-labelledby="new_event_form_modal_label" role="dialog" tabindex="-1"
 
@@ -12,5 +12,5 @@ section#main-content
   | BaseHandlebars.new_event();
   | BaseHandlebars.edit_event();
   | Calendar.init("#{events.to_json}");
-  | CreateAndUpdateEvents.init("#{events_path}");
+  | CreateAndUpdateEvents.init("#{users_events_path}");
   | RemoveEvent.init();

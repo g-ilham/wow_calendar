@@ -10,9 +10,12 @@ Rails.application.routes.draw do
       registrations: "users/registrations"
     }
 
-  resources :users_settings, only: [ :edit, :update ]
-  resources :events, except: [ :new, :edit ]
-  resources :contacts, only: [:create]
+  namespace :users do
+    resources :settings, only: [ :edit, :update ]
+    resources :events, except: [ :new, :edit ]
+  end
+
+  resources :contacts, only: [ :create ]
 
   get 'complete_social_registration', to: 'home#complete_social_registration'
   put 'add_email_for_social', to: 'home#add_email_for_social'

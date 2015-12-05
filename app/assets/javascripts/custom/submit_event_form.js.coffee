@@ -53,7 +53,7 @@ window.SubmitEventForm =
 
   update_path_and_request_type: ->
     {
-      path: '/events/' + window.current_event_id,
+      path: '/users/events/' + window.current_event_id,
       type: 'put'
     }
 

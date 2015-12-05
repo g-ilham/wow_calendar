@@ -11,7 +11,7 @@ window.RemoveEvent =
       BaseScripts.toogle_class_for_elements(btn_classes, 'add')
 
       $.ajax
-        url: '/events/' + window.current_event_id
+        url: '/users/events/' + window.current_event_id
         type: 'delete'
         dataType: 'json'
         data: {}
