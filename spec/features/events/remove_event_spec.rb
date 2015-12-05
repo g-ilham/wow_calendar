@@ -12,18 +12,21 @@ I want to have ability to remove event
     page.driver.browser.timeout = 10
 
     visit events_path
-    show_modal
   end
 
   it "I submit remove request for destroy event" do
-    expect do
-      within("#event_form_modal") do
-        click_on "Удалить"
-        wait_for_ajax
-      end
-    end.to change(Event, :count).from(1).to(0)
+    expect(Event.count).to eq 1
+
+    show_modal
+
+    within("#event_form_modal") do
+      click_on "Удалить"
+    end
+
+    wait_for_ajax
 
     expect_to_see_no title
+    expect(Event.count).to eq 0
   end
 
   def show_modal
