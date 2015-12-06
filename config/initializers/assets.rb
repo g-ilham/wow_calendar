@@ -12,6 +12,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   theme.css.scss
   theme.js
+  transit_theme.scss
   transit_theme.css
   transit_theme.js
   transit_theme/*
