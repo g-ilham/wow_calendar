@@ -10,7 +10,7 @@ I want to have ability to create event
 
   before do
     login_as(user, scope: :user)
-    visit events_path
+    visit users_events_path
     show_modal
   end
 

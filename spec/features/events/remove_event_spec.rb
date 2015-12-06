@@ -11,7 +11,7 @@ I want to have ability to remove event
     login_as(event.user, scope: :user)
     page.driver.browser.timeout = 10
 
-    visit events_path
+    visit users_events_path
   end
 
   it "I submit remove request for destroy event" do

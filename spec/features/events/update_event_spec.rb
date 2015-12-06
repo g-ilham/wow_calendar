@@ -13,7 +13,7 @@ I want to have ability to update event
 
   before do
     login_as(event.user, scope: :user)
-    visit events_path
+    visit users_events_path
     show_modal
   end
 
