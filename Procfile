@@ -1,2 +1,2 @@
-web: rails s
-sidekiq: bundle exec sidekiq -C config/sidekiq.yml -L log/sidekiq.log
+web: bundle exec rails server
+sidekiq: bundle exec sidekiq
