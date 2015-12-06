@@ -13,7 +13,7 @@ module System
                     ]
 
     def initialize
-      asset_matcher = 'app/assets/stylesheets/'
+      asset_matcher = Rails.env.development? ? 'app/assets/stylesheets/' : 'public/assets/'
       path = asset_matcher + 'transit_theme/*.css.scss'
       @paths = System::GetAssetFilesUrls.new(asset_matcher, path).paths
       sort_css_paths if paths
