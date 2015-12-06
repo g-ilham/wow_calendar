@@ -68,7 +68,7 @@ class Events::RecurringWithNotifications
     Rails.logger.info"\n"
     Rails.logger.info"   [ RecurringWithNotifications | REMOVE RECURRNIG ] with parent_id #{parent_id}"
     parent_id = (last_child.parent_id || last_child.id)
-    Events::CleanScheduledJobs.new(parent_id,
+    Events::CleanUpScheduledJobs.new(parent_id,
                                     "Events::ScheduleNextEvent")
 
     if action_name == 'destroy'

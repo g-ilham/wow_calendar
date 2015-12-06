@@ -13,7 +13,7 @@ html
     = yield
     = render 'devise/modals/sign_in_or_sign_up'
     = render 'devise/modals/confirmation_message'
-    = render 'users_settings/system_blocks/edit_user_settings'
+    = render 'users/settings/system_blocks/edit_user_settings'
 
     = javascript_include_tag 'transit_theme'
     = javascript_tag "$(function() { EmptyClick.init(); #{yield(:javascript_code)} });" if content_for? :javascript_code

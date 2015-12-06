@@ -9,7 +9,7 @@
     | $("#edit_user_settings #user_" + "#{key}").parent().find('.form-error-message').text("#{value.first}");
 
 - else
-  | $('#edit_user_settings .modal-content').html("#{ j(render 'users_settings/remote_form') }");
+  | $('#edit_user_settings .modal-content').html("#{ j(render 'users/settings/remote_form') }");
   | $('.account_updated_message').removeClass('hidden');
 
 | $('#edit_user_settings a').removeClass('disabled');

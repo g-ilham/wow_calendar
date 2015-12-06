@@ -23,8 +23,8 @@ class Events::Eliminator
   private
 
   def clean_jobs
-    Events::CleanScheduledJobs.new(event.id, "EventMailer").run
-    Events::CleanScheduledJobs.new(parent_id, "Events::ScheduleNextEvent").run
+    Events::CleanUpScheduledJobs.new(event.id, "EventMailer").run
+    Events::CleanUpScheduledJobs.new(parent_id, "Events::ScheduleNextEvent").run
   end
 
   def persist!

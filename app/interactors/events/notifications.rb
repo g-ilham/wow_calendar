@@ -68,7 +68,7 @@ class Events::Notifications
         Events::Notifications.new(event).update_for_event!
       else
         Rails.logger.info"   [ Notifications | CLEAN FOR EVENT ] for #{event.inspect}"
-        Events::CleanScheduledJobs.new(event.id,
+        Events::CleanUpScheduledJobs.new(event.id,
                                         'EventMailer')
       end
     end
@@ -77,7 +77,7 @@ class Events::Notifications
   def update_for_event!
     Rails.logger.info"\n"
     Rails.logger.info"   [ Notifications | REMOVE NOTIFICATIONS ] for #{event.inspect}"
-    Events::CleanScheduledJobs.new(event.id,
+    Events::CleanUpScheduledJobs.new(event.id,
                                     'EventMailer')
     Rails.logger.info"\n"
     Rails.logger.info"   [ Notifications ] action_name #{action_name}"

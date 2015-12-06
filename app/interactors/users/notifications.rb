@@ -9,9 +9,9 @@ class Users::Notifications
     in_day: 'Через день у вас событие: '
   }
 
-  attr_reader :user,
-              :selected_at_least_of_one_option,
-              :prev_notifications_options
+  attr_accessor :user,
+                :selected_at_least_of_one_option,
+                :prev_notifications_options
 
   def initialize(user, prev_notifications_options)
     self.user = user
@@ -27,15 +27,15 @@ class Users::Notifications
 
   def run_update_for_collection!
     user.events.each do |event|
-      Events::CleanScheduledJobs.new(event.id, 'EventMailer')
+      Events::CleanUpScheduledJobs.new(event.id, 'EventMailer')
 
       if selected_at_least_of_one_option
-        run_this
+        schedule_mailers(event)
       end
     end
   end
 
-  def run_this
+  def schedule_mailers(event)
     selected_options.each do |key, value|
       sending_ops = get_sending_time(key, event)
 

@@ -1,6 +1,6 @@
 require 'sidekiq/api'
 
-class Events::CleanScheduledJobs
+class Events::CleanUpScheduledJobs
   attr_accessor :event_id,
                 :job_name,
                 :target_jobs
@@ -26,9 +26,9 @@ class Events::CleanScheduledJobs
 
     if job_yml.first.to_s == job_name
       if job_name == 'Events::ScheduleNextEvent'
-        args.first
+        attrs.first
       else
-        args.first.id
+        attrs.first.id
       end
     end
   end
