@@ -7,7 +7,7 @@ class Events::ScheduleNextEvent
 
   def initialize(event, parent_id)
     self.event = event
-    self.user = user
+    self.user = event.user
     self.parent_id = parent_id
     self.user_notifications_helper = Users::Notifications.new(user,
                                                               user.notifications_options)

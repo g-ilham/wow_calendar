@@ -23,6 +23,17 @@ class Users::Notifications
     run_update_for_collection! if notification_options_updated?
   end
 
+  def schedule_mailers(event)
+    selected_options.each do |key, value|
+      sending_ops = get_sending_time(key, event)
+
+      if sending_ops > Time.zone.now
+        EventMailer.delay_until(sending_ops)
+                   .notify(event, value)
+      end
+    end
+  end
+
   private
 
   def run_update_for_collection!
@@ -31,17 +42,6 @@ class Users::Notifications
 
       if selected_at_least_of_one_option
         schedule_mailers(event)
-      end
-    end
-  end
-
-  def schedule_mailers(event)
-    selected_options.each do |key, value|
-      sending_ops = get_sending_time(key, event)
-
-      if sending_ops > Time.zone.now
-        EventMailer.delay_until(sending_ops)
-                   .notify(event, value)
       end
     end
   end
