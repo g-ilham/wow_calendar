@@ -20,7 +20,7 @@ class Users::EventsController < ApplicationController
   end
 
   expose(:event_settings_updator) do
-    Events::SettingUpdator.new(event, @prev_event_attr)
+    Events::SettingsUpdator.new(event, @prev_event_attr)
   end
 
   def create

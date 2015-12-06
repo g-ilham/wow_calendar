@@ -85,10 +85,8 @@ window.SubmitEventForm =
       window.repeated_event = Calendar.prepare_events_array(response.repeated_event)
 
       if event_type != 'drop_or_resize'
-        if !button.hasClass 'js-create-event-link'
           window.my_full_calendar.fullCalendar( 'removeEvents',
                                                 window.current_event[0].id )
-
 
           window.my_full_calendar.fullCalendar( 'renderEvent',
                                                 window.current_event[0], true )

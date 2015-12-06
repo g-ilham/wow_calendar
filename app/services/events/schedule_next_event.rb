@@ -2,15 +2,12 @@ class Events::ScheduleNextEvent
 
   attr_accessor :event,
                 :user,
-                :parent_id,
-                :user_notifications_helper
+                :parent_id
 
   def initialize(event, parent_id)
     self.event = event
     self.user = event.user
     self.parent_id = parent_id
-    self.user_notifications_helper = Users::Notifications.new(user,
-                                                              user.notifications_options)
   end
 
   def run
@@ -61,7 +58,9 @@ class Events::ScheduleNextEvent
       dup = clone_attrs(last_event)
 
       if dup.save!
-        user_notifications_helper.schedule_mailers(dup)
+        user = dup.user
+        Users::Notifications.new(user,
+                                 user.notifications_options).schedule_mailers(dup)
         Events::ScheduleNextEvent.new(dup, parent_id).run
 
         dup

@@ -1,17 +1,17 @@
-class Events::SettingUpdator
+class Events::SettingsUpdator
   attr_accessor :event,
                 :user,
                 :childs,
                 :last_child,
                 :parent_id,
-                :prev_event_attr
+                :prev_event_attr,
+                :user_notifications_helper
 
   def initialize(event, prev_event_attr)
     self.event = event
     self.user = event.user
     self.prev_event_attr = prev_event_attr
     self.childs = event.childs_with_parent
-                       .where.not(id: event.id)
     self.last_child = childs.last
     self.parent_id = event.parent_id || event.id
 
