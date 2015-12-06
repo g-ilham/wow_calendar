@@ -1,4 +1,6 @@
 require 'sidekiq/api'
+require_dependency "#{Rails.root}/app/mailers/event_mailer"
+require_dependency "#{Rails.root}/app/services/events/schedule_next_event"
 
 class Events::CleanUpScheduledJobs
   attr_accessor :event_id,

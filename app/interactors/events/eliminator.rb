@@ -1,6 +1,7 @@
 class Events::Eliminator
   attr_accessor :event,
                 :childs,
+                :last_child,
                 :parent_id
 
   def initialize(event)
