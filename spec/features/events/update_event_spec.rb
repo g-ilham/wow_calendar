@@ -37,7 +37,7 @@ I want to have ability to update event
     expect_to_see invalid_datetime_message
   end
 
-  it "I submit event form with correct data" do
+  it "I submit event form with correct data", skip_travis: true do
     within("#event_form_modal") do
       fill_form_attrs(title, event_date_parsed(starts_at))
       click_on "Обновить"
