@@ -10,30 +10,40 @@ class Event < ActiveRecord::Base
 
   TITLE_REGEXP = /\A[а-яА-Яa-zA-Z0-9\s]+\z/
 
-  begin :asssociations
-    belongs_to :user
-    belongs_to :parent, class_name: "Event", foreign_key: 'parent_id'
-    has_many :childs, class_name: "Event", foreign_key: 'parent_id', validate: false
+  belongs_to :user
+  belongs_to :parent, class_name: "Event",
+                      foreign_key: 'parent_id'
+
+  has_many :childs, class_name: "Event",
+                    foreign_key: 'parent_id'
+
+  default_scope { order(starts_at: :asc) }
+
+  scope :childs_with_parent, -> (parent_id) do
+    where.any_of(id: parent_id, parent_id: parent_id)
   end
 
-  begin :scopes
-    default_scope { order(starts_at: :asc) }
-    scope :childs_with_parent, -> (parent_id) { where("(id=?) OR (parent_id=?)",
-                                                       parent_id, parent_id) }
+  validates :title, format: { with: TITLE_REGEXP  },
+                    if: 'self.title.present?'
+  validates :title, length: { minimum: 2, maximum: 100 }
+  validates :repeat_type, inclusion: { in: REPEAT_TYPES }
+
+  validates_datetime :starts_at, on_or_after: lambda { Time.zone.now.strftime("%F %H:%M") }
+  validates_datetime :ends_at, after: :starts_at,
+                               if: :need_to_validate_ends_at?
+
+  before_validation :trim_title
+  before_validation :parse_event_date
+
+  def childs_with_parent
+    self.class.childs_with_parent(parent_id || id)
   end
 
-  begin :validations
-    validates :title, format: { with: TITLE_REGEXP  }, if: 'self.title.present?'
-    validates :title, length: { minimum: 2, maximum: 100 }
-    validates :repeat_type, inclusion: { in: REPEAT_TYPES }
-    validates_datetime :starts_at, on_or_after: lambda { Time.zone.now.strftime("%F %H:%M") }
-    validates_datetime :ends_at, on_or_after: :starts_at, if: :need_validate_ends_at
+  def need_to_validate_ends_at?
+    starts_at.present? && !self.all_day?
   end
 
-  begin :callbacks
-    before_validation :trim_title
-    before_validation :parse_event_date
-  end
+  private
 
   def trim_title
     self.title = title.strip()
@@ -42,24 +52,5 @@ class Event < ActiveRecord::Base
   def parse_event_date
     self.starts_at = Time.zone.parse(starts_at.to_s)
     self.ends_at = Time.zone.parse(ends_at.to_s)
-  end
-
-  def childs_with_parent
-    parent_id = self.parent_id
-    if !parent_id
-      parent_id = self.id
-    end
-    Event.childs_with_parent(parent_id)
-  end
-
-  def empty_message
-    [
-      I18n.t(:activerecord)[:models][:event] + ' ' +
-      I18n.t(:errors)[:messages][:empty]
-    ]
-  end
-
-  def need_validate_ends_at
-    !self.all_day && self.starts_at.present?
   end
 end

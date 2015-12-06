@@ -37,7 +37,7 @@ class Events::CleanScheduledJobs
     Rails.logger.info"   [ CleanScheduledJobs ] current class #{job_yml.first}"
 
     if job_yml.first.to_s == class_name
-      if class_name == 'Events::DelayCreateClone'
+      if class_name == 'Events::ScheduleNextEvent'
         args.first
       else
         args.first.id

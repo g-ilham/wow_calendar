@@ -23,7 +23,7 @@ class Events::RecurringWithNotifications
     if action_name == "create"
       Rails.logger.info"  [ RecurringWithNotifications ] only create"
       Events::Notifications.new(event).run
-      Events::DelayCreateClone.new(event).res
+      Events::ScheduleNextEvent.new(event).res
 
     elsif changed_event_attrs || action_name == "destroy"
       Rails.logger.info"  [ RecurringWithNotifications ] only update_recurring_and_notifications"
@@ -72,7 +72,7 @@ class Events::RecurringWithNotifications
     Rails.logger.info"   [ RecurringWithNotifications | REMOVE RECURRNIG ] with parent_id #{parent_id}"
     parent_id = (last_child.parent_id || last_child.id)
     Events::CleanScheduledJobs.new(parent_id,
-                                    "Events::DelayCreateClone")
+                                    "Events::ScheduleNextEvent")
 
     if action_name == 'destroy'
       check_childs
@@ -80,7 +80,7 @@ class Events::RecurringWithNotifications
       Rails.logger.info"\n"
       Rails.logger.info"   [ RecurringWithNotifications ] call update recurring for #{event.inspect}"
 
-      Events::DelayCreateClone.new(last_child).res
+      Events::ScheduleNextEvent.new(last_child).res
     end
   end
 
@@ -99,7 +99,7 @@ class Events::RecurringWithNotifications
     Rails.logger.info"   [ RecurringWithNotifications ] call update recurring for #{childs.last.inspect}"
 
     event.destroy
-    returned_event = Events::DelayCreateClone.new(childs.last).res
+    returned_event = Events::ScheduleNextEvent.new(childs.last).res
     Events::Notifications.new(returned_event).run if returned_event.new_record?
     returned_event
   end

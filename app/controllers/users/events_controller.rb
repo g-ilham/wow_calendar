@@ -93,7 +93,14 @@ class Users::EventsController < ApplicationController
     if event.present?
       event.errors.full_messages
     else
-      [event.empty_message]
+      empty_message
     end
+  end
+
+  def empty_message
+    [
+      I18n.t(:activerecord)[:models][:event] + ' ' +
+      I18n.t(:errors)[:messages][:empty]
+    ]
   end
 end
