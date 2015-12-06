@@ -6,22 +6,16 @@ class User < ActiveRecord::Base
 
   NAME_REGEXP = /\A[а-яА-Яa-zA-Z0-9\s]+\z/
 
-  begin :validations
-    validates :first_name, :last_name,
-      length: { minimum: 2, maximum: 100 },
-      format: { with: NAME_REGEXP },
-      allow_nil: true,
-      allow_blank: true
-    validates_with PhotoValidator, if: 'self.photo?'
-  end
+  validates :first_name, :last_name,
+    length: { minimum: 2, maximum: 100 },
+    format: { with: NAME_REGEXP },
+    allow_nil: true,
+    allow_blank: true
+  validates_with PhotoValidator, if: 'self.photo?'
 
-  begin :associations
-    has_many :events, dependent: :destroy
-  end
+  has_many :events, dependent: :destroy
 
-  begin :callbacks
-    before_validation :trim_name
-  end
+  before_validation :trim_name
 
   def trim_name
     self.first_name = self.first_name.strip() if first_name

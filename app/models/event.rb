@@ -8,8 +8,6 @@ class Event < ActiveRecord::Base
     'not_repeat'
   ]
 
-  TITLE_REGEXP = /\A[а-яА-Яa-zA-Z0-9\s]+\z/
-
   belongs_to :user
   belongs_to :parent, class_name: "Event",
                       foreign_key: 'parent_id'
@@ -23,7 +21,7 @@ class Event < ActiveRecord::Base
     where.any_of(id: parent_id, parent_id: parent_id)
   end
 
-  validates :title, format: { with: TITLE_REGEXP  },
+  validates :title, format: { with: User::NAME_REGEXP },
                     if: 'self.title.present?'
   validates :title, length: { minimum: 2, maximum: 100 }
   validates :repeat_type, inclusion: { in: REPEAT_TYPES }

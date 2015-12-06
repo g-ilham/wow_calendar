@@ -47,7 +47,7 @@ class Users::Notifications
   end
 
   def selected_options
-    OPTIONS.select do |k, v|
+    OPTIONS.select do |k, _v|
       user.public_send(k).present?
     end
   end

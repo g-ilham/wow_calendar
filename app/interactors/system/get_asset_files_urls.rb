@@ -6,14 +6,14 @@ module System
                 :path,
                 :type
 
-    SORTED_NAMES =  [
-                      'style',
-                      'xlarge',
-                      'large',
-                      'medium',
-                      'small',
-                      'xsmall'
-                    ]
+    SORTED_NAMES = [
+      'style',
+      'xlarge',
+      'large',
+      'medium',
+      'small',
+      'xsmall'
+    ]
 
     def initialize(asset_matcher, path, type='assets')
       @asset_matcher = asset_matcher
