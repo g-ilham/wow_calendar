@@ -1,6 +1,3 @@
-require 'sidekiq/api'
-require_dependency "#{Rails.root}/app/mailers/event_mailer"
-
 class Events::RecurringWithNotifications
 
   attr_reader :event,

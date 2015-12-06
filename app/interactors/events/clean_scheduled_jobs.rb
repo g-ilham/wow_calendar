@@ -1,54 +1,35 @@
 require 'sidekiq/api'
-require_dependency "#{Rails.root}/app/mailers/event_mailer"
-require_dependency "#{Rails.root}/app/interactors/events/delay_create_clone"
 
 class Events::CleanScheduledJobs
+  attr_accessor :event_id,
+                :job_name,
+                :target_jobs
 
-  attr_reader :parent_id,
-              :job,
-              :first_attr,
-              :class_name,
-              :job_yml,
-              :scheduled
+  def initialize(event_id, job_name)
+    self.event_id = event_id
+    self.job_name = job_name
 
-  def initialize(parent_id, class_name)
-    @parent_id = parent_id
-    @class_name = class_name
-    @scheduled = Sidekiq::ScheduledSet.new
-    Rails.logger.info"   [ CleanScheduledJobs ] run clean with #{class_name}"
-    clean
-  end
-
-  def clean
-    scheduled.map do |job|
-      set_and_parse_attrs(job)
-      remove_job
+    self.target_jobs = Sidekiq::ScheduledSet.new.select do |job|
+      job_event_id = get_job_event_id(YAML.load(job.args[0])).to_s
+      job_event_id.present? && job_event_id == event_id.to_s
     end
   end
 
-  def set_and_parse_attrs(job)
-    @job = job
-    @job_yml = YAML.load(job.args[0])
-    @first_attr = get_first_attr(job_yml.last)
+  def run
+    target_jobs.each do |job|
+      job.delete
+    end
   end
 
-  def get_first_attr(args)
-    Rails.logger.info"\n"
-    Rails.logger.info"   [ CleanScheduledJobs ] current class #{job_yml.first}"
+  def get_job_event_id(job_yml)
+    attrs = job_yml.last
 
-    if job_yml.first.to_s == class_name
-      if class_name == 'Events::ScheduleNextEvent'
+    if job_yml.first.to_s == job_name
+      if job_name == 'Events::ScheduleNextEvent'
         args.first
       else
         args.first.id
       end
-    end
-  end
-
-  def remove_job
-    if first_attr == parent_id
-      Rails.logger.info"       [ CleanScheduledJobs ] remove_job"
-      job.delete
     end
   end
 end
