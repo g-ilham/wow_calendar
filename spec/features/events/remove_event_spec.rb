@@ -23,7 +23,7 @@ I want to have ability to remove event
       click_on "Удалить"
     end
 
-    sleep 2 # waiting for AJAX response
+    sleep 4 # waiting for AJAX response
 
     expect_to_see_no title
     expect(Event.count).to eq 0
