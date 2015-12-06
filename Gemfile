@@ -83,5 +83,4 @@ group :test do
   gem "simplecov", require: false
   gem "simplecov-rcov", require: false
   gem "rspec-sidekiq"
-  gem "thin"
 end

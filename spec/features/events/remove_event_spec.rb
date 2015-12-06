@@ -3,30 +3,25 @@ require "rails_helper"
 describe "Events form", %q{
 As a user of the website
 I want to have ability to remove event
-}, js: true do
+}, js: true, skip_travis: true do
 
   let(:event) { FactoryGirl.create(:event) }
 
   before do
     login_as(event.user, scope: :user)
-    # page.driver.browser.timeout = 10
-
     visit users_events_path
+    show_modal
   end
 
   it "I submit remove request for destroy event" do
-    expect(Event.count).to eq 1
-
-    show_modal
-
-    within("#event_form_modal") do
-      click_on "Удалить"
-    end
-
-    sleep 4 # waiting for AJAX response
+    expect do
+      within("#event_form_modal") do
+        click_on "Удалить"
+        wait_for_ajax
+      end
+    end.to change(Event, :count).from(1).to(0)
 
     expect_to_see_no title
-    expect(Event.count).to eq 0
   end
 
   def show_modal

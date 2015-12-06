@@ -6,7 +6,6 @@ require 'capybara/rspec'
 require 'database_cleaner'
 require 'shoulda/matchers'
 require "capybara-screenshot/rspec" #screenshot_and_open_image
-require 'rack/handler/thin'
 
 if ENV["COVERAGE"]
   require "simplecov"
@@ -63,10 +62,6 @@ RSpec.configure do |config|
 
   Capybara::Webkit.configure do |config|
     config.block_unknown_urls
-  end
-
-  Capybara.server do |app, port|
-    Rack::Handler::Thin.run(app, :Port => port)
   end
 
   config.infer_spec_type_from_file_location!
