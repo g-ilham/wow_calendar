@@ -84,3 +84,5 @@ group :test do
   gem "simplecov-rcov", require: false
   gem "rspec-sidekiq"
 end
+
+gem 'rails_12factor', group: :production
