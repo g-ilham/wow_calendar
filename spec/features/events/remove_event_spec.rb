@@ -9,7 +9,7 @@ I want to have ability to remove event
 
   before do
     login_as(event.user, scope: :user)
-    page.driver.browser.timeout = 10
+    # page.driver.browser.timeout = 10
 
     visit users_events_path
   end
@@ -23,7 +23,7 @@ I want to have ability to remove event
       click_on "Удалить"
     end
 
-    sleep 4 # waiting for AJAX response
+    sleep 2 # waiting for AJAX response
 
     expect_to_see_no title
     expect(Event.count).to eq 0
