@@ -13,7 +13,7 @@ class Events::Eliminator
   end
 
   def run
-    clean_jobs
+    Events::CleanUpScheduledJobs.clean(event.id, parent_id)
     persist!
   end
 
@@ -22,11 +22,6 @@ class Events::Eliminator
   end
 
   private
-
-  def clean_jobs
-    Events::CleanUpScheduledJobs.new(event.id, "EventMailer").run
-    Events::CleanUpScheduledJobs.new(parent_id, "Events::ScheduleNextEvent").run
-  end
 
   def persist!
     event.destroy

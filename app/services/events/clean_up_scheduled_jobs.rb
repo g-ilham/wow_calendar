@@ -34,4 +34,11 @@ class Events::CleanUpScheduledJobs
       end
     end
   end
+
+  class << self
+    def clean(event_id, parent_id)
+      Events::CleanUpScheduledJobs.new(event_id, "EventMailer").run
+      Events::CleanUpScheduledJobs.new(parent_id, "Events::ScheduleNextEvent").run
+    end
+  end
 end
