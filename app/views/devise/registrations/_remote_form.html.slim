@@ -31,6 +31,9 @@
       li
         = f.button :submit, "Зарегистрироваться", class: 'button js-sign-up-link pull-left'
         = recaptcha_tags hl: 'ru'
+      li
+        .social-login-links-on-sign-up-popup.pull-left
+          = render "devise/shared/social_links"
 
     .devise_links
       = render "devise/shared/links"

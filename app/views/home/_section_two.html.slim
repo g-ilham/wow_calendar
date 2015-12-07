@@ -1,28 +1,30 @@
 section#two.wrapper.style2.special
   .container
     header.major
-      h2 Lorem ipsum dolor sit
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.
+      h2 Инвесторы
+      p Которых бы возможно заинтересовал WOW Calendar в другой жизни. =)
     section.profiles
       .row
         section.3u.profile class=("6u(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Lorem ipsum
-          p Lorem ipsum dolor
+          = image_tag 'transit_theme/facebook.jpeg'
+          h4 Марк Цукерберг
+          p Facebook
         section.3u.profile class=("6u$(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Voluptatem dolores
-          p Ullam nihil repudi
+          = image_tag 'transit_theme/durov.jpeg'
+          h4 Павел Дуров
+          p Telegram
         section.3u.profile class=("6u(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Doloremque quo
-          p Harum corrupti quia
-        section.profile class=("3u$ 6u$(medium) 12u$(xsmall)")
-          = image_tag 'transit_theme/profile_placeholder.gif'
-          h4 Voluptatem dicta
-          p Et natus sapiente
+          = image_tag 'transit_theme/tinkov.jpg'
+          h4 Олег Тинькофф
+          p Тинькофф LTD
+        section.3u.profile class=("6u$(medium) 12u$(xsmall)")
+          = image_tag 'transit_theme/brenson.jpg'
+          h4 Ричард Брэнсон
+          p Virgin
     footer
       p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolore illum, temporibus veritatis eligendi, aliquam, dolor enim itaque veniam aut eaque sequi qui quia vitae pariatur repudiandae ab dignissimos ex!
-      ul.actions
-        li
-          a.button.js-empty-click.big href="#"  Lorem ipsum dolor sit
+
+      - unless user_signed_in?
+        ul.actions
+          li
+            = link_to "Зарегистрироваться", new_user_registration_path, class: 'js-sign-up-link button big', remote: true
