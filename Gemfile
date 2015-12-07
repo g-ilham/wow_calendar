@@ -59,6 +59,9 @@ gem 'sinatra', require: false
 gem 'dotenv-rails'
 gem 'foreman'
 
+# db population
+gem 'faker'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'quiet_assets'
