@@ -24,6 +24,7 @@ ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!
 WowCalendar::Application.load_tasks
 Capybara::Screenshot.webkit_options = { width: 1024, height: 768 }
+Capybara::Screenshot.autosave_on_failure = false
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
