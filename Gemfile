@@ -58,7 +58,6 @@ gem 'sinatra', require: false
 # Enviroment variables and Server Stuff
 gem 'dotenv-rails'
 gem 'foreman'
-gem 'unicorn'
 
 group :development, :test do
   gem 'pry-rails'
