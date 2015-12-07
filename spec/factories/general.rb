@@ -11,13 +11,15 @@ FactoryGirl.define do
     confirmed_at Time.zone.now
     photo { Rack::Test::UploadedFile.new(File.join(Rails.root,
             'spec', 'support', 'images', 'test_user_photo.jpg')) }
+    in_hour true
   end
 
   factory :event do
     association :user
     title "Встреча с одноклассниками"
-    starts_at (Time.zone.now + 1.hour)
+    starts_at (Time.zone.now + 2.hour)
     ends_at (Time.zone.now + 4.hour)
+    all_day false
     repeat_type 'not_repeat'
 
     trait :repeated_every_week do
