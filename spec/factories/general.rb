@@ -19,5 +19,15 @@ FactoryGirl.define do
     starts_at (Time.zone.now + 1.hour)
     ends_at (Time.zone.now + 4.hour)
     repeat_type 'not_repeat'
+
+    trait :repeated_every_week do
+      repeat_type "every_week"
+    end
+
+    trait :repeated_every_day do
+      repeat_type "every_day"
+      starts_at (Time.zone.now + 5.minute)
+      ends_at (Time.zone.now + 4.hour)
+    end
   end
 end
