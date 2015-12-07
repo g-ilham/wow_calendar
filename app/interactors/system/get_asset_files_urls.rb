@@ -1,33 +1,22 @@
 module System
   class GetAssetFilesUrls
 
-    attr_reader :paths,
-                :asset_matcher,
-                :path,
-                :type
-
-    SORTED_NAMES = [
-      'style',
-      'xlarge',
-      'large',
-      'medium',
-      'small',
-      'xsmall'
-    ]
+    attr_accessor :paths,
+                  :asset_matcher,
+                  :path,
+                  :type
 
     def initialize(asset_matcher, path, type='assets')
-      @asset_matcher = asset_matcher
-      @path = path
-      @type = type
-      run
+      self.asset_matcher = asset_matcher
+      self.path = path
+      self.type = type
     end
 
     def run
-      @paths = Dir.glob(path)
+      self.paths = Dir.glob(path)
 
-      @paths = if paths
-        @paths = clean_assets_urls
-        paths.map do |current_path|
+      self.paths = if paths
+        clean_assets_urls.map do |current_path|
           get_asset_url(current_path)
         end
       end

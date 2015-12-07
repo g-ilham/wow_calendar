@@ -1,7 +1,7 @@
 window.SkelInit =
 	init: (hrefs)->
 		hrefs = JsonParser.run(hrefs)
-
+		console.log hrefs[0]
 		if hrefs && hrefs.length > 0 && hrefs.length < 7
 			skel.init
 			  reset: 'full'

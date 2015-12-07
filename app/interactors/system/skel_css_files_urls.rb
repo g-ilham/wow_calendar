@@ -1,26 +1,36 @@
 module System
   class SkelCssFilesUrls
+    attr_accessor :paths,
+                  :full_path,
+                  :asset_matcher
 
-    attr_reader :paths
-
-    SORTED_NAMES =  [
-                      'style',
-                      'xlarge',
-                      'large',
-                      'medium',
-                      'small',
-                      'xsmall'
-                    ]
+    SORTED_NAMES = [
+      'style',
+      'xlg',
+      'large',
+      'medium',
+      'small',
+      'xsm'
+    ]
 
     def initialize
-      asset_matcher = Rails.env.development? ? 'app/assets/stylesheets/' : 'public/assets/'
-      path = asset_matcher + 'transit_theme/*.css.scss'
-      @paths = System::GetAssetFilesUrls.new(asset_matcher, path).paths
-      sort_css_paths if paths
+      specify_base_vars
+      self.paths = System::GetAssetFilesUrls.new(asset_matcher, full_path).run
+      sort_css_paths
+    end
+
+    def specify_base_vars
+      if Rails.env.development?
+        self.full_path = 'app/assets/stylesheets/transit_theme/*.css.scss'
+        self.asset_matcher = 'app/assets/stylesheets/'
+      else
+        self.full_path = 'public/assets/transit_theme/*.css'
+        self.asset_matcher = 'public/'
+      end
     end
 
     def sort_css_paths
-      @paths = SORTED_NAMES.map do |current_path|
+      self.paths = SORTED_NAMES.map do |current_path|
         match = select_with_current(current_path)
         if match
           match
