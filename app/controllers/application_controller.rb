@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     System::GetAssetFilesUrls.get_image_url('theme/ui-sam.jpg')
   end
 
+  expose(:skel_css_files) do
+    System::SkelCssFilesUrls.new().paths
+  end
+
+  expose(:completed_registration?) do
+    current_user.email.present?
+  end
+
   protected
 
   def configure_permitted_parameters
@@ -20,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   def social_registration!
     if current_user && current_user.email.blank?
-      redirect_to complete_social_registration_path
+      redirect_to users_complete_registrations_path
     end
   end
 end
