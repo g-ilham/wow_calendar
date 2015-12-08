@@ -14,7 +14,7 @@ module OmniauthMacros
     })
   end
 
-  def vk_mock_auth_has
+  def vk_mock_auth_hash
     OmniAuth.config.mock_auth[:vkontakte] = Hashie::Mash.new({
       :provider => "vkontakte",
       :uid => "12345678",

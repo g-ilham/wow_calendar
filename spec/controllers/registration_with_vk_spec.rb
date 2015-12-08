@@ -3,8 +3,8 @@ require "rails_helper"
 describe Users::OmniauthCallbacksController, type: :controller do
 
   describe "vkontakte" do
-    let(:email) { vk_mock_auth_has.info.email }
-    let(:vkontakte_uid) { vk_mock_auth_has.uid }
+    let(:email) { vk_mock_auth_hash.info.email }
+    let(:vkontakte_uid) { vk_mock_auth_hash.uid }
     let(:user) { FactoryGirl.create(:user, :vk_user) }
 
     context "with a new vkontakte user which is not completed registration" do
@@ -40,7 +40,7 @@ describe Users::OmniauthCallbacksController, type: :controller do
 
   def generate_request_in_callback
     request.env["devise.mapping"] = Devise.mappings[:user]
-    request.env["omniauth.auth"] = vk_mock_auth_has
+    request.env["omniauth.auth"] = vk_mock_auth_hash
     get :vkontakte
   end
 end
