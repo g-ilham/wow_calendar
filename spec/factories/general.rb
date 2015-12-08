@@ -12,6 +12,21 @@ FactoryGirl.define do
     photo { Rack::Test::UploadedFile.new(File.join(Rails.root,
             'spec', 'support', 'images', 'test_user_photo.jpg')) }
     in_hour true
+
+    trait :fc_user do
+      facebook_url "https://www.facebook.com/ilham116r"
+      facebook_username "Ильхам Гайсин"
+      facebook_uid "1234567"
+      provider "facebook"
+    end
+
+    trait :vk_user do
+      vkontakte_url "http://vk.com/id175788375"
+      vkontakte_username "Ilham Gaysin"
+      vkontakte_uid "12345678"
+      vkontakte_nickname "ilgam"
+      provider "vk"
+    end
   end
 
   factory :event do
