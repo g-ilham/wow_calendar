@@ -16,7 +16,7 @@ describe System::GetAssetFilesUrls do
       System::GetAssetFilesUrls.new(asset_matcher, path, 'images').run
     end
 
-    it "with a delay of 15 minutes before the event" do
+    it do
       expect(subject).to match_array(response_array)
     end
   end
