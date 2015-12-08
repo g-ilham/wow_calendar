@@ -493,6 +493,7 @@ DEPENDENCIES
   fog-aws
   font-awesome-rails
   foreman
+  hashie
   jquery-rails
   jquery-ui-rails
   launchy
