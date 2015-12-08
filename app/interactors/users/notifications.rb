@@ -38,7 +38,7 @@ class Users::Notifications
 
   def run_update_for_collection!
     user.events.each do |event|
-      Events::CleanUpScheduledJobs.new(event.id, 'EventMailer')
+      Events::CleanUpScheduledJobs.new(event.id, 'EventMailer').run
 
       if selected_at_least_of_one_option
         schedule_mailers(event)
