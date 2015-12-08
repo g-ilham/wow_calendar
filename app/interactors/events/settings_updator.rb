@@ -26,7 +26,7 @@ class Events::SettingsUpdator
       Events::ScheduleNextEvent.new(last_child, parent_id).run
     else
       event.touch(:updated_at) if updated_at_not_changed?
-      Events::CleanUpScheduledJobs.new(event.id,'EventMailer')
+      Events::CleanUpScheduledJobs.new(event.id,'EventMailer').run
       user_notifications_helper.schedule_mailers(event)
 
       event

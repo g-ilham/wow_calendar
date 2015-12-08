@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   skip_before_action :authenticate_user!
-  skip_before_filter :social_registration!
+  skip_before_action :social_registration!
 
   expose(:contact_form) do
     ContactForm.new contact_form_params

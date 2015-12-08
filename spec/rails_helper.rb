@@ -35,6 +35,7 @@ RSpec.configure do |config|
   config.include DateTimeHelpers, type: :feature
   config.include Shoulda::Matchers::ActiveModel, type: :model
   config.include Shoulda::Matchers::ActiveRecord, type: :model
+  config.include OmniauthMacros, type: :controller
 
   config.before :suite do
     Warden.test_mode!

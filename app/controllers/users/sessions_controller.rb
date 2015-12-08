@@ -1,7 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
   respond_to :html, :json
   before_action :html?, only: [ :new, :create ]
-  skip_before_filter :social_registration!
+  skip_before_action :social_registration!
 
   expose(:login) do
     Users::Login.new(params[:user])
