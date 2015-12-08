@@ -6,6 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/g-ilham/wow_calendar/badge.svg?branch=master&service=github)](https://coveralls.io/github/g-ilham/wow_calendar?branch=master)
 
 [DEMO URL](http://wowcalendar.herokuapp.com/)
+
 !Для удобства тестирования используйте логин через VK или Facebook
 
 ![Logo](https://raw.githubusercontent.com/g-ilham/wow_calendar/master/lib/readme_images/landing_preview.png)
@@ -16,59 +17,44 @@
 
 Функционал recurring событий полностью реализован на базе Sidekiq API.
 
-1) После создания cобытия в планировщик добавляется Job-а согласно
-   заданным настройкам повтора события (каждый день / неделя / месяц)
-   В Job-e создается клон (Child) исходного события с заданной датой (delay_until).
-   Job-a добавляется только одна для следующего (Next) события (а не для всех сразу).
+* После создания cобытия в планировщик добавляется Job-а согласно заданным настройкам повтора события (каждый день / неделя / месяц). В Job-e создается клон (Child) исходного события с заданной датой (delay_until). Job-a добавляется только одна для следующего (Next) события (а не для всех сразу).
 
-2) В процессе выполнения Job-ы после создания нового "Child" события,
-   в Sidekiq добавляется Job-a на следующий повтор события и.т.д
+* В процессе выполнения Job-ы после создания нового "Child" события, в Sidekiq добавляется Job-a на следующий повтор события и.т.д
 
-3) При удалении события или же при отмене "Повтора" cозданная Job-a удаляется.
+* При удалении события или же при отмене "Повтора" cозданная Job-a удаляется.
 
 Работа с событиями реализована в интеракторах и сервисах:
 
-[Интеракторы лежат здесь](https://github.com/g-ilham/wow_calendar/tree/master/app/interactors/events)
-[Сервисы можно посмотреть тут](https://github.com/g-ilham/wow_calendar/blob/master/app/services/events)
+* [Интеракторы лежат здесь](https://github.com/g-ilham/wow_calendar/tree/master/app/interactors/events)
+* [Сервисы можно посмотреть тут](https://github.com/g-ilham/wow_calendar/blob/master/app/services/events)
 
 ##### 2. Календарь
 
-1) В качестве Frontend плагина для календаря Я выбрал
-[Full Calendar](http://fullcalendar.io/)
-
-2) Реализовано добавление / редактирование / удаление через попап
-
-3) Так же реализован перенос события через Drag & Drop
+* В качестве Frontend плагина для календаря Я выбрал [Full Calendar](http://fullcalendar.io/)
+* Реализовано добавление / редактирование / удаление через попап
+* Так же реализован перенос события через Drag & Drop
 
 ##### 3. Используемые Heroku Addons
 
-1) RedisToGo для Sidekiq
-
-2) Sendgrid для отправки писем
+* RedisToGo для Sidekiq
+* Sendgrid для отправки писем
 
 ##### 4. Использование DEV Tools сервисов
 
-1) [Travis CI](https://travis-ci.org/g-ilham/wow_calendar) статус build-a
-
-2) [Hakiri.io](https://hakiri.io/github/g-ilham/wow_calendar/master) сканирование уязвимостей
-
-3) [CodeClimate](https://codeclimate.com) проверка качества кода
-
-4) [Сoveralls.io](https://coveralls.io/github/g-ilham/wow_calendar?branch=master) степень покрытия тестами
+* [Travis CI](https://travis-ci.org/g-ilham/wow_calendar) статус build-a
+* [Hakiri.io](https://hakiri.io/github/g-ilham/wow_calendar/master) сканирование уязвимостей
+* [CodeClimate](https://codeclimate.com) проверка качества кода
+* [Сoveralls.io](https://coveralls.io/github/g-ilham/wow_calendar?branch=master) cтепень покрытия тестами
 
 ! Данные виджеты отображены в начале README ^
 
 ### Дополнительно реализованный функционал
 
-1. Авторизация через Вконтакте и Facebook (c подгрузкой аватарки)
-
-2. Google Captcha на регистрации через Email
-
-3. В качестве Landing секций использована UI тема [TRANSIT LADNING](http://templated.co/transit)
-
-4. Для Dashboard использована UI тема [DASHGUM](http://www.blacktie.co/demo/dashgum/)
-
-5) Код покрыт Rspec тестами на 94% [Посмотреть покрытие](https://coveralls.io/github/g-ilham/wow_calendar?branch=master)
+* Авторизация через Вконтакте и Facebook (c подгрузкой аватарки)
+* Google Captcha на регистрации через Email
+* В качестве Landing секций использована UI тема [TRANSIT LADNING](http://templated.co/transit)
+* Для Dashboard использована UI тема [DASHGUM](http://www.blacktie.co/demo/dashgum/)
+* Код покрыт Rspec тестами на 94% [Посмотреть покрытие](https://coveralls.io/github/g-ilham/wow_calendar?branch=master)
 
 ### Установка
 
