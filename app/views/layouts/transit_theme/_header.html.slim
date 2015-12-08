@@ -4,15 +4,19 @@ header#header
 
   nav#nav
     ul
-      - if user_signed_in? && completed_registration? || !user_signed_in?
+      - if active_account? || !user_signed_in?
         li
           = link_to "Главная", root_url
 
         - if action_name == 'index'
           li
+            = link_to "Features", "#one"
+          li
+            = link_to "Инвесторы", "#two"
+          li
             = link_to "Связаться с Нами", "#js-contact-form"
 
-      - if user_signed_in? && completed_registration?
+      - if active_account?
         li
           = link_to "Мои события", users_events_url
         li
