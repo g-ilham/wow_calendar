@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe Users::OmniauthCallbacksController, type: :controller do
-
   describe "facebook" do
     let(:email) { fc_mock_auth_hash.info.email }
     let(:facebook_uid) { fc_mock_auth_hash.uid }
@@ -9,7 +8,7 @@ describe Users::OmniauthCallbacksController, type: :controller do
 
     context "with a new facebook user which is not completed registration" do
       before do
-        generate_request_in_callback
+        generate_request_in_callback("facebook")
       end
 
       it do
@@ -24,7 +23,7 @@ describe Users::OmniauthCallbacksController, type: :controller do
 
       before do
         user
-        generate_request_in_callback
+        generate_request_in_callback("facebook")
       end
 
       it do
@@ -34,13 +33,5 @@ describe Users::OmniauthCallbacksController, type: :controller do
         expect(response).to have_http_status(302)
       end
     end
-  end
-
-  private
-
-  def generate_request_in_callback
-    request.env["devise.mapping"] = Devise.mappings[:user]
-    request.env["omniauth.auth"] = fc_mock_auth_hash
-    get :facebook
   end
 end

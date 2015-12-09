@@ -30,4 +30,20 @@ module OmniauthMacros
       }
     })
   end
+
+  private
+
+  def generate_request_in_callback(provider)
+    request.env["devise.mapping"] = Devise.mappings[:user]
+    omniauth_data(provider)
+    get provider.to_sym
+  end
+
+  def omniauth_data(provider)
+    request.env["omniauth.auth"] = if provider == 'facebook'
+      fc_mock_auth_hash
+    else
+      vk_mock_auth_hash
+    end
+  end
 end
