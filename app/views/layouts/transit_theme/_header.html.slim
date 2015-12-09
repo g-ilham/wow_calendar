@@ -10,7 +10,7 @@ header#header
 
         - if action_name == 'index'
           li
-            = link_to "Features", "#one"
+            = link_to "Приемущества", "#one"
           li
             = link_to "Инвесторы", "#two"
           li
@@ -18,7 +18,7 @@ header#header
 
       - if active_account?
         li
-          = link_to "Мои события", users_events_url
+          = link_to "Мой Календарь", users_events_url
         li
           = link_to 'Настройки', edit_users_setting_url(current_user),
                                  remote: true,
