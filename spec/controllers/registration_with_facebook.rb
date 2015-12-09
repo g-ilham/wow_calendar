@@ -1,37 +1,13 @@
 require "rails_helper"
 
 describe Users::OmniauthCallbacksController, type: :controller do
-  describe "facebook" do
+  describe "registration on website through facebook account" do
     let(:email) { fc_mock_auth_hash.info.email }
-    let(:facebook_uid) { fc_mock_auth_hash.uid }
+    let(:user_uid) { fc_mock_auth_hash.uid }
     let(:user) { FactoryGirl.create(:user, :fc_user) }
+    let(:ops) { { facebook_uid: user_uid } }
+    let(:provider_name) { "facebook" }
 
-    context "with a new facebook user which is not completed registration" do
-      before do
-        generate_request_in_callback("facebook")
-      end
-
-      it do
-        expect(User.count).to be(1)
-        expect(response).to redirect_to(users_complete_registrations_path(user: { email: email }))
-        expect(response).to have_http_status(302)
-      end
-    end
-
-    context "with a new facebook user which is not completed registration" do
-      let(:finded_user) { User.where(facebook_uid: facebook_uid) }
-
-      before do
-        user
-        generate_request_in_callback("facebook")
-      end
-
-      it do
-        expect(User.count).to be(1)
-        expect(user.facebook_uid).to match(facebook_uid)
-        expect(response).to redirect_to(root_path)
-        expect(response).to have_http_status(302)
-      end
-    end
+    it_behaves_like "registration_through_social"
   end
 end
