@@ -50,7 +50,7 @@ I want to have ability to create event
   end
 
   def show_modal
-    remove_animation_modal
+    remove_animation
     page.execute_script("$('.js-alt-create-event-link').trigger('click')")
   end
 end

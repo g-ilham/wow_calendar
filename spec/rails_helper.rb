@@ -31,7 +31,7 @@ RSpec.configure do |config|
   config.include ExpectationHelper, type: :feature
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
-  config.include RemoveAnimationModal, type: :feature
+  config.include RemoveAnimation, type: :feature
   config.include DateTimeHelpers, type: :feature
   config.include Shoulda::Matchers::ActiveModel, type: :model
   config.include Shoulda::Matchers::ActiveRecord, type: :model

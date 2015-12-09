@@ -25,7 +25,7 @@ I want to have ability to remove event
   end
 
   def show_modal
-    remove_animation_modal
+    remove_animation
     find(:xpath, "//div[@data-event-id='#{event.id}']").click
   end
 end

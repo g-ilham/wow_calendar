@@ -13,7 +13,7 @@ that I can update my account data
   before do
     login_as(user, scope: :user)
     visit root_path
-    remove_animation_modal
+    remove_animation
     show_modal
   end
 

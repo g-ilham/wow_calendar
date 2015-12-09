@@ -12,7 +12,7 @@ that I can submit my email and another data
 
   before do
     visit root_path
-    remove_animation_modal
+    remove_animation
     show_modal
   end
 
