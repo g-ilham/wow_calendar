@@ -12,6 +12,7 @@ so that I can leave some feedbacks or suggestions about service
 
   before do
     visit root_path
+    remove_animation
   end
 
   it "I mistakenly submit contact form without data" do
