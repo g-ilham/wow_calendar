@@ -7,13 +7,17 @@
 
 [DEMO URL](http://wowcalendar.herokuapp.com/)
 
-!Для удобства тестирования используйте логин через VK или Facebook
+> Для удобства тестирования используйте логин через VK или Facebook
 
 ![Logo](https://raw.githubusercontent.com/g-ilham/wow_calendar/master/lib/readme_images/landing_preview.png)
 
 ### Особенности реализации
 
-##### 1. Повторяющиеся события
+##### 1. Версии
+
+* Ruby 2.2.3 / Rails 4.2.5 / PostgreSQL
+
+##### 2. Повторяющиеся события
 
 Функционал recurring событий полностью реализован на базе Sidekiq API.
 
@@ -28,25 +32,25 @@
 * [Интеракторы лежат здесь](https://github.com/g-ilham/wow_calendar/tree/master/app/interactors/events)
 * [Сервисы можно посмотреть тут](https://github.com/g-ilham/wow_calendar/blob/master/app/services/events)
 
-##### 2. Календарь
+##### 3. Календарь
 
 * В качестве Frontend плагина для календаря Я выбрал [Full Calendar](http://fullcalendar.io/)
 * Реализовано добавление / редактирование / удаление через попап
 * Так же реализован перенос события через Drag & Drop
 
-##### 3. Используемые Heroku Addons
+##### 4. Используемые Heroku Addons
 
 * RedisToGo для Sidekiq
 * Sendgrid для отправки писем
 
-##### 4. Использование DEV Tools сервисов
+##### 5. Использование DEV Tools сервисов
 
 * [Travis CI](https://travis-ci.org/g-ilham/wow_calendar) статус build-a
 * [Hakiri.io](https://hakiri.io/github/g-ilham/wow_calendar/master) сканирование уязвимостей
 * [CodeClimate](https://codeclimate.com) проверка качества кода
 * [Сoveralls.io](https://coveralls.io/github/g-ilham/wow_calendar?branch=master) cтепень покрытия тестами
 
-! Данные виджеты отображены в начале README ^
+> Данные виджеты отображены в начале README ^
 
 ### Дополнительно реализованный функционал
 
@@ -61,16 +65,24 @@
 ```
 git clone git@github.com:g-ilham/wow_calendar.git
 cd wow_calendar
+cp config/database.yml.example config/database.yml
+cp .env.example .env
 bundle
 rake db:create
 rake db:migrate
+foreman start
 ```
+> В файлике .env.example находятся тестовые ключи для Google Captcha и Oauth Вконтакте и Facebook.
+  Обычно я НЕ ВЫКЛАДЫВАЮ credentials в github (даже если репо приватный).
+  Просто без них будет трудно запустить приложение на localhost.
+  Поэтому их и добавил.
 
 ### Тесты
 
 ```
+cp .coveralls.yml.example .coveralls.yml
 RAILS_ENV=test bundle exec rake db:setup
-RAILS_ENV=test COVERAGE=true COVERALLS_RUN_LOCALLY=true bundle exec rspec spec
+RAILS_ENV=test COVERAGE=true COVERALLS_RUN_LOCALLY=true bundle exec rspec spec/
 ```
 
 ### Deploy

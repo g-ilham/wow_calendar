@@ -11,9 +11,10 @@ html
     /![if lt IE 9]<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]
   body.landing.transit_theme
     = yield
+    = render 'layouts/transit_theme/backdrop_spinner'
     = render 'devise/modals/sign_in_or_sign_up'
     = render 'devise/modals/confirmation_message'
     = render 'users/settings/system_blocks/edit_user_settings'
 
     = javascript_include_tag 'transit_theme'
-    = javascript_tag "$(function() { EmptyClick.init(); #{yield(:javascript_code)} });" if content_for? :javascript_code
+    = javascript_tag "$(function() { EmptyClick.init(); HideBackdropSpinner.init(); #{yield(:javascript_code)} });" if content_for? :javascript_code
