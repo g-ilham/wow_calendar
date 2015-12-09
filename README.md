@@ -70,6 +70,7 @@ cp .env.example .env
 bundle
 rake db:create
 rake db:migrate
+foreman start
 ```
 > В файлике .env.example находятся тестовые ключи для Google Captcha и Oauth Вконтакте и Facebook.
   Обычно я НЕ ВЫКЛАДЫВАЮ credentials в github (даже если репо приватный).
