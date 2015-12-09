@@ -14,9 +14,10 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def create
-    if login.errors.present?
-      @user = User.new if login.user.blank?
+    login.login_user!
 
+    if !login.success?
+      self.resource = resource_class.new(sign_in_params)
     else
       self.resource = warden.authenticate!(auth_options)
       set_flash_message(:notice, :signed_in) if is_flashing_format?
