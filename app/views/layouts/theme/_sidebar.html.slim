@@ -7,16 +7,24 @@ aside
             = image_tag current_user.photo.url(:thumb), class: 'img-circle', width: '60'
       h5.centered
         = current_user.decorate.provider_full_name
+
       li.mt
-        a href="#{themes_path}"
-          i.fa.fa-dashboard
+        a href="#{root_path}"
+          i.fa.fa-home
           '
-          span Dashboard
+          span Главная
+
       li.sub-menu
-        a href="javascript:;"
-          i.fa.fa-desktop
+        a href="#{users_events_path}" class="#{if active_calendar_link then 'active'}"
+          i.fa.fa-calendar
           '
-          span UI Elements
+          span Календарь
+
+      li.sub-menu
+        a href="#{themes_path}"
+          i.fa.fa-file
+          '
+          span Страницы из темы
         ul.sub
           li
             a href="#{general_themes_path}"  General
@@ -24,55 +32,19 @@ aside
             a href="#{buttons_themes_path}"  Buttons
           li
             a href="#{panels_themes_path}"  Panels
-      li.sub-menu
-        a href="javascript:;"
-          i.fa.fa-cogs
-          '
-          span Components
-        ul.sub
           li
             a href="#{calendar_themes_path}"  Calendar
           li
             a href="#{gallery_themes_path}"  Gallery
           li
             a href="#{task_lists_themes_path}"  Task List
-      li.sub-menu
-        a href="javascript:;"
-          i.fa.fa-book
-          '
-          span Extra Pages
-        ul.sub
           li
             a href="#{blank_themes_path}"  Blank Page
           li
             a href="#{login_themes_path}"  Login
           li
-            a href="#"  Lock Screen
-      li.sub-menu
-        a href="javascript:;"
-          i.fa.fa-tasks
-          '
-          span Forms
-        ul.sub
-          li
             a href="#{form_components_themes_path}"  Form Components
-      li.sub-menu
-        a href="javascript:;"
-          i.fa.fa-th
-          '
-          span Data Tables
-        ul.sub
           li
             a href="#{basic_tables_themes_path}"  Basic Table
           li
             a href="#{responsive_tables_themes_path}"  Responsive Table
-      li.sub-menu
-        a href="javascript:;"
-          i.fa.fa-bar-chart-o
-          '
-          span Charts
-        ul.sub
-          li
-            a href="#"  Morris
-          li
-            a href="#"  Chartjs

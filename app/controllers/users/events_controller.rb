@@ -3,6 +3,8 @@ class Users::EventsController < ApplicationController
 
   before_action :fetch_prev_event_attrs, only: [ :update ]
 
+  expose(:active_calendar_link) { true }
+
   expose(:events) do
     serialize(current_user.events)
   end
