@@ -47,10 +47,6 @@ class ThemesController < ApplicationController
   def form_components
   end
 
-  def get_image_url(url)
-    ActionController::Base.helpers.image_path(url)
-  end
-
   private
 
   def resolve_layout
