@@ -13,7 +13,6 @@ class Users::CompleteRegistrationsController < ApplicationController
 
   expose(:set_email) do
     completed_registration?
-    Rails.logger.info "email params #{params['user']}"
     current_user.email = email_params if email_params
   end
 
