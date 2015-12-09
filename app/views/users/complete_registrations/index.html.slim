@@ -1,7 +1,7 @@
 = simple_form_for(current_user, as: :user, url: users_complete_registration_path(current_user), html: { method: :put, novalidate: true, id: 'complete-registration-form' }, remote: true) do |f|
 
   .row.uniform class="50%"
-    h2 Необходимо добавить свой почтовый адрес
+    h2 Необходимо добавить свой email
     = render 'devise/shared/error_messages', resource: current_user
 
     .12u

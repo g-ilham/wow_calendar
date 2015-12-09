@@ -9,7 +9,7 @@ ru:
       event: 'Событие'
     attributes:
       user:
-        email: 'Почтовый адрес'
+        email: 'Email'
         first_name: 'Имя'
         last_name: 'Фамилия'
         password: 'Пароль'
