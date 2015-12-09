@@ -3,7 +3,7 @@ require "rails_helper"
 describe "User settings form", %q{
 As a user of the website
 I want to have ability to update my profile
-that I can update user data
+that I can update my account data
 }, js: true do
 
   let(:user) { FactoryGirl.create(:user) }

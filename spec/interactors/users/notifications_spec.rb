@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Users::Notifications do
-  describe "create scheduled notification" do
+  describe "will be updating planned user notifications" do
     let(:event) { FactoryGirl.create(:event) }
     let(:message) { Users::Notifications::OPTIONS[:in_fifteen_minutes] }
     let!(:prev_notifications_options) { event.user.notifications_options }
