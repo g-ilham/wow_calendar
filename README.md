@@ -58,7 +58,7 @@
 * Google Captcha на регистрации через Email
 * В качестве Landing секций использована UI тема [TRANSIT LADNING](http://templated.co/transit)
 * Для Dashboard использована UI тема [DASHGUM](http://www.blacktie.co/demo/dashgum/)
-* Код покрыт Rspec тестами на 94% [Посмотреть покрытие](https://coveralls.io/github/g-ilham/wow_calendar?branch=master)
+* Код покрыт Rspec тестами на 92% [Посмотреть покрытие](https://coveralls.io/github/g-ilham/wow_calendar?branch=master)
 
 ### Установка
 
