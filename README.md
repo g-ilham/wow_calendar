@@ -9,7 +9,7 @@
 
 > Для удобства тестирования используйте логин через VK или Facebook
 
-![Logo](https://raw.githubusercontent.com/g-ilham/wow_calendar/master/lib/readme_images/landing_preview.png)
+![Logo](https://raw.githubusercontent.com/g-ilham/wow_calendar/master/lib/readme_images/landing_preview_image.png)
 
 ### Особенности реализации
 
