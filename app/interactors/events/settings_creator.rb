@@ -1,14 +1,14 @@
 class Events::SettingsCreator
-  attr_accessor :event,
-                :user,
-                :parent_id,
-                :user_notifications_helper
+  attr_reader :event,
+              :user,
+              :parent_id,
+              :user_notifications_helper
 
   def initialize(event)
-    self.event = event
-    self.user = event.user
-    self.parent_id = event.parent_id || event.id
-    self.user_notifications_helper = Users::Notifications.new(user,
+    @event = event
+    @user = event.user
+    @parent_id = event.parent_id || event.id
+    @user_notifications_helper = Users::Notifications.new(user,
                                                               user.notifications_options)
   end
 

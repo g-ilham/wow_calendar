@@ -1,18 +1,20 @@
 class Events::ScheduleNextEvent
 
-  attr_accessor :event,
-                :user,
-                :parent_id
+  attr_reader :event,
+              :user,
+              :parent_id
 
   def initialize(event, parent_id)
-    self.event = event
-    self.user = event.user
-    self.parent_id = parent_id
+    @event = event
+    @user = event.user
+    @parent_id = parent_id
   end
 
   def run
     event.repeat_type != 'not_repeat' ? next_event : event
   end
+
+  private
 
   def next_event
     next_event_ops = self.class.get_next_event_ops(event)

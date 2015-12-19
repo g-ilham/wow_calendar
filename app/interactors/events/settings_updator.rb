@@ -1,21 +1,21 @@
 class Events::SettingsUpdator
-  attr_accessor :event,
-                :user,
-                :childs,
-                :last_child,
-                :parent_id,
-                :prev_event_attr,
-                :user_notifications_helper
+  attr_reader :event,
+              :user,
+              :childs,
+              :last_child,
+              :parent_id,
+              :prev_event_attr,
+              :user_notifications_helper
 
   def initialize(event, prev_event_attr)
-    self.event = event
-    self.user = event.user
-    self.prev_event_attr = prev_event_attr
-    self.childs = event.childs_with_parent
-    self.last_child = childs.last
-    self.parent_id = event.parent_id || event.id
+    @event = event
+    @user = event.user
+    @prev_event_attr = prev_event_attr
+    @childs = event.childs_with_parent
+    @last_child = childs.last
+    @parent_id = event.parent_id || event.id
 
-    self.user_notifications_helper = Users::Notifications.new(user,
+    @user_notifications_helper = Users::Notifications.new(user,
                                                               user.notifications_options)
   end
 
@@ -36,6 +36,8 @@ class Events::SettingsUpdator
   def success?
     event.present?
   end
+
+  private
 
   def event_attrs_changed?
     starts_at_changed? || repeat_type_changed?

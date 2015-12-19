@@ -1,15 +1,15 @@
 class Events::Eliminator
-  attr_accessor :event,
-                :childs,
-                :last_child,
-                :parent_id
+  attr_reader :event,
+              :childs,
+              :last_child,
+              :parent_id
 
   def initialize(event)
-    self.event = event
-    self.childs = event.childs_with_parent
+    @event = event
+    @childs = event.childs_with_parent
                        .where.not(id: event.id)
-    self.last_child = childs.last
-    self.parent_id = event.parent_id || event.id
+    @last_child = childs.last
+    @parent_id = event.parent_id || event.id
   end
 
   def run
