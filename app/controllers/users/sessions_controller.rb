@@ -2,8 +2,6 @@ class Users::SessionsController < Devise::SessionsController
   respond_to :html, :json
   skip_before_action :social_registration!
 
-  include Concerns::DeviseRequestValidation
-
   expose(:login) do
     Users::Login.new(params[:user])
   end
@@ -24,4 +22,8 @@ class Users::SessionsController < Devise::SessionsController
       sign_in(resource_name, resource)
     end
   end
+
+  private
+
+  include Concerns::DeviseRequestValidation
 end

@@ -1,8 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :json
-
-  include Concerns::DeviseRequestValidation
-
   expose(:valid_captcha) { false }
   expose(:user) { User.new }
 
@@ -22,6 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  include Concerns::DeviseRequestValidation
 
   def success_captcha
     self.valid_captcha = true
