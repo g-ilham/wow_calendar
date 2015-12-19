@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(version: 20151219135553) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string   "title",                       null: false
-    t.integer  "user_id",                     null: false
-    t.boolean  "all_day",     default: false, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "title",                              null: false
+    t.integer  "user_id",                            null: false
+    t.boolean  "all_day",     default: false,        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.integer  "parent_id"
-    t.string   "repeat_type"
+    t.string   "repeat_type", default: "not_repeat"
   end
 
   add_index "events", ["parent_id"], name: "index_events_on_parent_id", using: :btree

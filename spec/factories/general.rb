@@ -2,11 +2,14 @@
 
 FactoryGirl.define do
   sequence(:email) { |n| "test_user#{n}@example.com" }
+  sequence(:vk_url, 400) { |n| "http://vk.com/id175788#{n}" }
+  sequence(:fc_url, 100) { |n| "https://www.facebook.com/ilham#{n}" }
+  sequence(:uid) { |n| n.to_s }
 
   factory :user do
     first_name "Ivan"
     last_name "Ivanov"
-    email "test@example.com"
+    email { generate :email }
     password Devise.friendly_token[0,20]
     confirmed_at Time.zone.now
     photo { Rack::Test::UploadedFile.new(File.join(Rails.root,
@@ -14,16 +17,16 @@ FactoryGirl.define do
     in_hour true
 
     trait :fc_user do
-      facebook_url "https://www.facebook.com/ilham116r"
-      facebook_username "Ильхам Гайсин"
-      facebook_uid "1234567"
+      facebook_url { generate :fc_url }
+      facebook_username Faker::Name.name
+      facebook_uid { generate :uid }
       provider "facebook"
     end
 
     trait :vk_user do
-      vkontakte_url "http://vk.com/id175788375"
-      vkontakte_username "Ilham Gaysin"
-      vkontakte_uid "12345678"
+      vkontakte_url { generate :vk_url }
+      vkontakte_username Faker::Name.name
+      vkontakte_uid { generate :uid }
       vkontakte_nickname "ilgam"
       provider "vk"
     end
