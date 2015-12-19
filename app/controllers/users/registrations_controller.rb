@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :json
-  before_action :html?, only: [ :new, :create ]
+
+  include Concerns::DeviseRequestValidation
 
   expose(:valid_captcha) { false }
   expose(:user) { User.new }
@@ -19,6 +20,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
+
+  private
 
   def success_captcha
     self.valid_captcha = true
@@ -68,13 +71,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     expire_data_after_sign_in!
     respond_with resource, location: after_inactive_sign_up_path_for(resource) do |format|
       format.js
-    end
-  end
-
-  def html?
-    if request.format.html?
-      redirect_to root_path
-      return
     end
   end
 end
