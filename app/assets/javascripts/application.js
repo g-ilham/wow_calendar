@@ -7,7 +7,7 @@
 //= require moment
 //= require moment/ru
 //= require bootstrap-datetimepicker
-//= require_tree ./plugins
+//= require_tree ../../../vendor/assets/javascripts/plugins
 //= require_tree ./theme
 //= require_tree ./general
 //= require_tree ./custom
