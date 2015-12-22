@@ -22,6 +22,8 @@ class DisplaySequence
     result
   end
 
+  private
+
   def add_or_update_pairs_array(arr, numb)
     if arr.present? && arr.last.has_key?(numb)
       arr.last[numb] += 1

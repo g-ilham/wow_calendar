@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205100019) do
+ActiveRecord::Schema.define(version: 20151219135553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "user_id"
-    t.boolean  "all_day",     default: false
+    t.string   "title",                              null: false
+    t.integer  "user_id",                            null: false
+    t.boolean  "all_day",     default: false,        null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.datetime "starts_at"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 20151205100019) do
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["facebook_uid"], name: "index_users_on_facebook_uid", unique: true, using: :btree
+  add_index "users", ["facebook_url"], name: "index_users_on_facebook_url", unique: true, using: :btree
+  add_index "users", ["facebook_username"], name: "index_users_on_facebook_username", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["vkontakte_nickname"], name: "index_users_on_vkontakte_nickname", unique: true, using: :btree
+  add_index "users", ["vkontakte_uid"], name: "index_users_on_vkontakte_uid", unique: true, using: :btree
+  add_index "users", ["vkontakte_url"], name: "index_users_on_vkontakte_url", unique: true, using: :btree
+  add_index "users", ["vkontakte_username"], name: "index_users_on_vkontakte_username", unique: true, using: :btree
 
+  add_foreign_key "events", "users"
 end
