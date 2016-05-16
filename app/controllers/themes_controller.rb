@@ -1,5 +1,6 @@
 class ThemesController < ApplicationController
   layout :resolve_layout
+  expose(:active_calendar_link) { false }
 
   expose(:login_image_url) do
     System::GetAssetFilesUrls.get_image_url('theme/login-bg.jpg')

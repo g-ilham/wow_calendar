@@ -2,6 +2,8 @@ module Concerns
   module DeviseCreateRegistrationHelpers
     extend ActiveSupport::Concern
 
+    private
+
     def success_captcha
       self.valid_captcha = true
       resource.save

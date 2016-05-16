@@ -6,6 +6,8 @@ module Concerns
       before_action :html?, only: [ :new, :create ]
     end
 
+    private
+
     def html?
       if request.format.html?
         redirect_to root_path

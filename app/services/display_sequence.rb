@@ -12,7 +12,7 @@ class DisplaySequence
   end
 
   def show_sequence
-    (0...loop_count).each do |i|
+    (0...loop_count).each do |_i|
       self.result = value.chars.inject([]) do |arr, numb|
         add_or_update_pairs_array(arr, numb)
         arr

@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 ruby "2.2.3"
 
-gem "rails", "4.2.5"
+gem "rails", "~> 4.2.5"
 gem "pg", "~> 0.18.3"
-gem "devise"
+gem "devise", ">= 3.5.4"
 
 # Assets and UI
 gem "bootstrap-sass", "~> 3.2.0"
@@ -68,6 +68,7 @@ group :development, :test do
   gem "quiet_assets"
   gem "better_errors"
   gem "letter_opener"
+  gem "byebug"
 
   # Code Review
   gem "rails_best_practices"

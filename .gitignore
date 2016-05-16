@@ -18,3 +18,4 @@ config/database.yml
 coverage/*
 secrets.yml
 .coveralls.yml
+.byebug_history

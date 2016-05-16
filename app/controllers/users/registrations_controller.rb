@@ -18,8 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  private
-
   include Concerns::DeviseRequestValidation
   include Concerns::DeviseCreateRegistrationHelpers
 end

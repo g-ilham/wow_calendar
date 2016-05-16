@@ -23,7 +23,5 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
-  private
-
   include Concerns::DeviseRequestValidation
 end
