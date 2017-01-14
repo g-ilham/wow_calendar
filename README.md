@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/g-ilham/wow_calendar/badges/gpa.svg)](https://codeclimate.com/github/g-ilham/wow_calendar)
 [![Coverage Status](https://coveralls.io/repos/g-ilham/wow_calendar/badge.svg?branch=master&service=github)](https://coveralls.io/github/g-ilham/wow_calendar?branch=master)
 
-[DEMO URL](http://wowcalendar.herokuapp.com/)
+[DEMO URL](https://wow-calendar.herokuapp.com/)
 
 > Для удобства тестирования используйте логин через VK или Facebook
 

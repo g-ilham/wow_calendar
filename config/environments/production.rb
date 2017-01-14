@@ -35,7 +35,7 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
-  config.action_mailer.default_url_options = { host: 'http://wowcalendar.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://wow-calendar.herokuapp.com' }
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
