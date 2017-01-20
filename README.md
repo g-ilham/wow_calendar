@@ -1,9 +1,9 @@
 ### WOW CALENDAR (Мой тестовый проект)
 
-[![Build Status](https://api.travis-ci.org/g-ilham/wow_calendar.svg?branch=master)](https://travis-ci.org/g-ilham/wow_calendar)
+[![Build Status](https://semaphoreci.com/api/v1/ilgam/wow_calendar/branches/master/shields_badge.svg)](https://semaphoreci.com/ilgam/wow_calendar)
 [![security](https://hakiri.io/github/g-ilham/wow_calendar/master.svg)](http://hakiri.io/github/g-ilham/wow_calendar/master)
 [![Code Climate](https://codeclimate.com/github/g-ilham/wow_calendar/badges/gpa.svg)](https://codeclimate.com/github/g-ilham/wow_calendar)
-[![Coverage Status](https://coveralls.io/repos/g-ilham/wow_calendar/badge.svg?branch=master&service=github)](https://coveralls.io/github/g-ilham/wow_calendar?branch=master)
+[![Test Coverage](https://codeclimate.com/github/g-ilham/wow_calendar/badges/coverage.svg)](https://codeclimate.com/github/g-ilham/wow_calendar/coverage)
 
 [DEMO URL](https://wow-calendar.herokuapp.com/)
 
