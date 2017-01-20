@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  include Concerns::DeviseRequestValidation
   respond_to :js
 
   before_action :configure_permitted_parameters, if: :devise_controller?

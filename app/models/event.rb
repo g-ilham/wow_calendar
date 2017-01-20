@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   validates_datetime :ends_at, after: :starts_at,
                                if: :need_to_validate_ends_at?
 
-  before_validation :trim_title
+  before_validation :trim_title, if: "self.title.present?"
   before_validation :parse_event_date
 
   def childs_with_parent
