@@ -1,23 +1,24 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  respond_to :html, :json
-  expose(:valid_captcha) { false }
-  expose(:user) { User.new }
+  include Concerns::DeviseRequestValidation
+  respond_to :js
 
-  def new
-  end
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def create
-    build_resource(sign_up_params)
+  prepend_before_action :check_captcha, only: %i(create)
 
-    if resource.valid?
-      if verify_recaptcha
-        success_captcha
-      else
-        not_valid_captcha_response
+  private
+    def check_captcha
+      @verified_recaptcha = verify_recaptcha
+
+      unless @verified_recaptcha
+        self.resource = resource_class.new sign_up_params
+        respond_with_navigational(resource)
       end
     end
-  end
 
-  include Concerns::DeviseRequestValidation
-  include Concerns::DeviseCreateRegistrationHelpers
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+  end
 end

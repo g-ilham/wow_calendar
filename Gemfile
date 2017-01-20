@@ -1,15 +1,15 @@
 source "https://rubygems.org"
 ruby "2.2.3"
 
-gem "rails", "~> 4.2.5"
+gem "rails", "4.2.7.1"
 gem "pg", "~> 0.18.3"
 gem "devise", ">= 3.5.4"
 
 # Assets and UI
-gem "bootstrap-sass", "~> 3.2.0"
-gem "sass-rails", ">= 3.2"
-gem "uglifier", ">= 1.3.0"
-gem "coffee-rails", "~> 4.1.0"
+gem "bootstrap-sass"
+gem "sass-rails"
+gem "uglifier"
+gem "coffee-rails"
 gem "therubyracer", platforms: :ruby
 gem "jquery-rails"
 gem "jquery-ui-rails"
@@ -69,8 +69,6 @@ group :development, :test do
   gem "better_errors"
   gem "letter_opener"
   gem "byebug"
-
-  # Code Review
   gem "rails_best_practices"
 end
 

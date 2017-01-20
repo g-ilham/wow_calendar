@@ -29,7 +29,7 @@ Capybara::Screenshot.autosave_on_failure = false
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include ExpectationHelper, type: :feature
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
   config.include RemoveAnimation, type: :feature
   config.include DateTimeHelpers, type: :feature

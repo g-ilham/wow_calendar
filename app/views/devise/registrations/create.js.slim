@@ -1,17 +1,15 @@
 | $('#sign_in_or_sign_up_modal .with_error').removeClass('with_error');
-| $('#sign_in_or_sign_up_modal input').prop('disabled', true);
+| $('.g-recaptcha').removeClass('with_error');
 
-- if resource.errors.present? || !valid_captcha
+- if resource.valid? && @verified_recaptcha
+  | $('#sign_in_or_sign_up_modal').modal('hide');
+  | setTimeout("$('#confirm_message_modal').modal('show')", 600);
+
+- else
   - resource.errors.each do |key, value|
     | $("#sign_in_or_sign_up_modal #user_" + "#{key}").parent().addClass("with_error");
     | $("#sign_in_or_sign_up_modal #user_" + "#{key}").parent().find('.form-error-message').text("#{value}");
 
-  - if !valid_captcha
+  - unless @verified_recaptcha
     | $('.g-recaptcha').addClass('with_error');
-
-  | $('#sign_in_or_sign_up_modal a').removeClass('disabled');
-  | $('#sign_in_or_sign_up_modal input').prop('disabled', false);
-- else
-  | $('#sign_in_or_sign_up_modal').modal('hide');
-  | setTimeout("$('#confirm_message_modal').modal('show')", 600);
-
+    | $('#recaptcha').html("#{ j(render 'devise/registrations/recaptcha') }");

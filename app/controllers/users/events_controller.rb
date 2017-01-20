@@ -83,7 +83,7 @@ class Users::EventsController < ApplicationController
   end
 
   def serialize(event)
-    ActiveModel::ArraySerializer.new(Array.wrap(event),
+    ActiveModel::Serializer::CollectionSerializer.new(Array.wrap(event),
                                      each_serializer: EventSerializer)
   end
 
