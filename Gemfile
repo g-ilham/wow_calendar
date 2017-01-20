@@ -86,6 +86,7 @@ group :test do
   gem "simplecov-rcov", require: false
   gem "rspec-sidekiq"
   gem "hashie"
+  gem "codeclimate-test-reporter", require: nil
 end
 
 gem "rails_12factor", group: :production

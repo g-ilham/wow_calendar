@@ -7,14 +7,9 @@ require 'database_cleaner'
 require 'shoulda/matchers'
 require "capybara-screenshot/rspec" #screenshot_and_open_image
 
-if ENV["COVERAGE"]
-  require "simplecov"
-  require 'coveralls'
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-  ]
-  SimpleCov.start "rails"
+if ENV["CI"]
+  require "codeclimate-test-reporter"
+  CodeClimate::TestReporter.start
 end
 
 Capybara.javascript_driver = :webkit
