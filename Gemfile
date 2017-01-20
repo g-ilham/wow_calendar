@@ -82,11 +82,9 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "timecop"
   gem "factory_girl_rails"
-  gem "simplecov", require: false
-  gem "simplecov-rcov", require: false
   gem "rspec-sidekiq"
   gem "hashie"
-  gem "codeclimate-test-reporter", require: nil
+  gem "codeclimate-test-reporter", require: false
 end
 
 gem "rails_12factor", group: :production

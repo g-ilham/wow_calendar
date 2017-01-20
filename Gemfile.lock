@@ -445,8 +445,6 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    simplecov-rcov (0.2.3)
-      simplecov (>= 0.4.1)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -547,8 +545,6 @@ DEPENDENCIES
   sidekiq
   sidekiq-status
   simple_form
-  simplecov
-  simplecov-rcov
   sinatra
   slim-rails
   therubyracer
