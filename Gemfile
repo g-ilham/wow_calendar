@@ -84,7 +84,7 @@ group :test do
   gem "factory_girl_rails"
   gem "rspec-sidekiq"
   gem "hashie"
-  gem "codeclimate-test-reporter", require: false
+  gem "codeclimate-test-reporter", "~> 0.6.0", require: false
 end
 
 gem "rails_12factor", group: :production
